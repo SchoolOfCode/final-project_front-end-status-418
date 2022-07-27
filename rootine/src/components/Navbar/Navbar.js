@@ -1,6 +1,7 @@
 import "./Navbar.css";
 
 export default function Navbar() {
+
     return (
         <header className="header">
             <div className="header-wrapper">
@@ -13,7 +14,7 @@ export default function Navbar() {
                         className="header-name" 
                         src="" 
                         alt="Rootine" />
-             </div>
+                </div>
                 <div className="header-div-right">
                     <a 
                         className ="blogs"
@@ -25,8 +26,7 @@ export default function Navbar() {
                         className="hamburger-menu" 
                         src="" 
                         alt="hamburger-menu" />
-                </div>    
-                
+                </div>     
             </div>
         </header>
     );
