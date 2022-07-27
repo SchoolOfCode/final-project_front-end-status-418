@@ -1,0 +1,43 @@
+.header {
+	background-color: #22553f;
+	min-height: 150px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
+}
+.header-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-div-left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: auto;
+}
+.header-div-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+}
+.header-logo {
+    margin: 0 10px 0 10px;
+}
+.header-name {
+    margin: 0 10px 0 10px;
+}
+.blogs {
+    margin: 0 10px 0 10px;
+}
+.about {
+    margin: 0 10px 0 10px;
+}
+.hamburger-menu {
+    margin: 0 10px 0 10px;
+}
