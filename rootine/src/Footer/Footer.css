@@ -1,13 +1,13 @@
 .footer {
   padding: 20px;
-  flex-direction: row;
+  flex-direction: column;
   display: inline-flex;
   justify-content: center;
   align-items: center;
 }
 
 .footer ul {
-  display: inline-flex;
+    display: inline-flex; 
   list-style: none;
 }
 .footer li a {
@@ -15,6 +15,11 @@
   text-decoration: none;
   padding: 10px;
   color: green;
+}
+
+.footer .copyright {
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .footer li a:hover {
