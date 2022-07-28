@@ -31,13 +31,23 @@
 }
 .header-name {
     margin: 0 10px 0 10px;
+    font-family: "Quando";
+    font-size: 70px;
 }
 .blogs {
     margin: 0 10px 0 10px;
+    font-family: "Quando";
+    font-size: 25px;
 }
 .about {
     margin: 0 10px 0 10px;
+    font-family: "Quando";
+    font-size: 25px;
 }
 .hamburger-menu {
     margin: 0 10px 0 10px;
+}
+
+.profile {
+    font-family: "Quando"
 }
