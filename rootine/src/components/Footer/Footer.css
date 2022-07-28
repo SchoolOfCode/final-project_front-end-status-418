@@ -5,7 +5,18 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  border-top: 0.15em solid var(--red);
+  position: fixed;
+  bottom: 0px;
+ 
+}
+
+.footer-border {
+
+height: 47px;
+width: 100%;
+border-bottom: 1px solid var(--red);
+margin-bottom: 10px;
+
 }
 
 .footer ul {
@@ -22,6 +33,7 @@
 .footer .copyright {
   flex-direction: column;
   align-items: flex-end;
+  margin-bottom: 15px;
 }
 
 .footer li a:hover {
