@@ -1,4 +1,15 @@
-.landing-page-left, .landing-page-right {
-    flex: 1 auto,
-    bg: 
+.landing-page-left,
+.landing-page-right {
+	width: 50%;
+	flex: 1 auto;
+	padding: 30px;
+}
+
+.landing-page-left {
+	padding-top: 50px;
+}
+
+.landing-page-img {
+	width: 80%;
+	margin: auto;
 }
