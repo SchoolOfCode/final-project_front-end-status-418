@@ -3,6 +3,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       {/* 3 links- privacy policy, blog, about */}
+      <div className="footer-border"></div>
       <ul>
         <li>
           <a href="Privacy">Privacy Policy</a>
