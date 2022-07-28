@@ -17,13 +17,15 @@
 .header-div-left {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
+    align-content:center;
     margin-right: auto;
 }
 .header-div-right {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
+    align-content: center;
     margin-left: auto;
 }
 .header-logo {
