@@ -18,15 +18,13 @@ export default function LandingPage() {
             <Flex color="white" gap="5px">
                 <Center
                     className="landing-page-left"
-                    flex="1 auto"
                     bg="green.500"
                 >
-                    <Text>Box 1</Text>
+                    <Text>Tagline! Tagline! Tagline!</Text>
                 </Center>
                 <Center
                     className="landing-page-right"
                     bg="blue.500"
-                    flex="1 auto"
                 >
                     <Text>Box 2</Text>
                 </Center>
