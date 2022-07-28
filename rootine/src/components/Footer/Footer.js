@@ -3,6 +3,8 @@ const Footer = () => {
   return (
     <footer className="footer">
       {/* 3 links- privacy policy, blog, about */}
+      <hr />
+      <div className="footer-border"></div>
       <ul>
         <li>
           <a href="Privacy">Privacy Policy</a>
@@ -14,7 +16,7 @@ const Footer = () => {
           <a href="About">About</a>
         </li>
       </ul>
-      <p>&copy; 2022 Status 418</p>
+      <p className="copyright">&copy; 2022 Status 418</p>
     </footer>
   );
 };
