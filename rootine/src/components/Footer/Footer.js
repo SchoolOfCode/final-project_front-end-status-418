@@ -14,7 +14,7 @@ const Footer = () => {
           <a href="About">About</a>
         </li>
       </ul>
-      <p>&copy; Status 418 2022</p>
+      <p>&copy; 2022 Status 418</p>
     </footer>
   );
 };
