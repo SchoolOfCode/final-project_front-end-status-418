@@ -1,11 +1,19 @@
 import "./LandingPage.css";
-import { Flex, Center, Text, Heading, Image, Box, Button } from "@chakra-ui/react";
+import {
+	Flex,
+	Center,
+	Text,
+	Heading,
+	Image,
+	Box,
+	Button,
+} from "@chakra-ui/react";
 import { VStack } from "@chakra-ui/react";
 
 export default function LandingPage() {
-    return (
-        <div className="landing-page-wrapper">
-            {/* <div className="landing-page-left">
+	return (
+		<div className="landing-page-wrapper">
+			{/* <div className="landing-page-left">
         <h2> Tagline! Tagline! Tagline!</h2>
         <img className="landing-page-image" src="" alt="landing-page-image" />
       </div>
