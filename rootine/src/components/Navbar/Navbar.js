@@ -15,7 +15,7 @@ export default function Navbar() {
       <div className="header-wrapper">
         <div className="header-div-left">
           <img className="header-logo" src="" alt="Rootine logo" />
-          <img className="header-name" src="" alt="Rootine" />
+          <img className="header-name" src="" alt="rootine" />
         </div>
         <div className="header-div-right">
           <a className="blogs" href="#">
@@ -26,22 +26,23 @@ export default function Navbar() {
           </a>
           <Menu>
             <MenuButton
-              fontFamily={"Quando Regular"}
+              fontFamily={"Quando"}
+              fontWeight={50}
               fontSize={25}
               as={Button}
-              colorScheme="dark green"
+              colorScheme="#f8a642"
+              color="#22553f"
             >
               Profile
             </MenuButton>
             <MenuList>
-              <MenuGroup title="Profile">
-                <MenuItem>My Account</MenuItem>
-                <MenuItem>Payments </MenuItem>
+              <MenuGroup title="Menu">
+                <MenuItem>Dark Mode</MenuItem>
+                <MenuItem>Color blind Mode </MenuItem>
               </MenuGroup>
               <MenuDivider />
               <MenuGroup title="Help">
-                <MenuItem>Docs</MenuItem>
-                <MenuItem>FAQ</MenuItem>
+                <MenuItem>Login</MenuItem>
               </MenuGroup>
             </MenuList>
           </Menu>
