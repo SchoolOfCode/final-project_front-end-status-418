@@ -1,13 +1,15 @@
-.header {
-	background-color: #22553f;
+.header 
+{
+    background: linear-gradient(to top,  #f05d4d, #f8a642 50%, #eee 45%, white 75%);
 	min-height: 150px;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: baseline ;
 	justify-content: center;
 	font-size: calc(10px + 2vmin);
-	color: white;
+	color: #22553f;
 }
+
 .header-wrapper{
     width: 100%;
     display: flex;
@@ -18,15 +20,17 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    align-content:center;
     margin-right: auto;
+    justify-content: space-between;
+    align-content:center;
 }
 .header-div-right {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    align-content: center;
     margin-left: auto;
+    align-content: center;
+
 }
 .header-logo {
     margin: 0 10px 0 10px;
