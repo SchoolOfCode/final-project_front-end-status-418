@@ -16,15 +16,21 @@
 }
 
 .landing-page-right {
-    padding:75px 80px;
+    padding:0px 60px 60px;
 
 }
 
 .box-right {
     border: 2px solid red;
-    max-width: 50%
+    max-width: 250px;
+    margin: 0px 0 20px 0
 }
 
 .landing-page-description{
 
+}
+
+.landing-page-login-button {
+    width: 30%;
+    height: 20%;
 }

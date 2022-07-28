@@ -42,7 +42,16 @@ export default function LandingPage() {
                                 should definitely sign up to use it
                             </Text>
                         </Box>
-                        <Button colorScheme="green" variant='solid'>
+                        <Button 
+                            className="landing-page-login-button" 
+                            colorScheme="green" 
+                            variant='solid'
+                            height="60px"
+                            width="200px"
+                            borderRadius="10px"
+                            color="white"
+                            bg="var(--green)"
+                        >
                             Login
                         </Button>
                     </VStack>
