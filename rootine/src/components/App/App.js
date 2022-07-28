@@ -1,5 +1,6 @@
 import "./App.css";
 import Navbar from "../Navbar/Navbar";
+import LandingPage from "../LandingPage/LandingPage.js";
 function App() {
 
 	return (
@@ -7,6 +8,7 @@ function App() {
 			<Navbar/>
 			<main>
 				<p>Welcome to our amazing habit-tracking app, Rootine 🌳</p>
+                <LandingPage/>
 			</main>
 		</div>
 	);
