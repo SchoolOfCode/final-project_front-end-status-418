@@ -1,38 +1,36 @@
+/* Import Google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Quando&display=swap");
+
+/* Root variables */
+:root {
+	--white: #ffffff;
+	--green: #22553f;
+	--black: #121714;
+	--off-white: #e8e9e3;
+	--yellow: #f8a642;
+	--red: #f05d4d;
+	--orange-gradient: linear-gradient(var(--yellow), var(--red));
+	--body: "Lato", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
+	--headings: "Quando";
+}
+
 .App {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
 }
 
 .App-logo {
-  height: 5vmin;
-  pointer-events: none;
+	height: 5vmin;
+	pointer-events: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-
 
 footer {
-  height: 50px;
-  flex-shrink: 0;
-  background-color: white;
-} 
-
-main {
-  flex: 1 0 auto;
+	height: 50px;
+	flex-shrink: 0;
+	background-color: white;
 }
 
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+main {
+	flex: 1 0 auto;
 }
