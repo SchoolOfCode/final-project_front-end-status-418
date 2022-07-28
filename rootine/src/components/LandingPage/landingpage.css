@@ -7,9 +7,24 @@
 
 .landing-page-left {
 	padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .landing-page-img {
 	width: 80%;
 	margin: auto;
+}
+
+.landing-page-right {
+    padding:75px 80px;
+
+}
+
+.box-right {
+    border: 2px solid red;
+    max-width: 50%
+}
+
+.landing-page-description{
+
 }
