@@ -1,24 +1,22 @@
 .footer {
-  padding: 20px;
+  padding: 10px;
   flex-direction: column;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-
   width: 100%;
-  
-  
+  border-top: 0.15em solid var(--red);
 }
 
 .footer ul {
-    display: inline-flex; 
+  display: inline-flex;
   list-style: none;
 }
 .footer li a {
   margin-bottom: auto;
   text-decoration: none;
-  padding: 10px;
-  color: green;
+  padding: 20px;
+  color: var(--green);
 }
 
 .footer .copyright {
@@ -27,5 +25,5 @@
 }
 
 .footer li a:hover {
-  color: orangered;
+  color: var(--red);
 }
