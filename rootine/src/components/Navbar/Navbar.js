@@ -1,7 +1,6 @@
 import "./Navbar.css";
-import { ChakraProvider, theme, useColorMode } from '@chakra-ui/react'
-import {MoonIcon, SunIcon} from "@chakra-ui/icons";
-
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+//import "@fontsource/quando/500.css";
 import {
   Menu,
   MenuButton,
@@ -12,11 +11,15 @@ import {
   Button,
 } from "@chakra-ui/react";
 
+const theme = extendTheme({
+    fonts:{
+        heading: `'Quando'`
+    },
+})
 
 
 
 export default function Navbar() {
-    const { colorMode, toggleColorMode } = useColorMode();
   return (
     <ChakraProvider theme={theme}>
     <header className="header">
@@ -33,25 +36,19 @@ export default function Navbar() {
             About
           </a>
           <Menu>
-            <MenuButton 
+            <MenuButton
               fontFamily={"Quando"}
               fontWeight={50}
               fontSize={25}
               as={Button}
               colorScheme="#f8a642"
               color="#22553f"
-              _hover={{ color: "#f05d4d" }}
-
             >
               Menu
             </MenuButton>
             <MenuList>
               <MenuGroup title="Menu">
-                <MenuItem Dark Mode>
-                <Button onClick={toggleColorMode}>
-                    Toggle {colorMode === 'light' ? <MoonIcon/> : <SunIcon/>}
-                </Button>
-                </MenuItem>
+                <MenuItem>Dark Mode</MenuItem>
                 <MenuItem>Colour blind Mode </MenuItem>
               </MenuGroup>
               <MenuDivider />
