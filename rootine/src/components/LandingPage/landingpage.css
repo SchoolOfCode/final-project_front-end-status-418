@@ -1,3 +1,9 @@
+.landing-page-wrapper {
+}
+
+.landing-page-flex {
+    min-height: 530px;
+}
 .landing-page-left,
 .landing-page-right {
 	width: 50%;
@@ -21,7 +27,7 @@
 }
 
 .box-right {
-    border: 2px solid red;
+/*     border: 2px solid red; */
     max-width: 250px;
     margin: 0px 0 20px 0
 }
@@ -30,7 +36,7 @@
 
 }
 
-.landing-page-login-button {
+/* .landing-page-login-button {
     width: 30%;
     height: 20%;
-}
+} */

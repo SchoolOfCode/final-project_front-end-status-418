@@ -9,6 +9,7 @@ import {
 	Button,
 } from "@chakra-ui/react";
 import { VStack } from "@chakra-ui/react";
+import LoginButton from "../LoginButton/LoginButton";
 
 export default function LandingPage() {
 	return (
@@ -25,10 +26,10 @@ export default function LandingPage() {
         </p>
         <button className="Login-button"> Login</button>
       </div> */}
-            <Flex color="white" gap="5px">
-                <Center className="landing-page-left" bg="green.500">
+            <Flex color="white" gap="5px" className="landing-page-flex">
+                <Center className="landing-page-left" bg="whiteAlpha.100">
                     <VStack spacing={10}>
-                        <Heading as="h2">Tagline! Tagline! Tagline!</Heading>
+                        <Heading as="h2" color="black">Tagline! Tagline! Tagline!</Heading>
                         <Box>
                             <Image
                                 className="landing-page-img"
@@ -41,17 +42,23 @@ export default function LandingPage() {
                         </Box>
                     </VStack>
                 </Center>
-                <Center className="landing-page-right" bg="blue.500">
-                    <VStack spacing={10}>
+                <Center className="landing-page-right" bg="white">
+                    <VStack spacing={10} shouldWrapChildren >
                         <Box className="box-right">
-                            <Text className="landing-page-description">
+                            <Text 
+                                className="landing-page-description"
+                                color="black" 
+                                fontSize='lg'
+                            >
                                 A few sentences of context on what the app offers, how
                                 it will help you maintain your habits and thus you
                                 should definitely sign up to use it
                             </Text>
                         </Box>
+                        <LoginButton/>
+
                         <Button 
-                            className="landing-page-login-button" 
+                            className="landing-page-signup-button" 
                             colorScheme="green" 
                             variant='solid'
                             height="60px"
@@ -59,8 +66,9 @@ export default function LandingPage() {
                             borderRadius="10px"
                             color="white"
                             bg="var(--green)"
+                            marginTop="-20px"
                         >
-                            Login
+                            Sign up
                         </Button>
                     </VStack>
                 </Center>
