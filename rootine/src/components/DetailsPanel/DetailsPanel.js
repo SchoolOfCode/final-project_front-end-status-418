@@ -3,7 +3,8 @@ import { Box } from "@chakra-ui/react";
 const DetailsPanel = () => {
   return (
     <Box
-      maxW="sm"
+      maxW="960px"
+      width="20em"
       height="60%"
       borderWidth="3px"
       borderRadius="4.5em"
