@@ -1,6 +1,7 @@
 import Footer from "../Footer/Footer";
 import "./App.css";
 import Navbar from "../Navbar/Navbar";
+import LandingPage from "../LandingPage/LandingPage";
 
 function App() {
 	const areYouCurrentlyWorkingOnTheLandingPage = false;
@@ -9,11 +10,9 @@ function App() {
 		<div className="App">
 			<Navbar />
 			<main>
+
 				{areYouCurrentlyWorkingOnTheLandingPage ? (
-					<p>
-						Replace this <code>p</code> tag with{" "}
-						<code>LandingPage</code>{" "}
-					</p>
+					<LandingPage/>
 				) : (
 					<p>
 						Replace this <code>p</code> tag with{" "}
