@@ -6,6 +6,10 @@ const theme = extendTheme({
 		heading: `var(--headings)`,
 		body: `var(--body)`,
 	},
+	config: {
+		initialColorMode: 'light',
+		useSystemColorMode: false,
+	  }
 });
 
 export default theme;

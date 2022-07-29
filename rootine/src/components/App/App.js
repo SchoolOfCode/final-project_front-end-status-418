@@ -4,6 +4,9 @@ import Navbar from "../Navbar/Navbar";
 import DetailsPanel from "../DetailsPanel/DetailsPanel";
 import { Flex } from "@chakra-ui/react";
 
+import LandingPage from "../LandingPage/LandingPage";
+
+
 function App() {
   const areYouCurrentlyWorkingOnTheLandingPage = false;
 
@@ -12,9 +15,7 @@ function App() {
       <Navbar />
       <main>
         {areYouCurrentlyWorkingOnTheLandingPage ? (
-          <p>
-            Replace this <code>p</code> tag with <code>LandingPage</code>{" "}
-          </p>
+          <LandingPage/>
         ) : (
           <Flex
             className="view-container"

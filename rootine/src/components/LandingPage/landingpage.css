@@ -1,0 +1,42 @@
+.landing-page-wrapper {
+}
+
+.landing-page-flex {
+    min-height: 530px;
+}
+.landing-page-left,
+.landing-page-right {
+	width: 50%;
+	flex: 1 auto;
+	padding: 30px;
+}
+
+.landing-page-left {
+	padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.landing-page-img {
+	width: 80%;
+	margin: auto;
+}
+
+.landing-page-right {
+    padding:0px 60px 60px;
+
+}
+
+.box-right {
+/*     border: 2px solid red; */
+    max-width: 250px;
+    margin: 0px 0 20px 0
+}
+
+.landing-page-description{
+
+}
+
+/* .landing-page-login-button {
+    width: 30%;
+    height: 20%;
+} */
