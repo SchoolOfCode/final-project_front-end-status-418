@@ -38,19 +38,6 @@ export default function LandingPage() {
 						</Box>
 						<LoginButton />
 						<SignupButton />
-
-						{/* <Button
-							className="landing-page-signup-button"
-							colorScheme="green"
-							variant="solid"
-							height="60px"
-							width="200px"
-							borderRadius="10px"
-							color="white"
-							bg="var(--green)"
-							marginTop="-20px">
-							Sign up
-						</Button> */}
 					</VStack>
 				</Center>
 			</Flex>
