@@ -2,7 +2,7 @@ import Footer from "../Footer/Footer";
 import "./App.css";
 import Navbar from "../Navbar/Navbar";
 import DetailsPanel from "../DetailsPanel/DetailsPanel";
-import { Box, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 function App() {
   const areYouCurrentlyWorkingOnTheLandingPage = false;
@@ -19,11 +19,11 @@ function App() {
           <Flex
             className="view-container"
             height="100%"
-            borderWidth="5px"
-            borderColor="black"
-            width="100%"
+            width="auto"
             display="flex"
             alignItems="center"
+            marginLeft="5em"
+            marginBottom="1em"
           >
             <DetailsPanel />
           </Flex>
