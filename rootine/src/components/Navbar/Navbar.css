@@ -23,6 +23,7 @@
     margin-right: auto;
     justify-content: space-between;
     align-content:center;
+    
 }
 .header-div-right {
     display: flex;
@@ -30,6 +31,7 @@
     align-items: baseline;
     margin-left: auto;
     align-content: center;
+   
 
 }
 .header-logo {
@@ -45,15 +47,17 @@
     font-family: "Quando";
     font-size: 25px;
 }
+
 .about {
     margin: 0 10px 0 10px;
     font-family: "Quando";
     font-size: 25px;
 }
-.hamburger-menu {
-    margin: 0 10px 0 10px;
-}
 
 .profile {
     font-family: "Quando"
 }
+
+a:hover {
+    background-color: yellow;
+  }

@@ -1,6 +1,4 @@
 import "./Navbar.css";
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-//import "@fontsource/quando/500.css";
 import {
   Menu,
   MenuButton,
@@ -11,22 +9,13 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-const theme = extendTheme({
-    fonts:{
-        heading: `'Quando'`
-    },
-})
-
-
-
 export default function Navbar() {
   return (
-    <ChakraProvider theme={theme}>
     <header className="header">
       <div className="header-wrapper">
         <div className="header-div-left">
           <img className="header-logo" src="" alt="Rootine logo" />
-          <img className="header-name" src="" alt="rootine" />
+          <img className="header-name" src="" alt="Rootine" />
         </div>
         <div className="header-div-right">
           <a className="blogs" href="#">
@@ -37,19 +26,17 @@ export default function Navbar() {
           </a>
           <Menu>
             <MenuButton
-              fontFamily={"Quando"}
-              fontWeight={50}
+              fontFamily={"Quando Regular"}
               fontSize={25}
               as={Button}
-              colorScheme="#f8a642"
-              color="#22553f"
+              colorScheme=" dark green"
             >
-              Menu
+              Profile
             </MenuButton>
             <MenuList>
               <MenuGroup title="Menu">
                 <MenuItem>Dark Mode</MenuItem>
-                <MenuItem>Colour blind Mode </MenuItem>
+                <MenuItem>Colour Blind Mode </MenuItem>
               </MenuGroup>
               <MenuDivider />
               <MenuGroup title="Profile">
@@ -60,6 +47,5 @@ export default function Navbar() {
         </div>
       </div>
     </header>
-    </ChakraProvider>
   );
 }
