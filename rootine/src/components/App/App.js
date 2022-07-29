@@ -4,12 +4,19 @@ import Navbar from "../Navbar/Navbar";
 import DetailsPanel from "../DetailsPanel/DetailsPanel";
 
 function App() {
+  const areYouCurrentlyWorkingOnTheLandingPage = false;
+
   return (
     <div className="App">
       <Navbar />
       <main>
-        <p>Welcome to our amazing habit-tracking app, Rootine 🌳</p>
-        <DetailsPanel />
+        {areYouCurrentlyWorkingOnTheLandingPage ? (
+          <p>
+            Replace this <code>p</code> tag with <code>LandingPage</code>{" "}
+          </p>
+        ) : (
+          <DetailsPanel />
+        )}
       </main>
       <Footer />
     </div>
