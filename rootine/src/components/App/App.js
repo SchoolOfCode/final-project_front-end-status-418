@@ -8,7 +8,7 @@ import LandingPage from "../LandingPage/LandingPage";
 
 
 function App() {
-  const areYouCurrentlyWorkingOnTheLandingPage = false;
+  const areYouCurrentlyWorkingOnTheLandingPage = true;
 
   return (
     <div className="App">
