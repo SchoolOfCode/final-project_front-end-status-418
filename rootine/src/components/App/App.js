@@ -6,16 +6,15 @@ import { Flex } from "@chakra-ui/react";
 
 import LandingPage from "../LandingPage/LandingPage";
 
-
 function App() {
-  const areYouCurrentlyWorkingOnTheLandingPage = true;
+  const areYouCurrentlyWorkingOnTheLandingPage = false;
 
   return (
     <div className="App">
       <Navbar />
       <main>
         {areYouCurrentlyWorkingOnTheLandingPage ? (
-          <LandingPage/>
+          <LandingPage />
         ) : (
           <Flex
             className="view-container"
