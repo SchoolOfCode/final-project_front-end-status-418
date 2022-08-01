@@ -8,33 +8,34 @@ import LandingPage from "../LandingPage/LandingPage";
 import Calender from "./Calender/Calender";
 
 function App() {
-  const areYouCurrentlyWorkingOnTheLandingPage = false;
+    const areYouCurrentlyWorkingOnTheLandingPage = false;
 
-  return (
-    <div className="App">
-      <Navbar />
-      <main>
-        {areYouCurrentlyWorkingOnTheLandingPage ? (
-          <LandingPage />
-        ) : (
-          <Flex
-            className="view-container"
-            height="100%"
-            width="auto"
-            display="flex"
-            alignItems="center"
-            marginLeft="5em"
-            marginRight="5em"
-            marginBottom="1em"
-          >
-            <DetailsPanel />
-            <Calender />
-          </Flex>
-        )}
-      </main>
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="App">
+            <Navbar />
+            <main>
+                {areYouCurrentlyWorkingOnTheLandingPage ? (
+                    <LandingPage />
+                ) : (
+                    <Flex
+                        className="view-container"
+                        height="100%"
+                        width="auto"
+                        display="flex"
+                        alignItems="center"
+                        marginLeft="5em"
+                        marginRight="5em"
+                        marginBottom="1em"
+                        gap='20'
+                    >
+                        <DetailsPanel />
+                        <Calender />
+                    </Flex>
+                )}
+            </main>
+            <Footer />
+        </div>
+    );
 }
 
 export default App;
