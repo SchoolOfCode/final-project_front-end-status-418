@@ -5,17 +5,17 @@ import DetailsPanel from "../DetailsPanel/DetailsPanel";
 import { Flex } from "@chakra-ui/react";
 
 import LandingPage from "../LandingPage/LandingPage";
-
+import Calender from "./Calender/Calender";
 
 function App() {
-  const areYouCurrentlyWorkingOnTheLandingPage = true;
+  const areYouCurrentlyWorkingOnTheLandingPage = false;
 
   return (
     <div className="App">
       <Navbar />
       <main>
         {areYouCurrentlyWorkingOnTheLandingPage ? (
-          <LandingPage/>
+          <LandingPage />
         ) : (
           <Flex
             className="view-container"
@@ -27,6 +27,7 @@ function App() {
             marginBottom="1em"
           >
             <DetailsPanel />
+            <Calender />
           </Flex>
         )}
       </main>
