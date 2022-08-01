@@ -15,7 +15,13 @@ const DetailsPanel = () => {
       p="6"
       bg="white"
     >
-      This is the Box
+      {/* Habit Title header , use theme font */}
+      {/* Current Habit Streak / Icon and p tag */}
+      {/* Longest Habit Streak / Icon and p tag*/}
+
+      {/* Description / p tag */}
+      {/* Everyday Toggle  / checkbox */}
+      {/* Frequency / p tag with input field and dropdown */}
     </Box>
   );
 };
