@@ -9,15 +9,33 @@ import {
   EditablePreview,
   useEditableControls,
   EditableTextarea,
+  Flex,
+  ButtonGroup,
+  IconButton,
+  Input,
+  EditableControls,
 } from "@chakra-ui/react";
+import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
 
 const DetailsPanel = () => {
-  // // const {
-  // //   isEditing,
-  // //   getSubmitButtonProps,
-  // //   getCancelButtonProps,
-  // //   getEditButtonProps,
-  // // } = useEditableControls();
+  function EditableControls() {
+    const {
+      isEditing,
+      getSubmitButtonProps,
+      getCancelButtonProps,
+      getEditButtonProps,
+    } = useEditableControls();
+    isEditing ? (
+      <ButtonGroup justifyContent="center" size="sm">
+        <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
+        <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
+      </ButtonGroup>
+    ) : (
+      <Flex justifyContent="center">
+        <IconButton size="sm" icon={<EditIcon />} {...getEditButtonProps()} />
+      </Flex>
+    );
+  }
 
   return (
     <Box
@@ -43,7 +61,8 @@ const DetailsPanel = () => {
             defaultValue="Walk the dog"
           >
             <EditablePreview />
-            <EditableInput />
+            <Input as={EditableInput} />
+            <EditableControls />
           </Editable>
         </Box>
 
