@@ -1,6 +1,7 @@
 import {
   Box,
   VStack,
+  HStack,
   Heading,
   Text,
   Checkbox,
@@ -84,28 +85,30 @@ const DetailsPanel = () => {
           >
             <EditablePreview />
             <EditableTextarea />
+            <EditableControls />
           </Editable>
         </Box>
 
         <Box className="everyday-checkbox">
-          <Text> Everyday </Text>
-          <Checkbox></Checkbox>
+          <HStack spacing={5}>
+            <Text> Everyday </Text>
+            <Checkbox></Checkbox>
+          </HStack>
         </Box>
 
         <Box className="frequency">
-          <Text>
-            {" "}
-            Frequency
+          Frequency
+          <HStack>
             <Editable defaultValue="1">
               <EditablePreview />
               <EditableInput />
             </Editable>
-            Times
+            <Text>Times</Text>
             <select className="frequency-select">
               <option>Weekly</option>
               <option>Monthly</option>
             </select>
-          </Text>
+          </HStack>
         </Box>
       </VStack>
 
