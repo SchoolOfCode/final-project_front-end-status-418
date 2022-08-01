@@ -2,7 +2,7 @@ import Footer from "../Footer/Footer";
 import "./App.css";
 import Navbar from "../Navbar/Navbar";
 import DetailsPanel from "../DetailsPanel/DetailsPanel";
-import { Flex, HStack } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 import LandingPage from "../LandingPage/LandingPage";
 import Calender from "./Calender/Calender";
@@ -27,13 +27,8 @@ function App() {
             marginRight="5em"
             marginBottom="1em"
           >
-            <HStack spacing="40px">
             <DetailsPanel />
             <Calender />
-            </HStack>
-            
-            
-            
           </Flex>
         )}
       </main>
