@@ -13,7 +13,6 @@ import {
   ButtonGroup,
   IconButton,
   Input,
-  EditableControls,
 } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
 
@@ -25,7 +24,7 @@ const DetailsPanel = () => {
       getCancelButtonProps,
       getEditButtonProps,
     } = useEditableControls();
-    isEditing ? (
+    return isEditing ? (
       <ButtonGroup justifyContent="center" size="sm">
         <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
         <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
