@@ -2,6 +2,7 @@ import { Box } from "@chakra-ui/react";
 
 const DetailsPanel = () => {
   return (
+    
     <Box
       className="details-panel-parent"
       maxW="960px"
@@ -17,6 +18,7 @@ const DetailsPanel = () => {
     >
       This is the Box
     </Box>
+    
   );
 };
 
