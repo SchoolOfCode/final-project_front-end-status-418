@@ -50,10 +50,9 @@
     font-family: "Quando";
     font-size: 25px;
 }
-.hamburger-menu {
-    margin: 0 10px 0 10px;
-}
 
-.profile {
-    font-family: "Quando"
-}
+
+a:hover {
+    color: #f05d4d;
+  }
+

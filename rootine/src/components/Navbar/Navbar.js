@@ -1,6 +1,7 @@
 import "./Navbar.css";
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-//import "@fontsource/quando/500.css";
+import { ChakraProvider, theme, useColorMode } from '@chakra-ui/react'
+import {MoonIcon, SunIcon} from "@chakra-ui/icons";
+
 import {
   Menu,
   MenuButton,
@@ -11,15 +12,11 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-const theme = extendTheme({
-    fonts:{
-        heading: `'Quando'`
-    },
-})
 
 
 
 export default function Navbar() {
+    const { colorMode, toggleColorMode } = useColorMode();
   return (
     <ChakraProvider theme={theme}>
     <header className="header">
@@ -29,26 +26,32 @@ export default function Navbar() {
           <img className="header-name" src="" alt="rootine" />
         </div>
         <div className="header-div-right">
-          <a className="blogs" href="#">
+          <a className="blogs" href="https://www.google.com">
             Blogs
           </a>
-          <a className="about" href="#">
+          <a className="about" href="https://www.google.com">
             About
           </a>
           <Menu>
-            <MenuButton
+            <MenuButton 
               fontFamily={"Quando"}
               fontWeight={50}
               fontSize={25}
               as={Button}
               colorScheme="#f8a642"
               color="#22553f"
+              _hover={{ color: "#f05d4d" }}
+
             >
               Menu
             </MenuButton>
             <MenuList>
               <MenuGroup title="Menu">
-                <MenuItem>Dark Mode</MenuItem>
+                <MenuItem Dark Mode>
+                <Button onClick={toggleColorMode}>
+                    Toggle {colorMode === 'light' ? <MoonIcon/> : <SunIcon/>}
+                </Button>
+                </MenuItem>
                 <MenuItem>Colour blind Mode </MenuItem>
               </MenuGroup>
               <MenuDivider />
