@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 
 const DetailsPanel = () => {
   return (
@@ -15,38 +15,43 @@ const DetailsPanel = () => {
       p="6"
       bg="white"
     >
-      <h1 className="habit-name"> Walk the dog </h1>
-      <li className="current-streak">
-        <i className="current-streak-icon"></i>
-        <p> You are currently on a ____ streak</p>
-      </li>
-      <li className="longest-streak">
-        <i className="longest-streak-icon"></i>
-        <p> Your longest streak is ____ days</p>
-      </li>
+      <VStack>
+        <Box>
+          <h1 className="habit-name"> Walk the dog </h1>
+        </Box>
 
-      <li className="description">
-        <h2> Description </h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua
-        </p>
-      </li>
+        <Box className="current-streak">
+          <i className="current-streak-icon"></i>
+          <p> You are currently on a ____ streak</p>
+        </Box>
+        <Box className="longest-streak">
+          <i className="longest-streak-icon"></i>
+          <p> Your longest streak is ____ days</p>
+        </Box>
 
-      <li className="everyday-checkbox">
-        <p> Everyday </p>
-        <input type="checkbox"></input>
-      </li>
+        <Box className="description">
+          <h2> Description </h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua
+          </p>
+        </Box>
 
-      <li className="frequency">
-        <p>
-          {" "}
-          Frequency
-          <input type="textbox"></input>
-          Time
-          <input type="dropdown"></input>
-        </p>
-      </li>
+        <Box className="everyday-checkbox">
+          <p> Everyday </p>
+          <input type="checkbox"></input>
+        </Box>
+
+        <Box className="frequency">
+          <p>
+            {" "}
+            Frequency
+            <input type="textbox"></input>
+            Time
+            <input type="dropdown"></input>
+          </p>
+        </Box>
+      </VStack>
 
       {/* Habit Title header , use theme font */}
       {/* Current Habit Streak / Icon and p tag */}
