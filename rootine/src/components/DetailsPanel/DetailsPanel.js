@@ -1,7 +1,23 @@
-import { Box, VStack } from "@chakra-ui/react";
-import {FaFire, FaTrophy} from 'react-icons/fa';
+import { FaFire, FaTrophy } from "react-icons/fa";
 
-
+import {
+  Box,
+  VStack,
+  HStack,
+  Heading,
+  Text,
+  Checkbox,
+  Editable,
+  EditableInput,
+  EditablePreview,
+  useEditableControls,
+  EditableTextarea,
+  Flex,
+  ButtonGroup,
+  IconButton,
+  Input,
+} from "@chakra-ui/react";
+import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
 
 const DetailsPanel = () => {
   function EditableControls() {
@@ -54,11 +70,16 @@ const DetailsPanel = () => {
 
         <Box className="current-streak">
           <i className="current-streak-icon"></i>
-          <p> <FaFire/> You are currently on a ____ streak </p>
+          <Text>
+            <FaFire /> You are currently on a ____ streak
+          </Text>
         </Box>
         <Box className="longest-streak">
           <i className="longest-streak-icon"></i>
-          <p><FaTrophy/> Your longest streak is ____ days</p>
+          <Text>
+            <FaTrophy />
+            Your longest streak is ____ days
+          </Text>
         </Box>
 
         <Box className="description">
