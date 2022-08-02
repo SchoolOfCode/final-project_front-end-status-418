@@ -1,4 +1,7 @@
 import { Box, VStack } from "@chakra-ui/react";
+import {FaFire, FaTrophy} from 'react-icons/fa';
+
+
 
 const DetailsPanel = () => {
   return (
@@ -22,11 +25,11 @@ const DetailsPanel = () => {
 
         <Box className="current-streak">
           <i className="current-streak-icon"></i>
-          <p> You are currently on a ____ streak</p>
+          <p> <FaFire/> You are currently on a ____ streak </p>
         </Box>
         <Box className="longest-streak">
           <i className="longest-streak-icon"></i>
-          <p> Your longest streak is ____ days</p>
+          <p><FaTrophy/> Your longest streak is ____ days</p>
         </Box>
 
         <Box className="description">
