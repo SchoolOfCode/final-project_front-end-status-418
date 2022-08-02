@@ -4,6 +4,25 @@ import {FaFire, FaTrophy} from 'react-icons/fa';
 
 
 const DetailsPanel = () => {
+  function EditableControls() {
+    const {
+      isEditing,
+      getSubmitButtonProps,
+      getCancelButtonProps,
+      getEditButtonProps,
+    } = useEditableControls();
+    return isEditing ? (
+      <ButtonGroup justifyContent="center" size="sm">
+        <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
+        <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
+      </ButtonGroup>
+    ) : (
+      <Flex justifyContent="center">
+        <IconButton size="sm" icon={<EditIcon />} {...getEditButtonProps()} />
+      </Flex>
+    );
+  }
+
   return (
     <Box
       className="details-panel-parent"
@@ -20,7 +39,17 @@ const DetailsPanel = () => {
     >
       <VStack>
         <Box>
-          <h1 className="habit-name"> Walk the dog </h1>
+          <Editable
+            fontSize="3xl"
+            fontWeight="bold"
+            textAlign="center"
+            className="habit-name"
+            defaultValue="Walk the dog"
+          >
+            <EditablePreview />
+            <Input as={EditableInput} />
+            <EditableControls />
+          </Editable>
         </Box>
 
         <Box className="current-streak">
@@ -33,26 +62,39 @@ const DetailsPanel = () => {
         </Box>
 
         <Box className="description">
-          <h2> Description </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua
-          </p>
+          <Heading size="sm"> Description </Heading>
+          <Editable
+            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut 
+            labore et dolore magna aliqua"
+            textAlign="center"
+          >
+            <EditablePreview />
+            <EditableTextarea />
+            <EditableControls />
+          </Editable>
         </Box>
 
         <Box className="everyday-checkbox">
-          <p> Everyday </p>
-          <input type="checkbox"></input>
+          <HStack spacing={5}>
+            <Text> Everyday </Text>
+            <Checkbox></Checkbox>
+          </HStack>
         </Box>
 
         <Box className="frequency">
-          <p>
-            {" "}
-            Frequency
-            <input type="textbox"></input>
-            Time
-            <input type="dropdown"></input>
-          </p>
+          Frequency
+          <HStack>
+            <Editable defaultValue="1">
+              <EditablePreview />
+              <EditableInput />
+            </Editable>
+            <Text>Times</Text>
+            <select className="frequency-select">
+              <option>Weekly</option>
+              <option>Monthly</option>
+            </select>
+          </HStack>
         </Box>
       </VStack>
 
