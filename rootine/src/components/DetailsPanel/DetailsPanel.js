@@ -4,6 +4,7 @@ import {
   Box,
   VStack,
   HStack,
+  Stack,
   Heading,
   Text,
   Checkbox,
@@ -17,7 +18,7 @@ import {
   IconButton,
   Input,
   Wrap,
-  WrapItem
+  WrapItem,
 } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
 
@@ -58,7 +59,6 @@ const DetailsPanel = () => {
       pl={10}
       pr={10}
       bg="white"
-      
     >
       <VStack>
         <Box>
@@ -76,27 +76,23 @@ const DetailsPanel = () => {
         </Box>
 
         <Box className="current-streak">
-        <Wrap spacing="5px">
+          <Wrap spacing="5px">
             <WrapItem>
-            <FaFire />
-          <Text>
-             You are currently on a ____ streak
-          </Text>
-          </WrapItem>
+              <FaFire />
+              <Text>You are currently on a ____ streak</Text>
+            </WrapItem>
           </Wrap>
         </Box>
         <Box className="longest-streak">
           <Wrap spacing="5px">
             <WrapItem>
-          <FaTrophy/>
-          <Text className="text-streak">
-          Your longest streak is ____ days
-          </Text>
-            
-          </WrapItem>
+              <FaTrophy />
+              <Text className="text-streak">
+                Your longest streak is ____ days
+              </Text>
+            </WrapItem>
           </Wrap>
         </Box>
-        
 
         <Box className="description">
           <Heading size="sm"> Description </Heading>
@@ -114,26 +110,33 @@ const DetailsPanel = () => {
 
         <Box className="everyday-checkbox">
           <HStack spacing={5}>
-            <Text> Everyday </Text>
-            <Checkbox></Checkbox>
-          </HStack>
-        </Box>
-
-        <Box className="frequency">
-          Frequency
-          <HStack>
-            <Editable defaultValue="1">
-              <EditablePreview />
-              <EditableInput />
-            </Editable>
-            <Text>Times</Text>
-            <select className="frequency-select">
-              <option>Weekly</option>
-              <option>Monthly</option>
-            </select>
+            <Text fontWeight="bold"> Everyday </Text>
+            <Checkbox size="lg"></Checkbox>
           </HStack>
         </Box>
       </VStack>
+
+      <Box className="frequency">
+        <Stack spacing={3} direction="row" align="baseline">
+          <Text fontWeight="bold"> Frequency</Text>
+          <Editable
+            pl={2}
+            pr={2}
+            borderRadius="0.5em"
+            borderWidth="3px"
+            defaultValue="1"
+          >
+            <EditablePreview />
+            <EditableInput />
+          </Editable>
+
+          <Text fontWeight="bold">Times</Text>
+          <select className="frequency-select">
+            <option>Weekly</option>
+            <option>Monthly</option>
+          </select>
+        </Stack>
+      </Box>
 
       {/* Habit Title header , use theme font */}
       {/* Current Habit Streak / Icon and p tag */}
