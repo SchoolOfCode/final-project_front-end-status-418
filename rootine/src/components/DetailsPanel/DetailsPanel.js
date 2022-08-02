@@ -16,6 +16,8 @@ import {
   ButtonGroup,
   IconButton,
   Input,
+  Wrap,
+  WrapItem
 } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
 
@@ -42,16 +44,21 @@ const DetailsPanel = () => {
   return (
     <Box
       className="details-panel-parent"
-      maxW="960px"
-      width="22em"
+      maxW="1000px"
+      width="23em"
       height="70%"
       borderWidth="3px"
       borderRadius="4.5em"
       overflow="hidden"
       color="black"
       boxShadow="md"
-      p="6"
+      m={20}
+      pt={1}
+      pb={10}
+      pl={10}
+      pr={10}
       bg="white"
+      
     >
       <VStack>
         <Box>
@@ -69,18 +76,27 @@ const DetailsPanel = () => {
         </Box>
 
         <Box className="current-streak">
-          <i className="current-streak-icon"></i>
+        <Wrap spacing="5px">
+            <WrapItem>
+            <FaFire />
           <Text>
-            <FaFire /> You are currently on a ____ streak
+             You are currently on a ____ streak
           </Text>
+          </WrapItem>
+          </Wrap>
         </Box>
         <Box className="longest-streak">
-          <i className="longest-streak-icon"></i>
-          <Text>
-            <FaTrophy />
-            Your longest streak is ____ days
+          <Wrap spacing="5px">
+            <WrapItem>
+          <FaTrophy/>
+          <Text className="text-streak">
+          Your longest streak is ____ days
           </Text>
+            
+          </WrapItem>
+          </Wrap>
         </Box>
+        
 
         <Box className="description">
           <Heading size="sm"> Description </Heading>
