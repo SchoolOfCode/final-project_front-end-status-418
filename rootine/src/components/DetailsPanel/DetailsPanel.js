@@ -13,14 +13,15 @@ import {
   EditablePreview,
   useEditableControls,
   EditableTextarea,
-  Flex,
   ButtonGroup,
   IconButton,
   Input,
   Wrap,
   WrapItem,
+  useColorModeValue,
+  Tooltip
 } from "@chakra-ui/react";
-import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
+import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 
 const DetailsPanel = () => {
   function EditableControls() {
@@ -35,11 +36,7 @@ const DetailsPanel = () => {
         <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
         <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
       </ButtonGroup>
-    ) : (
-      <Flex justifyContent="center">
-        <IconButton size="sm" icon={<EditIcon />} {...getEditButtonProps()} />
-      </Flex>
-    );
+    ) : null;
   }
 
   return (
@@ -69,42 +66,57 @@ const DetailsPanel = () => {
             className="habit-name"
             defaultValue="Walk the dog"
           >
-            <EditablePreview />
-            <Input as={EditableInput} />
+            <Tooltip label="Click to edit">
+          <EditablePreview
+            py={2}
+            px={4}
+            _hover={{
+              background: useColorModeValue("gray.100", "gray.700")
+            }}
+          />
+        </Tooltip>
+            <Input py={2} px={4} as={EditableInput} />
             <EditableControls />
           </Editable>
         </Box>
 
         <Box className="current-streak">
           <Wrap spacing="5px">
-            <WrapItem>
-              <FaFire />
-              <Text>You are currently on a ____ streak</Text>
+            <WrapItem alignItems="center" >
+              <FaFire color="#f05d4d" />
+              <Text ml="5px">You are currently on a ____ streak</Text>
             </WrapItem>
           </Wrap>
         </Box>
         <Box className="longest-streak">
           <Wrap spacing="5px">
-            <WrapItem>
-              <FaTrophy />
-              <Text className="text-streak">
-                Your longest streak is ____ days
-              </Text>
+            <WrapItem alignItems="center" >
+              <FaTrophy color="gold"/>
+              <Text ml="7px">Your longest streak is ____ days</Text>
             </WrapItem>
           </Wrap>
         </Box>
 
         <Box className="description">
-          <Heading size="sm"> Description </Heading>
+          <Heading size="sm" display="inline"> Description </Heading>
           <Editable
-            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut 
-            labore et dolore magna aliqua"
+            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua"
             textAlign="center"
+            isPreviewFocusable={true}
+            // selectAllOnFocus={false}
           >
-            <EditablePreview />
-            <EditableTextarea />
+            <Tooltip label="Click to edit">
+          <EditablePreview
+            py={2}
+            px={4}
+            _hover={{
+              background: useColorModeValue("gray.100", "gray.700")
+            }}
+          />
+        </Tooltip>
             <EditableControls />
+            <EditableTextarea
+            rows="4" />
           </Editable>
         </Box>
 
