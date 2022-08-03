@@ -31,7 +31,6 @@ const DetailsPanel = () => {
       isEditing,
       getSubmitButtonProps,
       getCancelButtonProps,
-      getEditButtonProps,
     } = useEditableControls();
     return isEditing ? (
       <ButtonGroup justifyContent="center" size="sm">
@@ -181,22 +180,22 @@ const DetailsPanel = () => {
 
 export default DetailsPanel;
 
-{
-  /* Habit Title header , use theme font */
-}
-{
-  /* Current Habit Streak / Icon and p tag */
-}
-{
-  /* Longest Habit Streak / Icon and p tag*/
-}
+// {
+//   /* Habit Title header , use theme font */
+// }
+// {
+//   /* Current Habit Streak / Icon and p tag */
+// }
+// {
+//   /* Longest Habit Streak / Icon and p tag*/
+// }
 
-{
-  /* Description / p tag */
-}
-{
-  /* Everyday Toggle  / checkbox */
-}
-{
-  /* Frequency / p tag with input field and dropdown */
-}
+// {
+//   /* Description / p tag */
+// }
+// {
+//   /* Everyday Toggle  / checkbox */
+// }
+// {
+//   /* Frequency / p tag with input field and dropdown */
+// }
