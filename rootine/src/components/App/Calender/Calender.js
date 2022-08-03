@@ -1,6 +1,7 @@
 import { Container, Box, Heading, Button } from "@chakra-ui/react";
 import { CalendarBar } from "../../CalenderBar/CalendarBar";
 import "./Calender.css";
+import HabitRow from "./HorizontalCalender/HabitRow/HabitRow";
 
 const Calender = () => {
   let name = "test";
@@ -17,7 +18,7 @@ const Calender = () => {
           Welcome, {name}
         </Heading>
         <CalendarBar />
-        <p>This is a container</p>
+        <HabitRow habitName={"HabitNameHere"}/>
         <p>This is a container</p>
         <p>This is a container</p>
         <p>This is a container</p>
