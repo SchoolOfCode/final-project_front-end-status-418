@@ -24,6 +24,7 @@ function App() {
             alignItems="center"
             marginLeft="5em"
             marginBottom="1em"
+            
           >
             <DetailsPanel />
           </Flex>
