@@ -7,11 +7,11 @@ function HabitRow() {
     id: "1",
     name: "Running",
     habitItemList: [
-      { status: "Complete", date: "2022-08-02" },
-      { status: "Skip", date: "2022-08-03" },
-      { status: "Miss", date: "2022-08-04" },
-      { status: "Miss", date: "2022-08-05" },
-      { status: "Incomplete", date: "2022-08-06" },
+      { status: "complete", date: "2022-08-02" },
+      { status: "skip", date: "2022-08-03" },
+      { status: "miss", date: "2022-08-04" },
+      { status: "miss", date: "2022-08-05" },
+      { status: "incomplete", date: "2022-08-06" },
     ],
   };
 
