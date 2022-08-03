@@ -19,7 +19,8 @@ import {
   Wrap,
   WrapItem,
   useColorModeValue,
-  Tooltip
+  Tooltip,
+  Select
 } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 
@@ -121,15 +122,15 @@ const DetailsPanel = () => {
         </Box>
 
         <Box className="everyday-checkbox">
-          <HStack spacing={5}>
+          <HStack spacing={5} mb="8px">
             <Text fontWeight="bold"> Everyday </Text>
-            <Checkbox size="lg"></Checkbox>
+            <Checkbox size="lg" borderColor="orange"></Checkbox>
           </HStack>
         </Box>
       </VStack>
 
-      <Box className="frequency">
-        <Stack spacing={3} direction="row" align="baseline">
+      <Box className="frequency" >
+        <Stack spacing={1} direction="row" align="baseline">
           <Text fontWeight="bold"> Frequency</Text>
           <Editable
             pl={2}
@@ -137,16 +138,19 @@ const DetailsPanel = () => {
             borderRadius="0.5em"
             borderWidth="3px"
             defaultValue="1"
+            borderColor="orange"
+            
           >
             <EditablePreview />
             <EditableInput />
           </Editable>
 
           <Text fontWeight="bold">Times</Text>
-          <select className="frequency-select">
+          <Select variant="outline" size="md" borderRadius="0.5em"
+            borderWidth="3px" borderColor="orange">
             <option>Weekly</option>
             <option>Monthly</option>
-          </select>
+          </Select>
         </Stack>
       </Box>
 
