@@ -3,7 +3,6 @@ import "./HabitRow.css";
 
 function HabitRow() {
   //   const [status, setStatus] = useState("Incomplete");
-  const [habit, setHabit] = useState([habitObj]);
   const habitObj = {
     id: "1",
     name: "Running",
@@ -16,21 +15,50 @@ function HabitRow() {
     ],
   };
 
-  function toggleState() {
+  const [habit, setHabit] = useState(habitObj);
+
+  // Change status of specific obj in Habit Items List
+  // make copy habit obj
+
+  // making copy of habit item list
+  // copy must contain updated object (changed status)
+  // locate object to update with findIndex method
+  // spread over existing object , then overwrite existing key value pairs with new value (status)
+  // new array =>
+  // 1. spread all objs that occur before updated object(use slice to get this)
+  // 2. insert updated object
+  // 3. add all objs after index (index + 1)
+  // return our updated array within the main habit objectFit:
+  // spread (inside obj) habit Obj then habitItemlistKey: update array
+
+  const changeStatus = (state, newStatus, id) => {
+    let newObj = { ...state };
+    let itemsList = newObj.habitItemList;
+    let indexOfObject = itemsList.findIndex((element) => element.date === id);
+
+    let updatedObj = { ...itemsList[indexOfObject], status: newStatus };
+
+    let firstChunk = itemsList.slice(0, indexOfObject);
+
+    let secondChunk = itemsList.slice(indexOfObject + 1);
+
+    let updatedArr = [...firstChunk, updatedObj, ...secondChunk];
+
+    let updatedHabitObj = { ...state, habitItemList: updatedArr };
+    console.log("updatedHabitObj", updatedHabitObj);
+    return updatedHabitObj;
+  };
+
+  console.log(changeStatus(habit, "Skip", "2022-08-05"));
+  function toggleState(id) {
     switch (habit.habitItemList.status) {
       case "Incomplete":
-        setHabit([
-          ...habit,
-          {
-            ...habit.habitObj,
-            habitItemList: [...habit.habitObj.habitItemList],
-          },
-        ]);
+        setHabit(changeStatus(habit, "completed", id));
         break;
-      case "Complete":
+      case "complete":
         setHabit();
         break;
-      case "Skip":
+      case "skip":
         setHabit();
         break;
       default:
