@@ -31,10 +31,38 @@ function HabitRow ( {habitName, } ) {
                     onClick={toggleState}
                     className="habit-item"
                     id={status}
-                >
-                </button>
+                />
             </div>
         </div>
     )
 }
 export default HabitRow;
+
+/* 
+function HabitItem () => {
+    const [status,setStatus] = useState("Incomplete")
+    function toggleState () {
+        switch (status) {
+            case "Incomplete": 
+                setStatus("Complete")
+                break;
+            case "Complete": 
+                setStatus("Skip")
+                break;
+            case "Skip": 
+                setStatus("Miss")
+                break;
+            default:
+                setStatus("Incomplete")
+                break;
+        }
+    }
+    return (
+        <button 
+            onClick={toggleState}
+            className="habit-item"
+            id={status}
+        />
+        )
+    }
+*/
