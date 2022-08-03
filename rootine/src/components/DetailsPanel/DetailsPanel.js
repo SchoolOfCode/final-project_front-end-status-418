@@ -27,11 +27,8 @@ import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 
 const DetailsPanel = () => {
   function EditableControls() {
-    const {
-      isEditing,
-      getSubmitButtonProps,
-      getCancelButtonProps,
-    } = useEditableControls();
+    const { isEditing, getSubmitButtonProps, getCancelButtonProps } =
+      useEditableControls();
     return isEditing ? (
       <ButtonGroup justifyContent="center" size="sm">
         <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
