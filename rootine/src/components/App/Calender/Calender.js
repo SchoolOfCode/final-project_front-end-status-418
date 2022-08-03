@@ -18,7 +18,7 @@ const Calender = () => {
           Welcome, {name}
         </Heading>
         <CalendarBar />
-        <HabitRow habitName={"HabitNameHere"}/>
+        <HabitRow />
         <p>This is a container</p>
         <p>This is a container</p>
         <p>This is a container</p>
