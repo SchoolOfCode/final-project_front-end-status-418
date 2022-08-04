@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { FaFire, FaTrophy } from "react-icons/fa";
 
 import {
   Box,
@@ -16,52 +15,81 @@ import {
   Button,
   Input,
   FormControl,
-  FormLabel
+  FormLabel,
 } from "@chakra-ui/react";
-import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 
 /* 
 PLAN:
 Create a use state object that takes in Habit name, Description of habit, everyday and frequency of habit
 Create different functions that log in the new habit into the database 
 Import add button from correct file into AddHabitForm.js 
+Stretch goal: Add input restriction- only accepts numbers
 
 Functionality:
 - Once add button is pressed it should render a form version of the habit panel. 
 
 */
 
+function AddingHabit() {
+  const [habits, setHabits] = useState({
+    habit_name: "",
+    description: "",
+    everyday: Boolean,
+    frequency: {
+      fequency_reps: "",
+      frequency_interval: "",
+    },
+  });
 
+  function handleSubmitName(e) {
+    e.preventDefault();
+    const name = e.target.value;
+    console.log(name);
+    setHabits({
+      ...habits,
+      habit_name: name,
+    });
+  }
 
-function AddingHabit(){
-    const [habits, setHabits] = useState({
-        habit_name: "",
-        description: "",
-        everyday: Boolean,
-        fequency: "",
-        times: "",
+  function handleSubmitDescription(e) {
+    e.preventDefault();
+    const description = e.target.value;
+    console.log(description);
+    setHabits({
+      ...habits,
+      description: description,
+    });
+
+    function handleSubmitEveryday(e) {
+      e.preventDefault();
+      const everyday = e.target.value;
+      setHabits({
+        ...habits,
+        everyday: everyday,
       });
+    }
 
-      function handleSubmitName(e) {
-        e.preventDefault();
-        const name = e.target.value;
-        setHabits({
-          ...habits,
-          habit_name: name,
-        })};
+    function handleSubmitFrequencyReps(e) {
+      e.preventDefault();
+      const frequencyreps = e.target.value;
+      setHabits({
+        ...habits,
+        fequency_reps: frequencyreps,
+      });
+    }
 
-        function handleSubmitDescription(e) {
-            e.preventDefault();
-            const description = e.target.value;
-            setHabits({
-              ...habits,
-              description: description,
-            });
-          }
-    
-    
-    return( 
-      <Box
+    function handleSubmitFrequencyInterval(e) {
+      e.preventDefault();
+      const frequencyinterval = e.target.value;
+      setHabits({
+        ...habits,
+        fequency_interval: frequencyinterval,
+      });
+    }
+  }
+
+  return (
+    <Box
       className="details-panel-parent"
       //display="table-row"
       // maxW="1000px"
@@ -83,21 +111,30 @@ function AddingHabit(){
       bg="white"
     >
       <VStack>
-      <FormControl>
-        <FormLabel fontWeight="bold">Habit Name</FormLabel>
-        <Input type="text"/>
-      </FormControl>
+        <FormControl>
+          <FormLabel fontWeight="bold">Habit Name</FormLabel>
+          <Input type="text" onChange={handleSubmitName} required />
+        </FormControl>
 
-      <FormControl>
-        <FormLabel fontWeight="bold">Habit Description</FormLabel>
-        {/* <Input type="text"/> */}
-        <Textarea overflow="auto"/>
-      </FormControl>
+        <FormControl>
+          <FormLabel fontWeight="bold">Habit Description</FormLabel>
+          {/* <Input type="text"/> */}
+          <Textarea
+            overflow="auto"
+            onChange={handleSubmitDescription}
+            required
+          />
+        </FormControl>
 
         <Box className="everyday-checkbox">
-          <HStack spacing={5}  mt="15px">
+          <HStack spacing={5} mt="15px">
             <Text fontWeight="bold"> Once a day </Text>
-            <Checkbox size="lg" borderColor="orange"></Checkbox>
+            <Checkbox
+              size="lg"
+              borderColor="orange"
+              onChange={handleSubmitEveryday}
+              required
+            ></Checkbox>
           </HStack>
         </Box>
       </VStack>
@@ -112,6 +149,7 @@ function AddingHabit(){
             borderWidth="3px"
             defaultValue="1"
             borderColor="orange"
+            onChange={handleSubmitFrequencyReps}
           >
             <EditablePreview />
             <EditableInput />
@@ -124,7 +162,8 @@ function AddingHabit(){
             borderRadius="0.5em"
             borderWidth="3px"
             borderColor="orange"
-          > 
+            onChange={handleSubmitFrequencyInterval}
+          >
             <option>Daily</option>
             <option>Weekly</option>
             <option>Monthly</option>
@@ -147,8 +186,7 @@ function AddingHabit(){
         </VStack>
       </Box>
     </Box>
-      
-      )
+  );
 }
 
 export default AddingHabit;
