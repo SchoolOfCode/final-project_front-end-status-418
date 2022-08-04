@@ -30,16 +30,18 @@ Functionality:
 
 */
 
-function AddingHabit() {
-  const [habits, setHabits] = useState({
-    habit_name: "",
-    description: "",
-    everyday: Boolean,
-    frequency: {
-      fequency_reps: "",
-      frequency_interval: "",
+function AddingHabit({ upload }) {
+  const [habits, setHabits] = useState([
+    {
+      habit_name: "",
+      description: "",
+      everyday: Boolean,
+      frequency: {
+        fequency_reps: Number,
+        frequency_interval: "",
+      },
     },
-  });
+  ]);
 
   function handleSubmitName(e) {
     e.preventDefault();
@@ -64,37 +66,42 @@ function AddingHabit() {
   function handleSubmitEveryday(e) {
     e.preventDefault();
     const everyday = e.target.value;
+    console.log("this has been checked");
     setHabits({
       ...habits,
       everyday: everyday,
     });
   }
   function handleSubmitFrequencyReps(e) {
-  e.preventDefault();
-  const frequencyreps = e.target.value;
-  setHabits({
-    ...habits,
-    fequency_reps: frequencyreps,
-  });
-}
-function handleSubmitFrequencyInterval(e) {
-  e.preventDefault();
-  const frequencyinterval = e.target.value;
-  setHabits({
-    ...habits,
-    fequency_interval: frequencyinterval,
-  });
-}
+    const frequencyreps = e.target.value;
+    console.log(frequencyreps);
+    setHabits({
+      ...habits,
+      fequency_reps: frequencyreps,
+    });
+  }
+  function handleSubmitFrequencyInterval(e) {
+    e.preventDefault();
+    const frequencyinterval = e.target.value;
+    console.log(frequencyinterval);
+    setHabits({
+      ...habits,
+      fequency_interval: frequencyinterval,
+    });
+  }
+
+  function handleClick(e) {
+    //e.preventDefault();
+    console.log("clicked");
+    upload(habits);
+    e.target.reset();
+  }
 
   return (
     <Box
       className="details-panel-parent"
-      //display="table-row"
-      // maxW="1000px"
       w="23em"
       h="70%"
-      // mr="50%"
-      // ml="25%"
       borderWidth="3px"
       borderRadius="4.5em"
       overflow="hidden"
@@ -134,11 +141,6 @@ function handleSubmitFrequencyInterval(e) {
               onChange={handleSubmitEveryday}
               required
             ></Checkbox>
-            <Input
-              type="checkbox"
-              name="checkbox"
-              onChange={handleSubmitEveryday}
-            />
           </HStack>
         </Box>
       </VStack>
@@ -153,10 +155,9 @@ function handleSubmitFrequencyInterval(e) {
             borderWidth="3px"
             defaultValue="1"
             borderColor="orange"
-            onChange={handleSubmitFrequencyReps}
           >
             <EditablePreview />
-            <EditableInput />
+            <EditableInput onChange={handleSubmitFrequencyReps} />
           </Editable>
 
           <Text fontWeight="bold">Times</Text>
@@ -184,6 +185,7 @@ function handleSubmitFrequencyInterval(e) {
             align="center"
             direction="row"
             mt="25px"
+            onClick={handleClick}
           >
             Submit
           </Button>
