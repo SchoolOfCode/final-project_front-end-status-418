@@ -34,13 +34,13 @@ function App() {
             </Container>
 
             <Flex
-              className="AddHabit-container"
-              height="55%"
-              width="55%"
-              display="flex"
-              alignItems="center"
-              marginLeft="4em"
-              marginBottom="1em"
+              // className="AddHabit-container"
+              // height="55%"
+              // width="55%"
+              // display="flex"
+              // alignItems="center"
+              // marginLeft="4em"
+              // marginBottom="1em"
             >
               <AddingHabit/>
             </Flex>

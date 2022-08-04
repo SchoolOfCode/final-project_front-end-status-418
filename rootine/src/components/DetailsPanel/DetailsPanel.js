@@ -122,7 +122,7 @@ const DetailsPanel = () => {
 
         <Box className="everyday-checkbox">
           <HStack spacing={5} mb="8px">
-            <Text fontWeight="bold"> Everyday </Text>
+            <Text fontWeight="bold"> Once a day </Text>
             <Checkbox size="lg" borderColor="orange"></Checkbox>
           </HStack>
         </Box>
@@ -151,6 +151,7 @@ const DetailsPanel = () => {
             borderWidth="3px"
             borderColor="orange"
           >
+            <option>Daily</option>
             <option>Weekly</option>
             <option>Monthly</option>
           </Select>
