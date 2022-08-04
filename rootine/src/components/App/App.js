@@ -8,7 +8,9 @@ import LandingPage from "../LandingPage/LandingPage";
 import Calender from "./Calender/Calender";
 
 function App() {
+
     const areYouCurrentlyWorkingOnTheLandingPage = false;
+
 
     return (
         <div className="App">

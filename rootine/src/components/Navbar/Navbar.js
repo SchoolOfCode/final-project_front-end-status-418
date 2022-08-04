@@ -26,10 +26,10 @@ export default function Navbar() {
           <img className="header-name" src="" alt="rootine" />
         </div>
         <div className="header-div-right">
-          <a className="blogs" href="#">
+          <a className="blogs" href="https://www.google.com">
             Blogs
           </a>
-          <a className="about" href="#">
+          <a className="about" href="https://www.google.com">
             About
           </a>
           <Menu>
