@@ -16,7 +16,7 @@ function HabitRow() {
   };
 
   const [habit, setHabit] = useState(habitObj);
-
+  
   /* Function which takes in habit state (habitObj), new value of status, id of habitItemList obj to change,
      and returns state with updated status  
   */
@@ -37,36 +37,40 @@ function HabitRow() {
     let updatedArr = [...firstChunk, updatedObj, ...secondChunk];
 
     let updatedHabitObj = { ...state, habitItemList: updatedArr };
-    console.log("updatedHabitObj", updatedHabitObj);
+    //console.log("updatedHabitObj", updatedHabitObj);
     return updatedHabitObj;
   };
 
-  console.log(changeStatus(habit, "Skip", "2022-08-05"));
-
-  /* Function which takes in id and when called checks the value of status for particular 
-     habitItem and changes it accordingly
-  */
-  function toggleState(id) {
+//   console.log(changeStatus(habit, "skip", "2022-08-05"));
+/* Function which takes in id and when called checks the value of status for particular 
+habitItem and changes it accordingly
+*/
+// console.log(habit)
+console.log(habit)
+function toggleState(id) {
     /* defining the index of the specific object in habitItemList that we are toggling */
-    let index = habit.habitItemList.findIndex((element) => element.date === id);
+    //console.log("toggleState called here.")
+    let habitCopy = {...habit} 
+    let index = habitCopy.habitItemList.findIndex((element) => element.date === id);
 
     /* defining the status property we want to change using the above index */
-    let status = habit.habitItemList[index].status;
-
+    let status = habitCopy.habitItemList[index].status;
+    //console.log("(Before) Status: "+ habit.habitItemList[index].status)
     switch (status) {
       case "incomplete":
-        setHabit(changeStatus(habit, "completed", id));
+        setHabit(changeStatus(habit, "complete", id));
         break;
       case "complete":
-        setHabit(changeStatus(habit, "", id));
+        setHabit(changeStatus(habit, "skip", id));
         break;
       case "skip":
-        setHabit(changeStatus(habit, "", id));
+        setHabit(changeStatus(habit, "miss", id));
         break;
       default:
-        setHabit(changeStatus(habit, "", id));
+        setHabit(changeStatus(habit, "incomplete", id));
         break;
     }
+    console.log("(After) Status: "+ habitCopy.habitItemList[index].status)
   }
 
   return (
@@ -78,9 +82,10 @@ function HabitRow() {
         {habitObj.habitItemList.map((habitItem) => {
           return (
             <button
-              onClick={() => toggleState}
+              onClick={() => toggleState(habitItem.date)}
               className={`habit-item ${habitItem.status}`}
               id={habitItem.date}
+              key = {habitItem.date}
             />
           );
         })}

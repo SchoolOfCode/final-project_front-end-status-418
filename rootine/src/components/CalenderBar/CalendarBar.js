@@ -13,7 +13,7 @@ export const CalendarBar = () => {
     const weekStart = dayjs().startOf("week");
 
     const days = [];
-    for (let i = -5; i <= 1000; i++) {
+    for (let i = -5; i <= 21; i++) {
       days.push(dayjs(weekStart).add(i, "days"));
     }
 

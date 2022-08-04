@@ -22,15 +22,15 @@
   height: 15px;
   width: 15px;
 }
-.Complete {
+.complete {
   background-color: green;
 }
-.Skip {
+.skip {
   background-color: var(--yellow);
 }
-.Miss {
+.miss {
   background-color: var(--red);
 }
-.Incomplete {
+.incomplete {
   background-color: white;
 }
