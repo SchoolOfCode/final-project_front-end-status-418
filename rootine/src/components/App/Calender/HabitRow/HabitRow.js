@@ -85,7 +85,7 @@ function toggleState(id) {
               onClick={() => toggleState(habitItem.date)}
               className={`habit-item ${habitItem.status}`}
               id={habitItem.date}
-              key = {habitItem.date}
+              key={habitItem.date}
             />
           );
         })}
