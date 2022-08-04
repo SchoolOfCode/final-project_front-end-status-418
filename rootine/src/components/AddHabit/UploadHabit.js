@@ -59,34 +59,32 @@ function AddingHabit() {
       ...habits,
       description: description,
     });
-
-    function handleSubmitEveryday(e) {
-      e.preventDefault();
-      const everyday = e.target.value;
-      setHabits({
-        ...habits,
-        everyday: everyday,
-      });
-    }
-
-    function handleSubmitFrequencyReps(e) {
-      e.preventDefault();
-      const frequencyreps = e.target.value;
-      setHabits({
-        ...habits,
-        fequency_reps: frequencyreps,
-      });
-    }
-
-    function handleSubmitFrequencyInterval(e) {
-      e.preventDefault();
-      const frequencyinterval = e.target.value;
-      setHabits({
-        ...habits,
-        fequency_interval: frequencyinterval,
-      });
-    }
   }
+
+  function handleSubmitEveryday(e) {
+    e.preventDefault();
+    const everyday = e.target.value;
+    setHabits({
+      ...habits,
+      everyday: everyday,
+    });
+  }
+  function handleSubmitFrequencyReps(e) {
+  e.preventDefault();
+  const frequencyreps = e.target.value;
+  setHabits({
+    ...habits,
+    fequency_reps: frequencyreps,
+  });
+}
+function handleSubmitFrequencyInterval(e) {
+  e.preventDefault();
+  const frequencyinterval = e.target.value;
+  setHabits({
+    ...habits,
+    fequency_interval: frequencyinterval,
+  });
+}
 
   return (
     <Box
@@ -194,5 +192,4 @@ function AddingHabit() {
     </Box>
   );
 }
-
 export default AddingHabit;
