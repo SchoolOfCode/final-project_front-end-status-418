@@ -129,12 +129,18 @@ function AddingHabit() {
         <Box className="everyday-checkbox">
           <HStack spacing={5} mt="15px">
             <Text fontWeight="bold"> Once a day </Text>
+
             <Checkbox
               size="lg"
               borderColor="orange"
               onChange={handleSubmitEveryday}
               required
             ></Checkbox>
+            <Input
+              type="checkbox"
+              name="checkbox"
+              onChange={handleSubmitEveryday}
+            />
           </HStack>
         </Box>
       </VStack>
