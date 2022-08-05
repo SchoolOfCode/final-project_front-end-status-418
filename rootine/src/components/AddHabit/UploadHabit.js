@@ -1,22 +1,16 @@
 import { useState } from "react";
 
-import {
-  Box,
-  VStack,
-  HStack,
-  Stack,
-  Text,
-  Checkbox,
-  Editable,
-  EditableInput,
-  EditablePreview,
-  Textarea,
-  Select,
-  Button,
-  Input,
-  FormControl,
-  FormLabel,
-} from "@chakra-ui/react";
+//prettier-ignore
+import { Box, VStack, HStack, Stack, Text, Checkbox, Editable, EditableInput, EditablePreview, Textarea, Select, Button, Input, FormControl, FormLabel, } from "@chakra-ui/react";
+
+//prettier-ignore
+import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper } from '@chakra-ui/react'
+
+// component name is AddingHabit but the file is called UploadHabit - make consistent? ✔
+// functions are called 'handleSubmits' but they trigger on change - rename?
+// create a form for the input fields and tie the onSubmit to the form itself rather than the button.
+// can we combine some of the handleChange functions into one?
+// TODO: Frequency rep input in new habit form is massive, size to be fixed
 
 /* 
 PLAN:
@@ -30,168 +24,209 @@ Functionality:
 
 */
 
-function AddingHabit({ upload }) {
-  const [habits, setHabits] = useState([
-    {
-      habit_name: "",
-      description: "",
-      everyday: Boolean,
-      frequency: {
-        fequency_reps: Number,
-        frequency_interval: "",
-      },
-    },
-  ]);
+function UploadHabit({ upload }) {
+	const [habits, setHabits] = useState([
+		{
+			habit_name: "",
+			description: "",
+			everyday: Boolean,
+			frequency: {
+				fequency_reps: Number,
+				frequency_interval: "",
+			},
+		},
+	]);
 
-  function handleSubmitName(e) {
-    e.preventDefault();
-    const name = e.target.value;
-    console.log(name);
-    setHabits({
-      ...habits,
-      habit_name: name,
-    });
-  }
+	function handleChangeInput(e, inputType) {
+		e.preventDefault();
+		const inputValue = e.target.value;
+		console.log(inputValue);
+		if (inputType === "name") {
+			setHabits({
+				...habits,
+				habit_name: inputValue,
+			});
+		} else if (inputType === "description") {
+			setHabits({
+				...habits,
+				habit_name: inputValue,
+			});
+		}
+	}
 
-  function handleSubmitDescription(e) {
-    e.preventDefault();
-    const description = e.target.value;
-    console.log(description);
-    setHabits({
-      ...habits,
-      description: description,
-    });
-  }
+	// function handleSubmitName(e) {
+	// 	e.preventDefault();
+	// 	const name = e.target.value;
+	// 	console.log(name);
+	// 	setHabits({
+	// 		...habits,
+	// 		habit_name: name,
+	// 	});
+	// }
 
-  function handleSubmitEveryday(e) {
-    e.preventDefault();
-    const everyday = e.target.value;
-    console.log("this has been checked");
-    setHabits({
-      ...habits,
-      everyday: everyday,
-    });
-  }
-  function handleSubmitFrequencyReps(e) {
-    const frequencyreps = e.target.value;
-    console.log(frequencyreps);
-    setHabits({
-      ...habits,
-      frequency_reps: frequencyreps,
-    });
-  }
-  function handleSubmitFrequencyInterval(e) {
-    e.preventDefault();
-    const frequencyinterval = e.target.value;
-    console.log(frequencyinterval);
-    setHabits({
-      ...habits,
-      frequency_interval: frequencyinterval,
-    });
-  }
+	// function handleSubmitDescription(e) {
+	// 	e.preventDefault();
+	// 	const description = e.target.value;
+	// 	console.log(description);
+	// 	setHabits({
+	// 		...habits,
+	// 		description: description,
+	// 	});
+	// }
 
-  function handleClick(e) {
-    //e.preventDefault();
-    console.log("clicked");
-    upload(habits);
-    e.target.reset();
-  }
+	function handleSubmitEveryday(e) {
+		e.preventDefault();
+		const everyday = e.target.value;
+		console.log("this has been checked");
+		setHabits({
+			...habits,
+			everyday: everyday,
+		});
+	}
+	function handleSubmitFrequencyReps(e) {
+		const frequencyreps = e.target.value;
+		console.log(frequencyreps);
+		setHabits({
+			...habits,
+			frequency_reps: frequencyreps,
+		});
+	}
+	function handleSubmitFrequencyInterval(e) {
+		e.preventDefault();
+		const frequencyinterval = e.target.value;
+		console.log(frequencyinterval);
+		setHabits({
+			...habits,
+			frequency_interval: frequencyinterval,
+		});
+	}
 
-  return (
-    <Box
-      className="details-panel-parent"
-      w="23em"
-      h="70%"
-      borderWidth="3px"
-      borderRadius="4.5em"
-      overflow="hidden"
-      color="black"
-      boxShadow="md"
-      m={20}
-      p={50}
-      pt={10}
-      pb={10}
-      pl={10}
-      pr={10}
-      bg="white"
-    >
-      <VStack>
-        <FormControl>
-          <FormLabel fontWeight="bold">Habit Name</FormLabel>
-          <Input type="text" onChange={handleSubmitName} required />
-        </FormControl>
+	function handleClick(e) {
+		//e.preventDefault();
+		console.log("clicked");
+		upload(habits);
+		e.target.reset();
+	}
 
-        <FormControl>
-          <FormLabel fontWeight="bold">Habit Description</FormLabel>
-          {/* <Input type="text"/> */}
-          <Textarea
-            overflow="auto"
-            onChange={handleSubmitDescription}
-            required
-          />
-        </FormControl>
+	return (
+		<Box
+			className="details-panel-parent"
+			w="23em"
+			h="70%"
+			borderWidth="3px"
+			borderRadius="4.5em"
+			overflow="hidden"
+			color="black"
+			boxShadow="md"
+			m={20}
+			p={50}
+			pt={10}
+			pb={10}
+			pl={10}
+			pr={10}
+			bg="white">
+			<VStack>
+				<FormControl>
+					<FormLabel fontWeight="bold">Habit Name</FormLabel>
+					<Input
+						type="text"
+						onChange={(e) => {
+							handleChangeInput(e, "name");
+						}}
+						required
+					/>
+				</FormControl>
 
-        <Box className="everyday-checkbox">
-          <HStack spacing={5} mt="15px">
-            <Text fontWeight="bold"> Once a day </Text>
+				<FormControl>
+					<FormLabel fontWeight="bold">Habit Description</FormLabel>
+					{/* <Input type="text"/> */}
+					<Textarea
+						overflow="auto"
+						onChange={(e) => {
+							handleChangeInput(e, "description");
+						}}
+						required
+					/>
+				</FormControl>
 
-            <Checkbox
-              size="lg"
-              borderColor="orange"
-              onChange={handleSubmitEveryday}
-              required
-            ></Checkbox>
-          </HStack>
-        </Box>
-      </VStack>
+				<Box className="everyday-checkbox">
+					<HStack spacing={5} mt="15px">
+						<Text fontWeight="bold"> Once a day </Text>
 
-      <Box className="frequency">
-        <Stack spacing={1} direction="row" align="baseline" mt="20px">
-          <Text fontWeight="bold"> Frequency</Text>
-          <Editable
-            pl={2}
-            pr={2}
-            borderRadius="0.5em"
-            borderWidth="3px"
-            defaultValue="1"
-            borderColor="orange"
-          >
-            <EditablePreview />
-            <EditableInput onChange={handleSubmitFrequencyReps} />
-          </Editable>
+						<Checkbox
+							size="lg"
+							borderColor="orange"
+							onChange={handleSubmitEveryday}
+							required
+							defaultChecked
+							isDisabled
+						/>
+					</HStack>
+				</Box>
+			</VStack>
 
-          <Text fontWeight="bold">Times</Text>
-          <Select
-            variant="outline"
-            size="md"
-            borderRadius="0.5em"
-            borderWidth="3px"
-            borderColor="orange"
-            onChange={handleSubmitFrequencyInterval}
-          >
-            <option>Daily</option>
-            <option>Weekly</option>
-            <option>Monthly</option>
-          </Select>
-        </Stack>
-      </Box>
-      <Box>
-        <VStack>
-          <Button
-            className="submit-button"
-            bgRepeat="repeat"
-            colorScheme="orange"
-            bgGradient="linear(to-l, #f05d4d, #f8a642 )"
-            align="center"
-            direction="row"
-            mt="25px"
-            onClick={handleClick}
-          >
-            Submit
-          </Button>
-        </VStack>
-      </Box>
-    </Box>
-  );
+			<Box className="frequency">
+				<Stack spacing={1} direction="row" align="baseline" mt="20px">
+					<Text fontWeight="bold"> Frequency</Text>
+					{/* <Editable
+						pl={2}
+						pr={2}
+						borderRadius="0.5em"
+						borderWidth="3px"
+						defaultValue="1"
+						borderColor="orange"
+						isDisabled={true}>
+						<EditablePreview isDisabled />
+						<EditableInput onChange={handleSubmitFrequencyReps} />
+					</Editable> */}
+					<NumberInput
+						defaultValue={0}
+						min={0}
+						max={10}
+						pl={2}
+						pr={2}
+						borderRadius="0.5em"
+						borderWidth="3px"
+						borderColor="orange"
+						isDisabled>
+						<NumberInputField />
+						<NumberInputStepper>
+							<NumberIncrementStepper />
+							<NumberDecrementStepper />
+						</NumberInputStepper>
+					</NumberInput>
+
+					<Text fontWeight="bold">Times</Text>
+					<Select
+						variant="outline"
+						size="md"
+						borderRadius="0.5em"
+						borderWidth="3px"
+						borderColor="orange"
+						onChange={handleSubmitFrequencyInterval}
+						isDisabled>
+						<option>Daily</option>
+						<option>Weekly</option>
+						<option>Monthly</option>
+					</Select>
+				</Stack>
+			</Box>
+			<Box>
+				<VStack>
+					<Button
+						className="submit-button"
+						bgRepeat="repeat"
+						colorScheme="orange"
+						bgGradient="linear(to-l, #f05d4d, #f8a642 )"
+						align="center"
+						direction="row"
+						mt="25px"
+						onClick={handleClick}>
+						Submit
+					</Button>
+				</VStack>
+			</Box>
+		</Box>
+	);
 }
-export default AddingHabit;
+export default UploadHabit;
