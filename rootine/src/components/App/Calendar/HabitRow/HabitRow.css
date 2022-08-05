@@ -1,0 +1,36 @@
+.habit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 95%;
+  border: 1px solid red;
+}
+.habit-name-container {
+  width: 25%;
+}
+.habit-name {
+  font-family: var(--headings);
+}
+.habit-item-container {
+  width: 65%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.habit-item {
+  border-radius: 25%;
+  border: 2px solid black;
+  height: 15px;
+  width: 15px;
+}
+.complete {
+  background-color: green;
+}
+.skip {
+  background-color: var(--yellow);
+}
+.miss {
+  background-color: var(--red);
+}
+.incomplete {
+  background-color: white;
+}
