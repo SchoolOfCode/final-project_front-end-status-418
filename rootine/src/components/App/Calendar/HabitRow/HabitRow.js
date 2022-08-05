@@ -6,6 +6,21 @@ function HabitRow() {
   const habitArr = [
     {
       habit_id: 1,
+      date: "20220807",
+      status: "complete",
+    },
+    {
+      habit_id: 1,
+      date: "20220806",
+      status: "complete",
+    },
+    {
+      habit_id: 1,
+      date: "20220805",
+      status: "complete",
+    },
+    {
+      habit_id: 1,
       date: "20220804",
       status: "complete",
     },

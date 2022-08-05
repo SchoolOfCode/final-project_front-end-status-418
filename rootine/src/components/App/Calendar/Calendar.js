@@ -28,16 +28,14 @@ const Calendar = () => {
         >
           <CalendarBar />
         </Box>
+        <Box>
+          <HabitRow />
+          <HabitRow />
+          <HabitRow />
+          <HabitRow />
+          <HabitRow />
+        </Box>
 
-        <HabitRow />
-        <p>This is a container</p>
-        <p>This is a container</p>
-        <p>This is a container</p>
-        <p>This is a container</p>
-        <p>This is a container</p>
-        <p>This is a container</p>
-        <p>This is a container</p>
-        <p>This is a container</p>
         <Button bgGradient={["linear(to-l, red.400, orange.300)"]}>
           Add +
         </Button>

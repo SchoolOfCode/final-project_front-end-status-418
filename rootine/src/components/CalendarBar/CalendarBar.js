@@ -8,12 +8,15 @@ export const CalendarBar = () => {
   const [daysOfweek, setDaysOfWeek] = useState([]);
   const [selected, setSelected] = useState();
   const currentDay = dayjs().format("DDMM");
+  const { getItemById } = React.useContext(VisibilityContext);
+
+  console.log("getitembyid", getItemById);
 
   const getCurrentWeekDays = () => {
     const weekStart = dayjs().startOf("week");
 
     const days = [];
-    for (let i = -5; i <= 21; i++) {
+    for (let i = -5; i <= 100; i++) {
       days.push(dayjs(weekStart).add(i, "days"));
     }
 
@@ -38,17 +41,23 @@ export const CalendarBar = () => {
   };
 
   function LeftArrow() {
-    const { isFirstItemVisible, scrollPrev } =
-      React.useContext(VisibilityContext);
+    const {
+      isFirstItemVisible,
+      scrollPrev,
+
+      visibleItemsWithoutSeparators,
+      items,
+    } = React.useContext(VisibilityContext);
+
+    console.log("visibleItemsWithoutSeparators", visibleItemsWithoutSeparators);
+    console.log("items", items);
 
     return (
       <button
         className="left-button"
         disabled={isFirstItemVisible}
         onClick={() => scrollPrev()}
-      >
-        Left
-      </button>
+      ></button>
     );
   }
   function RightArrow() {
@@ -59,10 +68,8 @@ export const CalendarBar = () => {
       <button
         className="right-button"
         disabled={isLastItemVisible}
-        onClick={() => scrollNext()}
-      >
-        Right
-      </button>
+        onClick={() => scrollNext}
+      ></button>
     );
   }
 
@@ -87,10 +94,10 @@ export const CalendarBar = () => {
           return (
             <MenuItem
               itemId={day.format("D")}
-              title={day.format("ddd")}
+              title={day.format("MMM")}
               text={day.format("DD")}
-              key={day.format("D")}
-              id={day.format("D")}
+              key={day.format("YYYYMMDD")}
+              id={day.format("YYYYMMDD")}
               selected={selected}
               now={day.format("DDMM")}
             />
