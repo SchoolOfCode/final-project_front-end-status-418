@@ -7,10 +7,10 @@ import { Box, VStack, HStack, Stack, Text, Checkbox, Editable, EditableInput, Ed
 //prettier-ignore
 import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper } from '@chakra-ui/react'
 
-// component name is AddingHabit but the file is called UploadHabit - make consistent? ✔
-// functions are called 'handleSubmits' but they trigger on change - rename?
+// component name is AddingHabit but the file is called UploadHabit - make consistent? ✅
+// functions are called 'handleSubmits' but they trigger on change - rename? - sort of done ✅
 // create a form for the input fields and tie the onSubmit to the form itself rather than the button.
-// can we combine some of the handleChange functions into one?
+// can we combine some of the handleChange functions into one? ✅
 // TODO: Frequency rep input in new habit form is massive, size to be fixed
 
 /* 
@@ -90,24 +90,7 @@ function UploadHabit({ upload }) {
 	}
 
 	return (
-		<Box
-			{...boxProps}
-			// className="details-panel-parent"
-			// w="23em"
-			// h="70%"
-			// borderWidth="3px"
-			// borderRadius="4.5em"
-			// overflow="hidden"
-			// color="black"
-			// boxShadow="md"
-			// m={20}
-			// p={10}
-			// pt={10}
-			// pb={10}
-			// pl={10}
-			// pr={10}
-			// bg="white"
-		>
+		<Box {...boxProps}>
 			<VStack>
 				<FormControl>
 					<FormLabel fontWeight="bold">Habit Name</FormLabel>
