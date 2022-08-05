@@ -30,15 +30,17 @@ Functionality:
 
 */
 
+//TODO: add userid to habits state!
+
 function UploadHabit() {
 	const [habits, setHabits] = useState([
 		{
 			habit_name: "",
 			description: "",
-			everyday: Boolean,
+			everyday: true,
 			frequency: {
-				fequency_reps: Number,
-				frequency_interval: "",
+				fequency_reps: null,
+				frequency_interval: null,
 			},
 		},
 	]);
@@ -91,7 +93,7 @@ function UploadHabit() {
 		//e.preventDefault();
 		console.log("clicked");
 		// upload(habits);
-		const currentHabit = { ...habits[0] };
+		const currentHabit = { ...habits };
 		console.log(currentHabit);
 		// e.target.reset();
 	}

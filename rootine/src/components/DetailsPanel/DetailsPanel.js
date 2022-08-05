@@ -39,24 +39,7 @@ const DetailsPanel = () => {
 	}
 
 	return (
-		<Box
-			{...boxProps}
-			// className="details-panel-parent"
-			// maxW="1000px"
-			// width="23em"
-			// height="70%"
-			// borderWidth="3px"
-			// borderRadius="4.5em"
-			// overflow="hidden"
-			// color="black"
-			// boxShadow="md"
-			// m={20}
-			// pt={1}
-			// pb={10}
-			// pl={10}
-			// pr={10}
-			// bg="white"
-		>
+		<Box {...boxProps}>
 			<VStack>
 				<Box>
 					<Editable
