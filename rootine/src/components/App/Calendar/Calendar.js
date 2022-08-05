@@ -17,7 +17,18 @@ const Calendar = () => {
         <Heading as="h3" size="lg">
           Welcome, {name}
         </Heading>
-        <CalendarBar />
+
+        <Box
+          className="calendar-bar-container"
+          mb="20px"
+          justifyContent="flex-end"
+          border="2px"
+          borderColor="red"
+          pl="130px"
+        >
+          <CalendarBar />
+        </Box>
+
         <HabitRow />
         <p>This is a container</p>
         <p>This is a container</p>
