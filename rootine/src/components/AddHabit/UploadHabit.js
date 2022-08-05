@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { boxProps } from "./UploadHabitProps";
 
 //prettier-ignore
 import { Box, VStack, HStack, Stack, Text, Checkbox, Editable, EditableInput, EditablePreview, Textarea, Select, Button, Input, FormControl, FormLabel, } from "@chakra-ui/react";
@@ -49,30 +50,10 @@ function UploadHabit({ upload }) {
 		} else if (inputType === "description") {
 			setHabits({
 				...habits,
-				habit_name: inputValue,
+				description: inputValue,
 			});
 		}
 	}
-
-	// function handleSubmitName(e) {
-	// 	e.preventDefault();
-	// 	const name = e.target.value;
-	// 	console.log(name);
-	// 	setHabits({
-	// 		...habits,
-	// 		habit_name: name,
-	// 	});
-	// }
-
-	// function handleSubmitDescription(e) {
-	// 	e.preventDefault();
-	// 	const description = e.target.value;
-	// 	console.log(description);
-	// 	setHabits({
-	// 		...habits,
-	// 		description: description,
-	// 	});
-	// }
 
 	function handleSubmitEveryday(e) {
 		e.preventDefault();
@@ -110,21 +91,23 @@ function UploadHabit({ upload }) {
 
 	return (
 		<Box
-			className="details-panel-parent"
-			w="23em"
-			h="70%"
-			borderWidth="3px"
-			borderRadius="4.5em"
-			overflow="hidden"
-			color="black"
-			boxShadow="md"
-			m={20}
-			p={50}
-			pt={10}
-			pb={10}
-			pl={10}
-			pr={10}
-			bg="white">
+			props={boxProps}
+			// className="details-panel-parent"
+			// w="23em"
+			// h="70%"
+			// borderWidth="3px"
+			// borderRadius="4.5em"
+			// overflow="hidden"
+			// color="black"
+			// boxShadow="md"
+			// m={20}
+			// p={10}
+			// pt={10}
+			// pb={10}
+			// pl={10}
+			// pr={10}
+			// bg="white"
+		>
 			<VStack>
 				<FormControl>
 					<FormLabel fontWeight="bold">Habit Name</FormLabel>
@@ -139,7 +122,6 @@ function UploadHabit({ upload }) {
 
 				<FormControl>
 					<FormLabel fontWeight="bold">Habit Description</FormLabel>
-					{/* <Input type="text"/> */}
 					<Textarea
 						overflow="auto"
 						onChange={(e) => {
@@ -168,17 +150,6 @@ function UploadHabit({ upload }) {
 			<Box className="frequency">
 				<Stack spacing={1} direction="row" align="baseline" mt="20px">
 					<Text fontWeight="bold"> Frequency</Text>
-					{/* <Editable
-						pl={2}
-						pr={2}
-						borderRadius="0.5em"
-						borderWidth="3px"
-						defaultValue="1"
-						borderColor="orange"
-						isDisabled={true}>
-						<EditablePreview isDisabled />
-						<EditableInput onChange={handleSubmitFrequencyReps} />
-					</Editable> */}
 					<NumberInput
 						defaultValue={0}
 						min={0}
@@ -188,6 +159,7 @@ function UploadHabit({ upload }) {
 						borderRadius="0.5em"
 						borderWidth="3px"
 						borderColor="orange"
+						onChange={handleSubmitFrequencyReps}
 						isDisabled>
 						<NumberInputField />
 						<NumberInputStepper>
