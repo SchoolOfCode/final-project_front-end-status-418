@@ -30,7 +30,7 @@ Functionality:
 
 */
 
-function UploadHabit({ upload }) {
+function UploadHabit() {
 	const [habits, setHabits] = useState([
 		{
 			habit_name: "",
@@ -90,35 +90,39 @@ function UploadHabit({ upload }) {
 	function handleClick(e) {
 		//e.preventDefault();
 		console.log("clicked");
-		upload(habits);
-		e.target.reset();
+		// upload(habits);
+		const currentHabit = { ...habits[0] };
+		console.log(currentHabit);
+		// e.target.reset();
 	}
 
 	return (
 		<Box {...boxProps}>
 			<VStack>
 				<FormControl>
-					<FormLabel fontWeight="bold">Habit Name</FormLabel>
-					<Input
-						type="text"
-						onChange={(e) => {
-							handleChangeInput(e, "name");
-						}}
-						required
-					/>
+					<FormLabel fontWeight="bold">
+						Habit Name
+						<Input
+							type="text"
+							onChange={(e) => {
+								handleChangeInput(e, "name");
+							}}
+							required
+						/>
+					</FormLabel>
 				</FormControl>
-
 				<FormControl>
-					<FormLabel fontWeight="bold">Habit Description</FormLabel>
-					<Textarea
-						overflow="auto"
-						onChange={(e) => {
-							handleChangeInput(e, "description");
-						}}
-						required
-					/>
+					<FormLabel fontWeight="bold">
+						Habit Description
+						<Textarea
+							overflow="auto"
+							onChange={(e) => {
+								handleChangeInput(e, "description");
+							}}
+							required
+						/>
+					</FormLabel>
 				</FormControl>
-
 				<Box className="everyday-checkbox">
 					<HStack spacing={5} mt="15px">
 						<Text fontWeight="bold"> Once a day </Text>
