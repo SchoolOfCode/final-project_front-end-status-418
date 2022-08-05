@@ -1,7 +1,7 @@
 import UploadHabit from "../UploadHabit/UploadHabit";
 import DetailsPanel from "../DetailsPanel/DetailsPanel";
 //prettier-ignore
-import { Box, Flex,	Container, SimpleGrid, GridItem, Wrap, Button } from "@chakra-ui/react";
+import { Box, Flex,	Container, SimpleGrid, GridItem, Button } from "@chakra-ui/react";
 import { useState } from "react";
 
 export default function LeftSideHabitDetails() {

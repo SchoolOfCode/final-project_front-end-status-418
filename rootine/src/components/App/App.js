@@ -1,7 +1,7 @@
 import Footer from "../Footer/Footer";
 import "./App.css";
 import Navbar from "../Navbar/Navbar";
-import DetailsPanel from "../DetailsPanel/DetailsPanel";
+// import DetailsPanel from "../DetailsPanel/DetailsPanel";
 
 import LandingPage from "../LandingPage/LandingPage";
 import LeftSideHabitDetails from "../LeftSideHabitDetails/LeftSideHabitDetails";

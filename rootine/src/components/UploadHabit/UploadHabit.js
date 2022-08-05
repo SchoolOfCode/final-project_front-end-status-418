@@ -2,7 +2,7 @@ import { useState } from "react";
 import { boxProps } from "./UploadHabitProps.js";
 
 //prettier-ignore
-import { Box, VStack, HStack, Stack, Text, Checkbox, Editable, EditableInput, EditablePreview, Textarea, Select, Button, Input, FormControl, FormLabel, Flex, Center } from "@chakra-ui/react";
+import { Box, VStack, HStack, Stack, Text, Checkbox, Textarea, Select, Button, Input, FormControl, FormLabel, Center } from "@chakra-ui/react";
 
 //prettier-ignore
 import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper } from '@chakra-ui/react'
