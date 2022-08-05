@@ -91,7 +91,7 @@ function UploadHabit({ upload }) {
 
 	return (
 		<Box
-			props={boxProps}
+			{...boxProps}
 			// className="details-panel-parent"
 			// w="23em"
 			// h="70%"
