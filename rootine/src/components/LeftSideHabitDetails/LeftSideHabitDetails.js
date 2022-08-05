@@ -22,15 +22,7 @@ export default function LeftSideHabitDetails() {
 					</GridItem>
 				</Container>
 				<GridItem colStart={4} colEnd={4}>
-					<Flex
-						className="AddHabit-container"
-						//  height="55%"
-						//  width="55%"
-						// display="flex"
-						//  alignItems="center"
-						//  marginLeft="4em"
-						//  marginBottom="1em"
-					>
+					<Flex className="AddHabit-container">
 						<UploadHabit />
 					</Flex>
 				</GridItem>

@@ -1,11 +1,16 @@
 import { useState } from "react";
-import { boxProps } from "./UploadHabitProps";
+import { boxProps } from "./UploadHabitProps.js";
 
 //prettier-ignore
-import { Box, VStack, HStack, Stack, Text, Checkbox, Editable, EditableInput, EditablePreview, Textarea, Select, Button, Input, FormControl, FormLabel, } from "@chakra-ui/react";
+import { Box, VStack, HStack, Stack, Text, Checkbox, Editable, EditableInput, EditablePreview, Textarea, Select, Button, Input, FormControl, FormLabel, Flex, Center } from "@chakra-ui/react";
 
 //prettier-ignore
 import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper } from '@chakra-ui/react'
+import {
+	addHabitSubmitButtonProps,
+	frIntervalInputProps,
+	frRepsInputProps,
+} from "../DetailsPanel/DetailsPanelProps.js";
 
 // component name is AddingHabit but the file is called UploadHabit - make consistent? ✅
 // functions are called 'handleSubmits' but they trigger on change - rename? - sort of done ✅
@@ -134,14 +139,7 @@ function UploadHabit({ upload }) {
 				<Stack spacing={1} direction="row" align="baseline" mt="20px">
 					<Text fontWeight="bold"> Frequency</Text>
 					<NumberInput
-						defaultValue={0}
-						min={0}
-						max={10}
-						pl={2}
-						pr={2}
-						borderRadius="0.5em"
-						borderWidth="3px"
-						borderColor="orange"
+						{...frRepsInputProps}
 						onChange={handleSubmitFrequencyReps}
 						isDisabled>
 						<NumberInputField />
@@ -153,11 +151,7 @@ function UploadHabit({ upload }) {
 
 					<Text fontWeight="bold">Times</Text>
 					<Select
-						variant="outline"
-						size="md"
-						borderRadius="0.5em"
-						borderWidth="3px"
-						borderColor="orange"
+						{...frIntervalInputProps}
 						onChange={handleSubmitFrequencyInterval}
 						isDisabled>
 						<option>Daily</option>
@@ -166,21 +160,11 @@ function UploadHabit({ upload }) {
 					</Select>
 				</Stack>
 			</Box>
-			<Box>
-				<VStack>
-					<Button
-						className="submit-button"
-						bgRepeat="repeat"
-						colorScheme="orange"
-						bgGradient="linear(to-l, #f05d4d, #f8a642 )"
-						align="center"
-						direction="row"
-						mt="25px"
-						onClick={handleClick}>
-						Submit
-					</Button>
-				</VStack>
-			</Box>
+			<Center>
+				<Button {...addHabitSubmitButtonProps} onClick={handleClick}>
+					Submit
+				</Button>
+			</Center>
 		</Box>
 	);
 }
