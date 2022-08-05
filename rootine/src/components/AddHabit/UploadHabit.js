@@ -77,7 +77,7 @@ function AddingHabit({ upload }) {
     console.log(frequencyreps);
     setHabits({
       ...habits,
-      fequency_reps: frequencyreps,
+      frequency_reps: frequencyreps,
     });
   }
   function handleSubmitFrequencyInterval(e) {
@@ -86,7 +86,7 @@ function AddingHabit({ upload }) {
     console.log(frequencyinterval);
     setHabits({
       ...habits,
-      fequency_interval: frequencyinterval,
+      frequency_interval: frequencyinterval,
     });
   }
 
