@@ -64,7 +64,6 @@ function HabitRow() {
   /* Function which takes in id and when called checks the value of status for particular 
 habitItem and changes it accordingly
 */
-
   function toggleState(id) {
     /* defining the index of the specific object in habitItemList that we are toggling */
     //console.log("toggleState called here.")
