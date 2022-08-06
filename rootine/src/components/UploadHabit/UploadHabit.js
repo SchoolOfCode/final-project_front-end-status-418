@@ -29,13 +29,13 @@ Functionality:
 //TODO: add userid to habits state!
 
 function UploadHabit() {
-	const [habits, setHabits] = useState([
+	const [newHabit, setNewHabit] = useState([
 		{
-			habit_name: "",
+			name: "",
 			description: "",
 			everyday: true,
 			frequency: {
-				fequency_reps: null,
+				frequency_reps: null,
 				frequency_interval: null,
 			},
 		},
@@ -45,39 +45,21 @@ function UploadHabit() {
 		e.preventDefault();
 		const inputValue = e.target.value;
 		console.log(inputValue);
-		if (inputType === "name") {
-			setHabits({
-				...habits,
-				habit_name: inputValue,
-			});
-		} else if (inputType === "description") {
-			setHabits({
-				...habits,
-				description: inputValue,
-			});
-		}
+
+		setNewHabit([{ ...newHabit[0], [inputType]: inputValue }]);
+		const updatedHabit = [{ ...newHabit[0] }];
+		console.log(updatedHabit);
 	}
 
-	// This fn originally linked to the submit button, removing to replace with a function that submits the whole form.
-	// function handleClick(e) {
-	// 	//e.preventDefault();
-	// 	console.log("clicked");
-	// 	// upload(habits);
-	// 	const currentHabit = { ...habits };
-	// 	console.log(currentHabit);
-	// 	// e.target.reset();
-	// }
-
 	function formSubmit(e) {
+		//Note that the state 'newHabit' is updated in the handleChangeInput function
 		e.preventDefault();
 		console.log("Form submitted");
 		e.target.reset();
-		const newHabit = [
-			{
-				...habits[0],
-			},
-		];
-		console.log(newHabit);
+		const createdHabit = [{ ...newHabit[0] }];
+		document.getElementById(
+			"print-current-state"
+		).innerHTML = `Name: ${newHabit[0].name}, Description: ${newHabit[0].description}, Everyday: ${newHabit[0].everyday}, FrReps: ${newHabit[0].frequency.frequency_reps}, FrInterval: ${newHabit[0].frequency.frequency_interval}`;
 	}
 
 	return (
@@ -163,6 +145,7 @@ function UploadHabit() {
 					</Center>
 				</FormControl>
 			</form>
+			<p id="print-current-state">Nothing here</p>
 		</Box>
 	);
 }
