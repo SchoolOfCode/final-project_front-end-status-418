@@ -3,7 +3,7 @@ export const boxProps = {
 	maxW: "1000px",
 	width: "23em",
 	height: "70%",
-	minHeight: "500px",
+	minHeight: "550px",
 	borderWidth: "3px",
 	borderRadius: "4.5em",
 	overflow: "hidden",

@@ -85,7 +85,7 @@ function UploadHabit() {
 			<form onSubmit={formSubmit}>
 				<FormControl>
 					<VStack>
-						<Heading fontSize="2xl" mb="3" mt="-2">
+						<Heading fontSize="3xl" mb="3" pt="4">
 							Add a new habit
 						</Heading>
 						<FormLabel fontWeight="bold">
