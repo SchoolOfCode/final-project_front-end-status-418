@@ -11,7 +11,7 @@
 	--red: #f05d4d;
 	--orange-gradient: linear-gradient(var(--yellow), var(--red));
 	--body: "Lato", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
-	--headings: "Quando";
+	--headings: "Quando", "Georgia", "Times New Roman", serif;
 }
 
 .App {
@@ -34,4 +34,3 @@ footer {
 main {
 	flex: 1 0 auto;
 }
-
