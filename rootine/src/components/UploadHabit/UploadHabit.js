@@ -85,88 +85,98 @@ function UploadHabit() {
 		});
 	}
 
-	function handleClick(e) {
-		//e.preventDefault();
-		console.log("clicked");
-		// upload(habits);
-		const currentHabit = { ...habits };
-		console.log(currentHabit);
-		// e.target.reset();
-	}
+	// This fn originally linked to the submit button, removing to replace with a function that submits the whole form.
+	// function handleClick(e) {
+	// 	//e.preventDefault();
+	// 	console.log("clicked");
+	// 	// upload(habits);
+	// 	const currentHabit = { ...habits };
+	// 	console.log(currentHabit);
+	// 	// e.target.reset();
+	// }
 
 	return (
 		<Box {...boxProps}>
-			<VStack>
+			<form>
 				<FormControl>
-					<FormLabel fontWeight="bold">
-						Habit Name
-						<Input
-							type="text"
-							onChange={(e) => {
-								handleChangeInput(e, "name");
-							}}
-							required
-						/>
-					</FormLabel>
+					<VStack>
+						<FormLabel fontWeight="bold">
+							Habit Name
+							<Input
+								type="text"
+								onChange={(e) => {
+									handleChangeInput(e, "name");
+								}}
+								required
+							/>
+						</FormLabel>
+
+						<FormLabel fontWeight="bold">
+							Habit Description
+							<Textarea
+								overflow="auto"
+								onChange={(e) => {
+									handleChangeInput(e, "description");
+								}}
+								required
+							/>
+						</FormLabel>
+
+						<Box className="everyday-checkbox">
+							<HStack spacing={5} mt="15px">
+								<Text fontWeight="bold"> Once a day </Text>
+
+								<Checkbox
+									size="lg"
+									borderColor="orange"
+									onChange={handleSubmitEveryday}
+									required
+									defaultChecked
+									isDisabled
+								/>
+							</HStack>
+						</Box>
+					</VStack>
+
+					<Box className="frequency">
+						<Stack
+							spacing={1}
+							direction="row"
+							align="baseline"
+							mt="20px">
+							<Text fontWeight="bold"> Frequency</Text>
+							<NumberInput
+								{...frRepsInputProps}
+								onChange={handleSubmitFrequencyReps}
+								isDisabled>
+								<NumberInputField />
+								<NumberInputStepper>
+									<NumberIncrementStepper />
+									<NumberDecrementStepper />
+								</NumberInputStepper>
+							</NumberInput>
+
+							<Text fontWeight="bold">Times</Text>
+							<Select
+								{...frIntervalInputProps}
+								onChange={handleSubmitFrequencyInterval}
+								isDisabled>
+								<option>Daily</option>
+								<option>Weekly</option>
+								<option>Monthly</option>
+							</Select>
+						</Stack>
+					</Box>
+					<Center>
+						<Button
+							{...addHabitSubmitButtonProps}
+							// onClick={handleClick}
+						>
+							Submit
+						</Button>
+					</Center>
 				</FormControl>
-				<FormControl>
-					<FormLabel fontWeight="bold">
-						Habit Description
-						<Textarea
-							overflow="auto"
-							onChange={(e) => {
-								handleChangeInput(e, "description");
-							}}
-							required
-						/>
-					</FormLabel>
-				</FormControl>
-				<Box className="everyday-checkbox">
-					<HStack spacing={5} mt="15px">
-						<Text fontWeight="bold"> Once a day </Text>
-
-						<Checkbox
-							size="lg"
-							borderColor="orange"
-							onChange={handleSubmitEveryday}
-							required
-							defaultChecked
-							isDisabled
-						/>
-					</HStack>
-				</Box>
-			</VStack>
-
-			<Box className="frequency">
-				<Stack spacing={1} direction="row" align="baseline" mt="20px">
-					<Text fontWeight="bold"> Frequency</Text>
-					<NumberInput
-						{...frRepsInputProps}
-						onChange={handleSubmitFrequencyReps}
-						isDisabled>
-						<NumberInputField />
-						<NumberInputStepper>
-							<NumberIncrementStepper />
-							<NumberDecrementStepper />
-						</NumberInputStepper>
-					</NumberInput>
-
-					<Text fontWeight="bold">Times</Text>
-					<Select
-						{...frIntervalInputProps}
-						onChange={handleSubmitFrequencyInterval}
-						isDisabled>
-						<option>Daily</option>
-						<option>Weekly</option>
-						<option>Monthly</option>
-					</Select>
-				</Stack>
-			</Box>
-			<Center>
-				<Button {...addHabitSubmitButtonProps} onClick={handleClick}>
-					Submit
-				</Button>
-			</Center>
+			</form>
 		</Box>
 	);
 }
