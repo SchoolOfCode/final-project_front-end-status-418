@@ -1,6 +1,6 @@
 import { useState } from "react";
 //prettier-ignore
-import { boxProps, addHabitSubmitButtonProps, frIntervalInputProps,	frRepsInputProps, } from "./UploadHabitProps.js";
+import { boxProps, addHabitSubmitButtonProps, frIntervalInputProps,	frRepsInputProps, } from "./uploadHabitProps.js";
 
 //prettier-ignore
 import { Box, VStack, HStack, Stack, Text, Checkbox, Textarea, Select, Button, Input, FormControl, FormLabel, Center } from "@chakra-ui/react";
@@ -58,33 +58,6 @@ function UploadHabit() {
 		}
 	}
 
-	function handleSubmitEveryday(e) {
-		e.preventDefault();
-		const everyday = e.target.value;
-		console.log("this has been checked");
-		setHabits({
-			...habits,
-			everyday: everyday,
-		});
-	}
-	function handleSubmitFrequencyReps(e) {
-		const frequencyreps = e.target.value;
-		console.log(frequencyreps);
-		setHabits({
-			...habits,
-			frequency_reps: frequencyreps,
-		});
-	}
-	function handleSubmitFrequencyInterval(e) {
-		e.preventDefault();
-		const frequencyinterval = e.target.value;
-		console.log(frequencyinterval);
-		setHabits({
-			...habits,
-			frequency_interval: frequencyinterval,
-		});
-	}
-
 	// This fn originally linked to the submit button, removing to replace with a function that submits the whole form.
 	// function handleClick(e) {
 	// 	//e.preventDefault();
@@ -95,9 +68,21 @@ function UploadHabit() {
 	// 	// e.target.reset();
 	// }
 
+	function formSubmit(e) {
+		e.preventDefault();
+		console.log("Form submitted");
+		e.target.reset();
+		const newHabit = [
+			{
+				...habits[0],
+			},
+		];
+		console.log(newHabit);
+	}
+
 	return (
 		<Box {...boxProps}>
-			<form>
+			<form onSubmit={formSubmit}>
 				<FormControl>
 					<VStack>
 						<FormLabel fontWeight="bold">
@@ -129,7 +114,7 @@ function UploadHabit() {
 								<Checkbox
 									size="lg"
 									borderColor="orange"
-									onChange={handleSubmitEveryday}
+									// onChange={handleSubmitEveryday}
 									required
 									defaultChecked
 									isDisabled
@@ -147,7 +132,7 @@ function UploadHabit() {
 							<Text fontWeight="bold"> Frequency</Text>
 							<NumberInput
 								{...frRepsInputProps}
-								onChange={handleSubmitFrequencyReps}
+								// onChange={handleSubmitFrequencyReps}
 								isDisabled>
 								<NumberInputField />
 								<NumberInputStepper>
@@ -159,7 +144,7 @@ function UploadHabit() {
 							<Text fontWeight="bold">Times</Text>
 							<Select
 								{...frIntervalInputProps}
-								onChange={handleSubmitFrequencyInterval}
+								// onChange={handleSubmitFrequencyInterval}
 								isDisabled>
 								<option>Daily</option>
 								<option>Weekly</option>
@@ -169,6 +154,7 @@ function UploadHabit() {
 					</Box>
 					<Center>
 						<Button
+							type="submit"
 							{...addHabitSubmitButtonProps}
 							// onClick={handleClick}
 						>
