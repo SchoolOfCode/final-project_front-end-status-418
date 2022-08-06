@@ -3,7 +3,7 @@ import { useState } from "react";
 import { boxProps, addHabitSubmitButtonProps, frIntervalInputProps,	frRepsInputProps, } from "./uploadHabitProps.js";
 
 //prettier-ignore
-import { Box, VStack, HStack, Stack, Text, Checkbox, Textarea, Select, Button, Input, FormControl, FormLabel, Center } from "@chakra-ui/react";
+import { Box, VStack, HStack, Stack, Text, Checkbox, Textarea, Select, Button, Input, FormControl, FormLabel, Center, Heading } from "@chakra-ui/react";
 
 //prettier-ignore
 import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper } from '@chakra-ui/react'
@@ -85,8 +85,11 @@ function UploadHabit() {
 			<form onSubmit={formSubmit}>
 				<FormControl>
 					<VStack>
+						<Heading fontSize="2xl" mb="3" mt="-2">
+							Add a new habit
+						</Heading>
 						<FormLabel fontWeight="bold">
-							Habit Name
+							Habit name
 							<Input
 								type="text"
 								onChange={(e) => {
@@ -97,7 +100,7 @@ function UploadHabit() {
 						</FormLabel>
 
 						<FormLabel fontWeight="bold">
-							Habit Description
+							Habit description
 							<Textarea
 								overflow="auto"
 								onChange={(e) => {
