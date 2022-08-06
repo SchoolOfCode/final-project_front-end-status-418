@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { boxProps } from "./UploadHabitProps.js";
+//prettier-ignore
+import { boxProps, addHabitSubmitButtonProps, frIntervalInputProps,	frRepsInputProps, } from "./UploadHabitProps.js";
 
 //prettier-ignore
 import { Box, VStack, HStack, Stack, Text, Checkbox, Textarea, Select, Button, Input, FormControl, FormLabel, Center } from "@chakra-ui/react";
 
 //prettier-ignore
 import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper } from '@chakra-ui/react'
-import {
-	addHabitSubmitButtonProps,
-	frIntervalInputProps,
-	frRepsInputProps,
-} from "../DetailsPanel/DetailsPanelProps.js";
 
 // component name is AddingHabit but the file is called UploadHabit - make consistent? ✅
 // functions are called 'handleSubmits' but they trigger on change - rename? - sort of done ✅
