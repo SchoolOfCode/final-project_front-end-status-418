@@ -76,7 +76,7 @@ function UploadHabit() {
 	async function postHabit(h) {
 		//TODO: Be sure to change this if working on another port or once backend is deployed.
 		const url = `https://localhost:3001`;
-
+		console.log(url);
 		// TODO:
 		// ✅ PLAN
 		//arrange data in expected format
@@ -114,18 +114,19 @@ function UploadHabit() {
 
 						<Box className="everyday-checkbox">
 							<HStack spacing={5} mt="15px">
-								<Text fontWeight="bold"> Once a day </Text>
-
-								<Checkbox
-									size="lg"
-									borderColor="orange"
-									borderWidth="3px"
-									borderRadius="4px"
-									// onChange={handleSubmitEveryday}
-									required
-									defaultChecked
-									isDisabled
-								/>
+								<FormLabel fontWeight="bold">
+									Once a day{" "}
+									<Checkbox
+										size="lg"
+										borderColor="orange"
+										borderWidth="3px"
+										borderRadius="4px"
+										// onChange={handleSubmitEveryday}
+										required
+										defaultChecked
+										isDisabled
+									/>
+								</FormLabel>
 							</HStack>
 						</Box>
 					</VStack>
@@ -134,7 +135,7 @@ function UploadHabit() {
 						<Stack
 							spacing={1}
 							direction="row"
-							align="baseline"
+							align="center"
 							mt="20px">
 							<Text fontWeight="bold"> Frequency</Text>
 							<NumberInput
