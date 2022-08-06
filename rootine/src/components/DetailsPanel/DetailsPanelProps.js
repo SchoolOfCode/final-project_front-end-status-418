@@ -12,8 +12,5 @@ export const boxProps = {
 	m: 20,
 	p: 10,
 	pt: 1,
-	// pb: 10,
-	// pl: 10,
-	// pr: 10,
 	bg: "white",
 };
