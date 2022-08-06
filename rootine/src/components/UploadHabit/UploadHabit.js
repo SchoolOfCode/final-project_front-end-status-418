@@ -29,6 +29,10 @@ Functionality:
 //TODO: add userid to habits state!
 
 function UploadHabit() {
+	// TODO: This should be changed to the Auth0 userid once Auth0 implementation is sorted.
+	const userId = "hannahtest";
+
+	//📝 Note that the values for everyday, fr_reps and fr_interval are hard-coded, which is MVP behaviour. Should be updated when features added.
 	const [newHabit, setNewHabit] = useState([
 		{
 			name: "",
@@ -38,6 +42,7 @@ function UploadHabit() {
 				frequency_reps: null,
 				frequency_interval: null,
 			},
+			userId: userId,
 		},
 	]);
 
@@ -51,15 +56,33 @@ function UploadHabit() {
 		console.log(updatedHabit);
 	}
 
+	/** Handles the submission of the form: collates data from newHabit state, resets form, and calls the postHabit function that sends the data to the db */
 	function formSubmit(e) {
-		//Note that the state 'newHabit' is updated in the handleChangeInput function
+		// 📝 Note that the state 'newHabit' is updated in the handleChangeInput function
 		e.preventDefault();
 		console.log("Form submitted");
 		e.target.reset();
 		const createdHabit = [{ ...newHabit[0] }];
+
+		// #️⃣ Temporary: prints data object in the DOM just so we can see that the data have been correctly captured .
 		document.getElementById(
 			"print-current-state"
-		).innerHTML = `Name: ${newHabit[0].name}, Description: ${newHabit[0].description}, Everyday: ${newHabit[0].everyday}, FrReps: ${newHabit[0].frequency.frequency_reps}, FrInterval: ${newHabit[0].frequency.frequency_interval}`;
+		).innerHTML = `Name: ${newHabit[0].name}, Description: ${newHabit[0].description}, Everyday: ${newHabit[0].everyday}, FrReps: ${newHabit[0].frequency.frequency_reps}, FrInterval: ${newHabit[0].frequency.frequency_interval}, User: ${newHabit[0].userId}`;
+
+		postHabit(createdHabit);
+	}
+
+	/** 📩 Takes the data from the new habit form submission and sends to the database. Note that the back-end currently only expects three values: name, description and userId. The other values are hard-coded (MVP behaviour). */
+	async function postHabit(h) {
+		//TODO: Be sure to change this if working on another port or once backend is deployed.
+		const url = `https://localhost:3001`;
+
+		// TODO:
+		// ✅ PLAN
+		//arrange data in expected format
+		//send post request to url/habits
+		//if receives a success message, provide an alert
+		//Should also trigger App.js to update the habits list for display on the right-hand side of the page
 	}
 
 	return (
@@ -96,6 +119,8 @@ function UploadHabit() {
 								<Checkbox
 									size="lg"
 									borderColor="orange"
+									borderWidth="3px"
+									borderRadius="4px"
 									// onChange={handleSubmitEveryday}
 									required
 									defaultChecked
