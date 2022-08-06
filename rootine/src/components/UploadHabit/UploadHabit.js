@@ -26,8 +26,6 @@ Functionality:
 
 */
 
-//TODO: add userid to habits state!
-
 function UploadHabit() {
 	// TODO: This should be changed to the Auth0 userid once Auth0 implementation is sorted.
 	const userId = "hannahtest";
@@ -49,11 +47,8 @@ function UploadHabit() {
 	function handleChangeInput(e, inputType) {
 		e.preventDefault();
 		const inputValue = e.target.value;
-		console.log(inputValue);
-
-		setNewHabit([{ ...newHabit[0], [inputType]: inputValue }]);
-		const updatedHabit = [{ ...newHabit[0] }];
-		console.log(updatedHabit);
+		const updatedHabit = [{ ...newHabit[0], [inputType]: inputValue }];
+		setNewHabit(updatedHabit);
 	}
 
 	/** Handles the submission of the form: collates data from newHabit state, resets form, and calls the postHabit function that sends the data to the db */
@@ -76,7 +71,7 @@ function UploadHabit() {
 	async function postHabit(h) {
 		//TODO: Be sure to change this if working on another port or once backend is deployed.
 		const url = `https://localhost:3001`;
-		console.log(url);
+		console.log(`URL set to: ${url}`);
 		// TODO:
 		// ✅ PLAN
 		//arrange data in expected format
@@ -137,6 +132,8 @@ function UploadHabit() {
 							direction="row"
 							align="center"
 							mt="20px">
+							TODO: NumberInput field is very large... needs
+							fixing!
 							<Text fontWeight="bold"> Frequency</Text>
 							<NumberInput
 								{...frRepsInputProps}
@@ -148,7 +145,6 @@ function UploadHabit() {
 									<NumberDecrementStepper />
 								</NumberInputStepper>
 							</NumberInput>
-
 							<Text fontWeight="bold">Times</Text>
 							<Select
 								{...frIntervalInputProps}
