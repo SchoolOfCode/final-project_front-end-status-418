@@ -27,25 +27,6 @@ import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import { boxProps } from "./DetailsPanelProps.js";
 
 const DetailsPanel = () => {
-<<<<<<< HEAD
-    return (
-        <Box
-            className="details-panel-parent"
-            // maxW="960px"
-            width="22em"
-            height="65%"
-            borderWidth="3px"
-            borderRadius="4.5em"
-            overflow="hidden"
-            color="black"
-            boxShadow="md"
-            p="6"
-            bg="white"
-        >
-            This is the Box
-        </Box>
-    );
-=======
 	function EditableControls() {
 		const { isEditing, getSubmitButtonProps, getCancelButtonProps } =
 			useEditableControls();
@@ -190,7 +171,6 @@ const DetailsPanel = () => {
 			</Box>
 		</Box>
 	);
->>>>>>> add_habit_btnform_idman_bushra
 };
 
 export default DetailsPanel;
