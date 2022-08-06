@@ -39,8 +39,8 @@ function UploadHabit() {
 			description: "",
 			everyday: true,
 			frequency: {
-				frequency_reps: null,
-				frequency_interval: null,
+				fr_reps: null,
+				fr_interval: null,
 			},
 			userId: userId,
 		},
@@ -67,7 +67,7 @@ function UploadHabit() {
 		// #️⃣ Temporary: prints data object in the DOM just so we can see that the data have been correctly captured .
 		document.getElementById(
 			"print-current-state"
-		).innerHTML = `Name: ${newHabit[0].name}, Description: ${newHabit[0].description}, Everyday: ${newHabit[0].everyday}, FrReps: ${newHabit[0].frequency.frequency_reps}, FrInterval: ${newHabit[0].frequency.frequency_interval}, User: ${newHabit[0].userId}`;
+		).innerHTML = `Name: ${newHabit[0].name}, Description: ${newHabit[0].description}, Everyday: ${newHabit[0].everyday}, FrReps: ${newHabit[0].frequency.fr_reps}, FrInterval: ${newHabit[0].frequency.fr_interval}, User: ${newHabit[0].userId}`;
 
 		postHabit(createdHabit);
 	}
