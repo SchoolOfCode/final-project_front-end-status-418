@@ -5,6 +5,7 @@ import Navbar from "../Navbar/Navbar";
 
 import LandingPage from "../LandingPage/LandingPage";
 import LeftSideHabitDetails from "../LeftSideHabitDetails/LeftSideHabitDetails";
+import Calendar from "./Calendar/Calendar";
 
 function App() {
 	const areYouCurrentlyWorkingOnTheLandingPage = false;
@@ -16,7 +17,10 @@ function App() {
 				{areYouCurrentlyWorkingOnTheLandingPage ? (
 					<LandingPage />
 				) : (
-					<LeftSideHabitDetails />
+					<>
+						<LeftSideHabitDetails />
+						<Calendar />
+					</>
 				)}
 			</main>
 			<Footer />
