@@ -12,12 +12,12 @@ export default function LeftSideHabitDetails() {
 
 	const vStackProps = {
 		className: "view-container",
-		height: "100%",
+		// height: "100%",
 		width: "auto",
 		display: "flex",
 		alignItems: "center",
-		marginLeft: "5em",
-		marginBottom: "1em",
+		// marginLeft: "5em",
+		// marginBottom: "1em",
 	};
 
 	function switchDetailsDisplay() {
@@ -30,7 +30,7 @@ export default function LeftSideHabitDetails() {
 				<Button
 					bgGradient="linear(to-l, #f05d4d, #f8a642 )"
 					colorScheme="orange"
-					mt={10}
+					mt={0}
 					onClick={switchDetailsDisplay}>
 					Switch!
 				</Button>

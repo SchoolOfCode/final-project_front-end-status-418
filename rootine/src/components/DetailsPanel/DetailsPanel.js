@@ -1,29 +1,9 @@
 import { FaFire, FaTrophy } from "react-icons/fa";
 
-import {
-	Box,
-	VStack,
-	HStack,
-	Stack,
-	Heading,
-	Text,
-	Checkbox,
-	Editable,
-	EditableInput,
-	EditablePreview,
-	useEditableControls,
-	EditableTextarea,
-	ButtonGroup,
-	IconButton,
-	Input,
-	Wrap,
-	WrapItem,
-	useColorModeValue,
-	Tooltip,
-	Select,
-	Button,
-} from "@chakra-ui/react";
+//prettier-ignore
+import { Box, VStack, HStack, Stack, Heading, Text, Checkbox, Editable, EditableInput, EditablePreview, useEditableControls, EditableTextarea,  ButtonGroup, IconButton, Input, Wrap, WrapItem, useColorModeValue, Tooltip, Select, Button } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
+
 import { boxProps } from "./DetailsPanelProps.js";
 
 const DetailsPanel = () => {

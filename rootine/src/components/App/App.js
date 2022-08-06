@@ -7,6 +7,11 @@ import LandingPage from "../LandingPage/LandingPage";
 import LeftSideHabitDetails from "../LeftSideHabitDetails/LeftSideHabitDetails";
 import Calendar from "./Calendar/Calendar";
 
+//prettier-ignore
+import { Flex } from "@chakra-ui/react"
+
+import { flexProps } from "./appProps.js";
+
 function App() {
 	const areYouCurrentlyWorkingOnTheLandingPage = false;
 
@@ -17,10 +22,10 @@ function App() {
 				{areYouCurrentlyWorkingOnTheLandingPage ? (
 					<LandingPage />
 				) : (
-					<>
+					<Flex {...flexProps}>
 						<LeftSideHabitDetails />
 						<Calendar />
-					</>
+					</Flex>
 				)}
 			</main>
 			<Footer />
