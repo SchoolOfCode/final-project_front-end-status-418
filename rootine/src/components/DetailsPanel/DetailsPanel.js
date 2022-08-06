@@ -117,7 +117,11 @@ const DetailsPanel = () => {
 				<Box className="everyday-checkbox">
 					<HStack spacing={5} mb="8px">
 						<Text fontWeight="bold"> Once a day </Text>
-						<Checkbox size="lg" borderColor="orange"></Checkbox>
+						<Checkbox
+							size="lg"
+							borderColor="orange"
+							isChecked
+							isDisabled></Checkbox>
 					</HStack>
 				</Box>
 			</VStack>
@@ -125,6 +129,8 @@ const DetailsPanel = () => {
 			<Box className="frequency">
 				<Stack spacing={1} direction="row" align="baseline">
 					<Text fontWeight="bold"> Frequency</Text>
+					TODO: In MVP behaviour, the Frequency Reps input here should
+					not be editable
 					<Editable
 						pl={2}
 						pr={2}
@@ -135,14 +141,14 @@ const DetailsPanel = () => {
 						<EditablePreview />
 						<EditableInput />
 					</Editable>
-
 					<Text fontWeight="bold">Times</Text>
 					<Select
 						variant="outline"
 						size="md"
 						borderRadius="0.5em"
 						borderWidth="3px"
-						borderColor="orange">
+						borderColor="orange"
+						isDisabled>
 						<option>Daily</option>
 						<option>Weekly</option>
 						<option>Monthly</option>
