@@ -2,6 +2,7 @@ export const boxProps = {
 	className: "details-panel-parent",
 	w: "23em",
 	h: "70%",
+	minHeight: "500px",
 	borderWidth: "3px",
 	borderRadius: "4.5em",
 	overflow: "hidden",
