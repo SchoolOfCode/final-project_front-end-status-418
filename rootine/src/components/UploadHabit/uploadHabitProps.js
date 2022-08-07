@@ -14,16 +14,23 @@ export const boxProps = {
 	bg: "white",
 };
 
-export const frRepsInputProps = {
+export const frRepsFieldProps = {
 	className: "fr-reps-input-disabled",
 	defaultValue: 0,
 	min: 0,
 	max: 10,
-	pl: 2,
-	pr: 2,
+	paddingEnd: 0,
+	paddingStart: 0,
 	borderRadius: "0.5em",
 	borderWidth: "3px",
 	borderColor: "orange",
+};
+
+export const frRepsInputProps = {
+	marginStart: 3,
+	marginEnd: -10,
+	paddingStart: 0,
+	paddingEnd: 0,
 };
 
 export const frIntervalInputProps = {

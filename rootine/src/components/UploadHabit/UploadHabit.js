@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./UploadHabit.css";
 //prettier-ignore
-import { boxProps, addHabitSubmitButtonProps, frIntervalInputProps,	frRepsInputProps, everydayCheckBoxProps } from "./uploadHabitProps.js";
+import { boxProps, addHabitSubmitButtonProps, frIntervalInputProps,	frRepsFieldProps, frRepsInputProps, everydayCheckBoxProps } from "./uploadHabitProps.js";
 
 //prettier-ignore
 import { Box, VStack, HStack, Stack, Text, Checkbox, Textarea, Select, Button, Input, FormControl, FormLabel, Center, Heading, Tooltip } from "@chakra-ui/react";
@@ -139,10 +139,10 @@ function UploadHabit() {
 							<Text fontWeight="bold">Frequency</Text>
 							<Tooltip label="Habits that occur with a specific frequency are not currently supported, please check back soon">
 								<NumberInput
-									{...frRepsInputProps}
+									{...frRepsFieldProps}
 									// onChange={handleSubmitFrequencyReps}
 									isDisabled>
-									<NumberInputField />
+									<NumberInputField {...frRepsInputProps} />
 									<NumberInputStepper>
 										<NumberIncrementStepper />
 										<NumberDecrementStepper />
