@@ -15,6 +15,7 @@ export const boxProps = {
 };
 
 export const frRepsInputProps = {
+	className: "fr-reps-input-disabled",
 	defaultValue: 0,
 	min: 0,
 	max: 10,
@@ -41,4 +42,17 @@ export const addHabitSubmitButtonProps = {
 	align: "center",
 	direction: "row",
 	mt: "25px",
+};
+
+export const everydayCheckBoxProps = {
+	size: "lg",
+	borderColor: "orange",
+	borderWidth: "3px",
+	borderRadius: "4px",
+	// onChange:"handleSubmitEveryday"
+	required: true,
+	defaultChecked: true,
+	isDisabled: true,
+	opacity: 0.4,
+	cursor: "not-allowed",
 };

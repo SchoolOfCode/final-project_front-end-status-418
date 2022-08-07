@@ -1,9 +1,10 @@
 import { useState } from "react";
+import "./UploadHabit.css";
 //prettier-ignore
-import { boxProps, addHabitSubmitButtonProps, frIntervalInputProps,	frRepsInputProps, } from "./uploadHabitProps.js";
+import { boxProps, addHabitSubmitButtonProps, frIntervalInputProps,	frRepsInputProps, everydayCheckBoxProps } from "./uploadHabitProps.js";
 
 //prettier-ignore
-import { Box, VStack, HStack, Stack, Text, Checkbox, Textarea, Select, Button, Input, FormControl, FormLabel, Center, Heading } from "@chakra-ui/react";
+import { Box, VStack, HStack, Stack, Text, Checkbox, Textarea, Select, Button, Input, FormControl, FormLabel, Center, Heading, Tooltip } from "@chakra-ui/react";
 
 //prettier-ignore
 import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper } from '@chakra-ui/react'
@@ -112,19 +113,17 @@ function UploadHabit() {
 
 						<Box className="everyday-checkbox">
 							<HStack spacing={5} mt="15px">
-								<FormLabel fontWeight="bold">
-									Once a day{" "}
-									<Checkbox
-										size="lg"
-										borderColor="orange"
-										borderWidth="3px"
-										borderRadius="4px"
-										// onChange={handleSubmitEveryday}
-										required
-										defaultChecked
-										isDisabled
-									/>
-								</FormLabel>
+								<Tooltip label="Habits that occur with a specific frequency are not currently supported, please check back soon">
+									<FormLabel fontWeight="bold">
+										<span id="everyday-check-label">
+											Once a day
+										</span>
+										<Checkbox
+											{...everydayCheckBoxProps}
+											id="everyday-checkbox"
+										/>
+									</FormLabel>
+								</Tooltip>
 							</HStack>
 						</Box>
 					</VStack>
@@ -137,26 +136,30 @@ function UploadHabit() {
 							mt="20px">
 							TODO: NumberInput field is very large... needs
 							fixing!
-							<Text fontWeight="bold"> Frequency</Text>
-							<NumberInput
-								{...frRepsInputProps}
-								// onChange={handleSubmitFrequencyReps}
-								isDisabled>
-								<NumberInputField />
-								<NumberInputStepper>
-									<NumberIncrementStepper />
-									<NumberDecrementStepper />
-								</NumberInputStepper>
-							</NumberInput>
+							<Text fontWeight="bold">Frequency</Text>
+							<Tooltip label="Habits that occur with a specific frequency are not currently supported, please check back soon">
+								<NumberInput
+									{...frRepsInputProps}
+									// onChange={handleSubmitFrequencyReps}
+									isDisabled>
+									<NumberInputField />
+									<NumberInputStepper>
+										<NumberIncrementStepper />
+										<NumberDecrementStepper />
+									</NumberInputStepper>
+								</NumberInput>
+							</Tooltip>
 							<Text fontWeight="bold">Times</Text>
-							<Select
-								{...frIntervalInputProps}
-								// onChange={handleSubmitFrequencyInterval}
-								isDisabled>
-								<option>Daily</option>
-								<option>Weekly</option>
-								<option>Monthly</option>
-							</Select>
+							<Tooltip label="Habits that occur with a specific frequency are not currently supported, please check back soon">
+								<Select
+									{...frIntervalInputProps}
+									// onChange={handleSubmitFrequencyInterval}
+									isDisabled>
+									<option>Daily</option>
+									<option>Weekly</option>
+									<option>Monthly</option>
+								</Select>
+							</Tooltip>
 						</Stack>
 					</Box>
 					<Center>
@@ -170,7 +173,12 @@ function UploadHabit() {
 					</Center>
 				</FormControl>
 			</form>
-			<p id="print-current-state">Nothing here</p>
+			<p
+				id="print-current-state"
+				style={{ marginTop: "1em", fontSize: "0.8em" }}>
+				[...when form is submitted, new habit data will appear here
+				(temporary)]
+			</p>
 		</Box>
 	);
 }
