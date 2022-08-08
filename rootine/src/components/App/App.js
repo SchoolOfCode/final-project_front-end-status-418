@@ -1,3 +1,4 @@
+import react from "react";
 import Footer from "../Footer/Footer";
 import "./App.css";
 import Navbar from "../Navbar/Navbar";
@@ -9,27 +10,37 @@ import Calendar from "./Calendar/Calendar";
 
 //prettier-ignore
 import { Flex } from "@chakra-ui/react"
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { flexProps } from "./appProps.js";
 
+const AuthContext = react.createContext();
+
 function App() {
-	const areYouCurrentlyWorkingOnTheLandingPage = false;
+	const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
+		useAuth0();
+	const authContext = [isAuthenticated, user];
+	console.log("authContext", authContext);
+	// const areYouCurrentlyWorkingOnTheLandingPage = true;
 
 	return (
-		<div className="App">
-			<Navbar />
-			<main>
-				{areYouCurrentlyWorkingOnTheLandingPage ? (
-					<LandingPage />
-				) : (
-					<Flex {...flexProps}>
-						<LeftSideHabitDetails />
-						<Calendar />
-					</Flex>
-				)}
-			</main>
-			<Footer />
-		</div>
+		<AuthContext.Provider value={authContext}>
+			<div className="App">
+				<Navbar />
+				<p>{isAuthenticated}</p>
+				<main>
+					{!isAuthenticated ? (
+						<LandingPage />
+					) : (
+						<Flex {...flexProps}>
+							<LeftSideHabitDetails />
+							<Calendar />
+						</Flex>
+					)}
+				</main>
+				<Footer />
+			</div>
+		</AuthContext.Provider>
 	);
 }
 

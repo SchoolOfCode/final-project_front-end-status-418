@@ -2,10 +2,15 @@ import "./Navbar.css";
 import { useColorMode } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 //prettier-ignore
 import { Menu, MenuButton, MenuList, MenuItem, MenuGroup, MenuDivider, Button } from "@chakra-ui/react";
 
-export default function Navbar() {
+export default function Navbar(isAuthenticated) {
+	const { loginWithRedirect, logout } = useAuth0();
+	console.log("isAuthenticated", isAuthenticated);
+
 	const { colorMode, toggleColorMode } = useColorMode();
 	return (
 		<header className="header">
@@ -48,7 +53,20 @@ export default function Navbar() {
 							</MenuGroup>
 							<MenuDivider />
 							<MenuGroup title="Profile">
-								<MenuItem>Login</MenuItem>
+								<MenuItem
+									as="button"
+									onClick={() => loginWithRedirect()}>
+									Login
+								</MenuItem>
+								<MenuItem
+									as="button"
+									onClick={() =>
+										logout({
+											returnTo: window.location.origin,
+										})
+									}>
+									Logout
+								</MenuItem>
 							</MenuGroup>
 						</MenuList>
 					</Menu>
