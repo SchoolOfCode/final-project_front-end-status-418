@@ -111,41 +111,36 @@ habitItem and changes it accordingly
     console.log(" (After) Status: ", updatedState[index].status);
     setHabitItems(updatedState);
   }
+  try {
+    return (
+      <div className="habit-row">
+        <div className="habit-name-container">
+          <h3 className="habit-name"> {habitName} </h3>
+        </div>
+        <div className="habit-item-container">
+          {section.map((sectionday) => {
+            console.log("habitItem", habitItems[0].date);
+            console.log("sectiondayformatted", sectionday.format("YYYYMMDD"));
+            let displayItem = habitItems.filter(
+              (item) => item.date === sectionday.format("YYYYMMDD")
+            );
 
-  return (
-    <div className="habit-row">
-      <div className="habit-name-container">
-        <h3 className="habit-name"> {habitName} </h3>
+            console.log("displayItem", displayItem);
+            return (
+              <button
+                onClick={() => toggleState(displayItem[0].date)}
+                className={`habit-item ${displayItem[0].status}`}
+                id={sectionday.format("YYYYMMDD")}
+                key={sectionday.format("YYYYMMDD")}
+              />
+            );
+          })}
+        </div>
       </div>
-      <div className="habit-item-container">
-        {section.map((sectionday) => {
-          console.log("habitItem", habitItems[0].date);
-          console.log("sectiondayformatted", sectionday.format("YYYYMMDD"));
-          let displayItem = habitItems.filter(
-            (item) => item.date === sectionday.format("YYYYMMDD")
-          );
-          if (displayItem === []) {
-            displayItem = [
-              {
-                habit_id: habitid,
-                date: sectionday.format("YYYYMMDD"),
-                status: "incomplete",
-              },
-            ];
-          }
-          console.log("displayItem", displayItem);
-          return (
-            <button
-              onClick={() => toggleState(displayItem[0].date)}
-              className={`habit-item ${displayItem[0].status}`}
-              id={sectionday.format("YYYYMMDD")}
-              key={sectionday.format("YYYYMMDD")}
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
+    );
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default HabitRow;
