@@ -9,7 +9,7 @@ import LeftSideHabitDetails from "../LeftSideHabitDetails/LeftSideHabitDetails";
 import Calendar from "./Calendar/Calendar";
 
 //prettier-ignore
-import { Flex } from "@chakra-ui/react"
+import { Center, Flex } from "@chakra-ui/react"
 import { flexProps } from "./appProps.js";
 
 function App() {
@@ -17,6 +17,20 @@ function App() {
 		useAuth0();
 	console.log("app isAuth", isAuthenticated);
 	console.log("app user", user);
+
+	if (isLoading) {
+		return (
+			<div
+				style={{
+					marginTop: "5em",
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+				}}>
+				<p style={{ fontSize: "1.5em" }}>Page loading...</p>
+			</div>
+		);
+	}
 
 	return (
 		<div className="App">
