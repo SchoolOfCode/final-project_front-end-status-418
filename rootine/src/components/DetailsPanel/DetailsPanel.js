@@ -1,10 +1,12 @@
+import "./detailsPanel.css";
 import { FaFire, FaTrophy } from "react-icons/fa";
 
 //prettier-ignore
-import { Box, VStack, HStack, Stack, Heading, Text, Checkbox, Editable, EditableInput, EditablePreview, useEditableControls, EditableTextarea,  ButtonGroup, IconButton, Input, Wrap, WrapItem, useColorModeValue, Tooltip, Select, Button } from "@chakra-ui/react";
+import { Box, VStack, HStack, Stack, Heading, Text, Checkbox, Editable, EditableInput, EditablePreview, useEditableControls, EditableTextarea,  ButtonGroup, IconButton, Input, Wrap, WrapItem, useColorModeValue, Tooltip, Select, Button, Center } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 
-import { boxProps } from "./DetailsPanelProps.js";
+//prettier-ignore
+import { boxProps, fieldFrRepsProps, inputFrRepsProps, inputFrIntervalProps, saveButtonProps } from "./DetailsPanelProps.js";
 
 const DetailsPanel = () => {
 	function EditableControls() {
@@ -68,8 +70,7 @@ const DetailsPanel = () => {
 
 				<Box className="description">
 					<Heading size="sm" display="inline">
-						{" "}
-						Description{" "}
+						Description
 					</Heading>
 					<Editable
 						defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua"
@@ -109,46 +110,33 @@ const DetailsPanel = () => {
 			<Box className="frequency">
 				<Stack spacing={1} direction="row" align="baseline">
 					<Text fontWeight="bold"> Frequency</Text>
-					TODO: In MVP behaviour, the Frequency Reps input here should
-					not be editable
 					<Editable
-						pl={2}
-						pr={2}
-						borderRadius="0.5em"
-						borderWidth="3px"
-						defaultValue="1"
-						borderColor="orange">
-						<EditablePreview />
-						<EditableInput />
+						className="fr-reps-disabled"
+						{...fieldFrRepsProps}>
+						<Tooltip label="Habits that occur with a specific frequency are not currently supported, please check back soon">
+							<EditablePreview
+								className="fr-reps-display"
+								{...inputFrRepsProps}
+							/>
+						</Tooltip>
+						<EditableInput
+							className="fr-reps-display"
+							{...inputFrRepsProps}
+						/>
 					</Editable>
 					<Text fontWeight="bold">Times</Text>
-					<Select
-						variant="outline"
-						size="md"
-						borderRadius="0.5em"
-						borderWidth="3px"
-						borderColor="orange"
-						isDisabled>
-						<option>Daily</option>
-						<option>Weekly</option>
-						<option>Monthly</option>
-					</Select>
+					<Tooltip label="Habits that occur with a specific frequency are not currently supported, please check back soon">
+						<Select {...inputFrIntervalProps}>
+							<option>Daily</option>
+							<option>Weekly</option>
+							<option>Monthly</option>
+						</Select>
+					</Tooltip>
 				</Stack>
 			</Box>
-			<Box>
-				<VStack>
-					<Button
-						className="save-button"
-						bgRepeat="repeat"
-						colorScheme="orange"
-						bgGradient="linear(to-l, #f05d4d, #f8a642 )"
-						align="center"
-						direction="row"
-						mt="10px">
-						Save
-					</Button>
-				</VStack>
-			</Box>
+			<Center>
+				<Button {...saveButtonProps}>Save</Button>
+			</Center>
 		</Box>
 	);
 };

@@ -7,17 +7,14 @@ import { useState } from "react";
 export default function LeftSideHabitDetails() {
 	//When switchDisplay is true, the habit details panel shows, when false, AddNewHabit panel shows
 	//Button added to perform the switch
-	// This is temporary!
+	// ❗ This is temporary!
 	const [switchDisplay, setSwitchDisplay] = useState(true);
 
 	const vStackProps = {
 		className: "view-container",
-		// height: "100%",
 		width: "auto",
 		display: "flex",
 		alignItems: "center",
-		// marginLeft: "5em",
-		// marginBottom: "1em",
 	};
 
 	function switchDetailsDisplay() {

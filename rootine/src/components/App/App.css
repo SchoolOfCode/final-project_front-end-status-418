@@ -25,12 +25,6 @@
 	pointer-events: none;
 }
 
-footer {
-	height: 50px;
-	flex-shrink: 0;
-	background-color: white;
-}
-
 main {
 	flex: 1 0 auto;
 }
