@@ -1,0 +1,16 @@
+.frequency .fr-reps-display {
+	cursor: not-allowed;
+}
+.frequency .fr-reps-display:focus-visible {
+	box-shadow: none;
+	cursor: not-allowed;
+}
+
+.frequency .fr-reps-disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.frequency .fr-reps-disabled:hover {
+	border-color: var(--chakra-colors-gray-300);
+}
