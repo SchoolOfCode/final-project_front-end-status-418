@@ -24,6 +24,7 @@ export const frRepsFieldProps = {
 	borderRadius: "0.5em",
 	borderWidth: "3px",
 	borderColor: "orange",
+	isDisabled: true,
 };
 
 export const frRepsInputProps = {
@@ -39,6 +40,7 @@ export const frIntervalInputProps = {
 	borderRadius: "0.5em",
 	borderWidth: "3px",
 	borderColor: "orange",
+	isDisabled: true,
 };
 
 export const addHabitSubmitButtonProps = {

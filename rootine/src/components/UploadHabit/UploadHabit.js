@@ -135,13 +135,14 @@ function UploadHabit() {
 							align="center"
 							mt="20px">
 							TODO: NumberInput field is very large... needs
-							fixing!
+							fixing! TODO: V faint shadow of input field box
+							visible on screen, 1px!
 							<Text fontWeight="bold">Frequency</Text>
 							<Tooltip label="Habits that occur with a specific frequency are not currently supported, please check back soon">
 								<NumberInput
 									{...frRepsFieldProps}
 									// onChange={handleSubmitFrequencyReps}
-									isDisabled>
+								>
 									<NumberInputField {...frRepsInputProps} />
 									<NumberInputStepper>
 										<NumberIncrementStepper />
@@ -154,7 +155,7 @@ function UploadHabit() {
 								<Select
 									{...frIntervalInputProps}
 									// onChange={handleSubmitFrequencyInterval}
-									isDisabled>
+								>
 									<option>Daily</option>
 									<option>Weekly</option>
 									<option>Monthly</option>
