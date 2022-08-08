@@ -1,16 +1,21 @@
 import { default as dayjs } from "dayjs";
 import { useEffect, useState } from "react";
 import "../CalendarBar/CalendarBar.css";
-import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import React from "react";
+
+/* Plan 
+Edit Menu Item component 
+Replace buttons with new functionality 
+Remove onselect function and Scroll menu component 
+render menu item with new buttons 
+
+
+*/
 
 export const CalendarBar = () => {
   const [daysOfweek, setDaysOfWeek] = useState([]);
-  const [selected, setSelected] = useState();
+  const [section, setSection] = useState(daysOfweek.slice(0, 3));
   const currentDay = dayjs().format("DDMM");
-  const { getItemById } = React.useContext(VisibilityContext);
-
-  console.log("getitembyid", getItemById);
 
   const getCurrentWeekDays = () => {
     const weekStart = dayjs().startOf("week");
@@ -27,7 +32,7 @@ export const CalendarBar = () => {
     setDaysOfWeek(getCurrentWeekDays());
   }, []);
 
-  const MenuItem = ({ title, text, selected, now }) => {
+  const CalendarItem = ({ title, text, selected, now }) => {
     return (
       <div
         className={`menu-item dayItem ${selected ? "active" : ""} ${
@@ -41,69 +46,116 @@ export const CalendarBar = () => {
   };
 
   function LeftArrow() {
-    const {
-      isFirstItemVisible,
-      scrollPrev,
+    const getPrevSection = () => {
+      let firstItem = section[0];
+      const dataCopy = [...daysOfweek];
+      let indexOfFirstItem = dataCopy.findIndex(
+        (element) => element === firstItem
+      );
 
-      visibleItemsWithoutSeparators,
-      items,
-    } = React.useContext(VisibilityContext);
+      console.log("dataCopy", dataCopy);
+      console.log("indexOfFirstItem", indexOfFirstItem);
 
-    console.log("visibleItemsWithoutSeparators", visibleItemsWithoutSeparators);
-    console.log("items", items);
-
+      // if there are 3 more items to display
+      if (indexOfFirstItem - 3 >= 0) {
+        let prevSnapshot = dataCopy.slice(
+          indexOfFirstItem - 3,
+          indexOfFirstItem
+        );
+        console.log("nextSnapshot", prevSnapshot);
+        setSection(prevSnapshot);
+        // if there are two more items to display
+      } else if (indexOfFirstItem - 2 >= 0) {
+        let prevSnapshot = dataCopy.slice(
+          indexOfFirstItem - 2,
+          indexOfFirstItem
+        );
+        console.log("nextSnapshot", prevSnapshot);
+        setSection(prevSnapshot);
+        // if there is one more item to display
+      } else if (indexOfFirstItem - 1 >= 0) {
+        let prevSnapshot = dataCopy.slice(
+          indexOfFirstItem - 1,
+          indexOfFirstItem
+        );
+        console.log("nextSnapshot", prevSnapshot);
+        setSection(prevSnapshot);
+      }
+    };
     return (
-      <button
-        className="left-button"
-        disabled={isFirstItemVisible}
-        onClick={() => scrollPrev()}
-      ></button>
+      <button className="left-button" onClick={getPrevSection}>
+        Prev
+      </button>
     );
   }
+
   function RightArrow() {
-    const { isLastItemVisible, scrollNext } =
-      React.useContext(VisibilityContext);
+    const getNextSection = () => {
+      const dataCopy = [...daysOfweek];
+      let lastItem = section[section.length - 1];
+      let indexOfLastItem = dataCopy.findIndex(
+        (element) => element === lastItem
+      );
+      let firstItemOfSnapshot = indexOfLastItem + 1;
 
+      console.log("dataCopy", dataCopy);
+      console.log("indexOfLastItemy", indexOfLastItem);
+
+      // if there are 3 more items to display
+      if (firstItemOfSnapshot + 3 <= dataCopy.length) {
+        let nextSnapshot = dataCopy.slice(
+          firstItemOfSnapshot,
+          firstItemOfSnapshot + 3
+        );
+        console.log("nextSnapshot", nextSnapshot);
+
+        setSection(nextSnapshot);
+        // if there are two more items to display
+      } else if (firstItemOfSnapshot + 2 <= dataCopy.length) {
+        let nextSnapshot = dataCopy.slice(
+          firstItemOfSnapshot,
+          firstItemOfSnapshot + 2
+        );
+        console.log("nextSnapshot", nextSnapshot);
+
+        setSection(nextSnapshot);
+        // if there is one more item to display
+      } else if (firstItemOfSnapshot + 1 <= dataCopy.length) {
+        let nextSnapshot = dataCopy.slice(
+          firstItemOfSnapshot,
+          firstItemOfSnapshot + 1
+        );
+        console.log("nextSnapshot", nextSnapshot);
+
+        setSection(nextSnapshot);
+      }
+    };
     return (
-      <button
-        className="right-button"
-        disabled={isLastItemVisible}
-        onClick={() => scrollNext}
-      ></button>
+      <button className="right-button" onClick={getNextSection}>
+        Next
+      </button>
     );
   }
-
-  const onSelect = (id) => {
-    if (id === selected) {
-      setSelected(0);
-    } else {
-      setSelected(id);
-    }
-  };
 
   return (
-    <>
-      <ScrollMenu
-        LeftArrow={LeftArrow}
-        RightArrow={RightArrow}
-        selected={selected}
-        onClick={onSelect}
-        scrollToSelected={true}
-      >
-        {daysOfweek.map((day) => {
+    <div className=" calendar-bar-main">
+      <LeftArrow />
+      <div className="calendar-items-container">
+        {section.map((day) => {
           return (
-            <MenuItem
+            <CalendarItem
               itemId={day.format("D")}
               title={day.format("MMM")}
               text={day.format("DD")}
               key={day.format("YYYYMMDD")}
               id={day.format("YYYYMMDD")}
-              selected={selected}
               now={day.format("DDMM")}
             />
           );
         })}
-      </ScrollMenu>
-    </>
+      </div>
+
+      <RightArrow />
+    </div>
   );
 };
