@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./HabitRow.css";
 
-function HabitRow() {
+function HabitRow({ habitName, habitid, section }) {
   /*Mock Data */
   const habitArr = [
     {
@@ -82,9 +82,11 @@ habitItem and changes it accordingly
   function toggleState(id) {
     /* defining the index of the specific object in habitItemList that we are toggling */
     //console.log("toggleState called here.")
+    console.log("id", id);
     let habitCopy = [...habitItems];
+    console.log("habitCopy", habitCopy);
     let index = habitCopy.findIndex((element) => element.date === id);
-
+    console.log("index", index);
     /* defining the status property we want to change using the above index */
     let status = habitCopy[index].status;
     //console.log("(Before) Status: "+ habit.habitItemList[index].status)
@@ -113,16 +115,22 @@ habitItem and changes it accordingly
   return (
     <div className="habit-row">
       <div className="habit-name-container">
-        <h3 className="habit-name">random habit </h3>
+        <h3 className="habit-name"> {habitName} </h3>
       </div>
       <div className="habit-item-container">
-        {habitItems.map((habitItem) => {
+        {section.map((sectionday) => {
+          console.log("habitItem", habitItems[0].date);
+          console.log("sectiondayformatted", sectionday.format("YYYYMMDD"));
+          let displayItem = habitItems.filter(
+            (item) => item.date === sectionday.format("YYYYMMDD")
+          );
+          console.log("displayItem", displayItem);
           return (
             <button
-              onClick={() => toggleState(habitItem.date)}
-              className={`habit-item ${habitItem.status}`}
-              id={habitItem.date}
-              key={habitItem.date}
+              onClick={() => toggleState(displayItem.date)}
+              className={`habit-item ${displayItem.status}`}
+              id={displayItem.date}
+              key={displayItem.date}
             />
           );
         })}
