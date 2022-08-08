@@ -124,13 +124,22 @@ habitItem and changes it accordingly
           let displayItem = habitItems.filter(
             (item) => item.date === sectionday.format("YYYYMMDD")
           );
+          if (displayItem === []) {
+            displayItem = [
+              {
+                habit_id: habitid,
+                date: sectionday.format("YYYYMMDD"),
+                status: "incomplete",
+              },
+            ];
+          }
           console.log("displayItem", displayItem);
           return (
             <button
-              onClick={() => toggleState(displayItem.date)}
-              className={`habit-item ${displayItem.status}`}
-              id={displayItem.date}
-              key={displayItem.date}
+              onClick={() => toggleState(displayItem[0].date)}
+              className={`habit-item ${displayItem[0].status}`}
+              id={sectionday.format("YYYYMMDD")}
+              key={sectionday.format("YYYYMMDD")}
             />
           );
         })}
