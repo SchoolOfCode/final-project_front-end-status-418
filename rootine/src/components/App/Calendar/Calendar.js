@@ -1,13 +1,13 @@
 import { Container, Box, Heading, Button } from "@chakra-ui/react";
-import { CalendarBar } from "../../CalenderBar/CalendarBar";
-import "./Calender.css";
+import { CalendarBar } from "../../CalendarBar/CalendarBar";
+import "./Calendar.css";
 import HabitRow from "./HabitRow/HabitRow";
 
-const Calender = () => {
-  let name = "test";
+const Calendar = () => {
+  let name = "Robert";
   return (
     <Container
-      className="calender-view"
+      className="calendar-view"
       color="black"
       overflow="hidden"
       p="10"
@@ -35,4 +35,4 @@ const Calender = () => {
   );
 };
 
-export default Calender;
+export default Calendar;

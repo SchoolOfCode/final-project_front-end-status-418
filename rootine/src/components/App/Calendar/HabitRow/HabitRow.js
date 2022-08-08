@@ -2,84 +2,106 @@ import { useState } from "react";
 import "./HabitRow.css";
 
 function HabitRow() {
-  //   const [status, setStatus] = useState("Incomplete");
-  const habitObj = {
-    id: "1",
-    name: "Running",
-    habitItemList: [
-      { status: "complete", date: "2022-08-02" },
-      { status: "skip", date: "2022-08-03" },
-      { status: "miss", date: "2022-08-04" },
-      { status: "miss", date: "2022-08-05" },
-      { status: "incomplete", date: "2022-08-06" },
-    ],
-  };
+  /*Mock Data */
+  const habitArr = [
+    {
+      habit_id: 1,
+      date: "20220804",
+      status: "complete",
+    },
+    {
+      habit_id: 1,
+      date: "20220803",
+      status: "complete",
+    },
+    {
+      habit_id: 1,
+      date: "20220802",
+      status: "complete",
+    },
+    {
+      habit_id: 1,
+      date: "20220801",
+      status: "skip",
+    },
+    {
+      habit_id: 1,
+      date: "20220731",
+      status: "complete",
+    },
+    {
+      habit_id: 1,
+      date: "20220730",
+      status: "miss",
+    },
+  ];
 
-  const [habit, setHabit] = useState(habitObj);
-  
+  const [habitItems, setHabitItems] = useState(habitArr);
+
   /* Function which takes in habit state (habitObj), new value of status, id of habitItemList obj to change,
      and returns state with updated status  
   */
   const changeStatus = (state, newStatus, id) => {
     // shallow copy of habitObj
-    let newObj = { ...state };
-    let itemsList = newObj.habitItemList;
+    let newArr = [...state];
+
     // index of habitItem we want to change
-    let indexOfObject = itemsList.findIndex((element) => element.date === id);
+    let indexOfObject = newArr.findIndex((element) => element.date === id);
     // changed habitItem
-    let updatedObj = { ...itemsList[indexOfObject], status: newStatus };
+    let updatedObj = { ...newArr[indexOfObject], status: newStatus };
 
     // making a duplicate of whole habitItems array before & after position of our Item
-    let firstChunk = itemsList.slice(0, indexOfObject);
-    let secondChunk = itemsList.slice(indexOfObject + 1);
+    let firstChunk = newArr.slice(0, indexOfObject);
+    let secondChunk = newArr.slice(indexOfObject + 1);
 
     // inserting our updated item into duplicate array
     let updatedArr = [...firstChunk, updatedObj, ...secondChunk];
 
-    let updatedHabitObj = { ...state, habitItemList: updatedArr };
-    //console.log("updatedHabitObj", updatedHabitObj);
-    return updatedHabitObj;
+    //console.log(" updatedArr", updatedArr);
+    return updatedArr;
   };
 
-//   console.log(changeStatus(habit, "skip", "2022-08-05"));
-/* Function which takes in id and when called checks the value of status for particular 
+  /* Function which takes in id and when called checks the value of status for particular 
 habitItem and changes it accordingly
 */
-// console.log(habit)
-console.log(habit)
-function toggleState(id) {
+  function toggleState(id) {
     /* defining the index of the specific object in habitItemList that we are toggling */
     //console.log("toggleState called here.")
-    let habitCopy = {...habit} 
-    let index = habitCopy.habitItemList.findIndex((element) => element.date === id);
+    let habitCopy = [...habitItems];
+    let index = habitCopy.findIndex((element) => element.date === id);
 
     /* defining the status property we want to change using the above index */
-    let status = habitCopy.habitItemList[index].status;
+    let status = habitCopy[index].status;
     //console.log("(Before) Status: "+ habit.habitItemList[index].status)
+
+    let updatedState = [];
+
     switch (status) {
       case "incomplete":
-        setHabit(changeStatus(habit, "complete", id));
+        updatedState = changeStatus(habitItems, "complete", id);
         break;
       case "complete":
-        setHabit(changeStatus(habit, "skip", id));
+        updatedState = changeStatus(habitItems, "skip", id);
         break;
       case "skip":
-        setHabit(changeStatus(habit, "miss", id));
+        updatedState = changeStatus(habitItems, "miss", id);
         break;
       default:
-        setHabit(changeStatus(habit, "incomplete", id));
+        updatedState = changeStatus(habitItems, "incomplete", id);
         break;
     }
-    console.log("(After) Status: "+ habitCopy.habitItemList[index].status)
+    console.log("(Before) Status: ", habitCopy[index].status);
+    console.log(" (After) Status: ", updatedState[index].status);
+    setHabitItems(updatedState);
   }
 
   return (
     <div className="habit-row">
       <div className="habit-name-container">
-        <h3 className="habit-name">{habitObj.name}</h3>
+        <h3 className="habit-name">random habit </h3>
       </div>
       <div className="habit-item-container">
-        {habitObj.habitItemList.map((habitItem) => {
+        {habitItems.map((habitItem) => {
           return (
             <button
               onClick={() => toggleState(habitItem.date)}
@@ -93,6 +115,7 @@ function toggleState(id) {
     </div>
   );
 }
+
 export default HabitRow;
 
 /*

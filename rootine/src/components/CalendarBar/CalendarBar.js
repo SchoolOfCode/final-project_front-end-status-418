@@ -1,6 +1,6 @@
 import { default as dayjs } from "dayjs";
 import { useEffect, useState } from "react";
-import "../CalenderBar/CalendarBar.css";
+import "../CalendarBar/CalendarBar.css";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import React from "react";
 
