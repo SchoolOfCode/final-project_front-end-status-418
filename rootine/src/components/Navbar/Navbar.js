@@ -7,9 +7,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 //prettier-ignore
 import { Menu, MenuButton, MenuList, MenuItem, MenuGroup, MenuDivider, Button } from "@chakra-ui/react";
 
-export default function Navbar(isAuthenticated) {
+export default function Navbar() {
 	const { loginWithRedirect, logout } = useAuth0();
-	console.log("isAuthenticated", isAuthenticated);
+	// console.log("isAuthenticated", isAuthenticated);
+	// console.log("user", user);
 
 	const { colorMode, toggleColorMode } = useColorMode();
 	return (
