@@ -46,12 +46,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const fakeData = [
 	{
-		description: "Every day after dinner I'll do 1 min of Italian",
+		description: "Failed to retrieve habits",
 		everyday: true,
 		frequency: { fr_reps: null, fr_interval: null },
-		id: 4,
+		id: 0,
 		name: "Failed to retrieve habits",
-		userId: "auth0|62f1620c224cf98f85441255",
+		userId: "Unable to retrieve user",
 	},
 ];
 
@@ -59,7 +59,7 @@ const Calendar = () => {
 	const { isAuthenticated, user } = useAuth0();
 	const [habits, setHabits] = useState(fakeData);
 	let name = user ? user.nickname : "Unknown User";
-	let userId = user ? user.sub : "unknown user";
+	let userId = user ? user.sub : "Unknown user";
 
 	// 🤝 Helper function: fetch habits for the current user
 	async function retrieveHabits() {
