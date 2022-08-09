@@ -100,19 +100,19 @@ habitItem and changes it accordingly
 				date: currentDate,
 				status: "complete",
 			};
-			
-      //TODO: SEND THIS TO NEW ASYNC Function
-      // ❌ NOt working yet :)
-      //send post request with data in correct format
+
+			//TODO: SEND THIS TO NEW ASYNC Function
+			// ❌ NOt working yet :)
+			//send post request with data in correct format
 			const url = "https://status418-project.herokuapp.com/";
+			console.log(url);
+			// const result = await fetch(url + "/calendar", {
+			// 	method: "POST",
+			// 	headers: { "Content-type": "application/json" },
+			// 	body: newHabitCalItem,
+			// });
 
-			const result = await fetch(url + "/calendar", {
-				method: "POST",
-				headers: { "Content-type": "application/json" },
-				body: newHabitCalItem,
-			});
-
-			console.log(result);
+			// console.log(result);
 		}
 
 		/* defining the status property we want to change using the above index */
@@ -164,8 +164,8 @@ habitItem and changes it accordingly
 				<div className="habit-item-container">
 					{section.map((sectionday) => {
 						const ymd = sectionday.format("YYYYMMDD");
-						console.log("habitItem", habitItems[0].date);
-						console.log("sectiondayformatted", ymd);
+						/* console.log("habitItem", habitItems[0].date);
+						   console.log("sectiondayformatted", ymd); */
 						let displayItem = habitItems.filter(
 							(item) => item.date === ymd
 						);
