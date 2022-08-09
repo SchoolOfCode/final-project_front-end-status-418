@@ -9,12 +9,16 @@ import LeftSideHabitDetails from "../LeftSideHabitDetails/LeftSideHabitDetails";
 import Calendar from "./Calendar/Calendar";
 
 //prettier-ignore
-import { Center, Flex } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
 import { flexProps } from "./appProps.js";
 
 function App() {
-	const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
-		useAuth0();
+	const {
+		user,
+		isAuthenticated,
+		isLoading,
+		// getAccessTokenSilently
+	} = useAuth0();
 	console.log("app isAuth", isAuthenticated);
 	console.log("app user", user);
 
