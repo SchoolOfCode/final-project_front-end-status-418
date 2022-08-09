@@ -3,7 +3,7 @@ import { CalendarBar } from "../../CalendarBar/CalendarBar";
 import "./Calendar.css";
 import HabitRow from "./HabitRow/HabitRow";
 
-const Calendar = () => {
+const Calendar = ({ displayForm }) => {
   let name = "Robert";
   return (
     <Container
@@ -27,7 +27,10 @@ const Calendar = () => {
         <p>This is a container</p>
         <p>This is a container</p>
         <p>This is a container</p>
-        <Button bgGradient={["linear(to-l, red.400, orange.300)"]}>
+        <Button
+          bgGradient={["linear(to-l, red.400, orange.300)"]}
+          onClick={displayForm}
+        >
           Add +
         </Button>
       </Box>

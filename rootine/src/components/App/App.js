@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Footer from "../Footer/Footer";
 import "./App.css";
 import Navbar from "../Navbar/Navbar";
@@ -13,24 +14,31 @@ import { Flex } from "@chakra-ui/react"
 import { flexProps } from "./appProps.js";
 
 function App() {
-	const areYouCurrentlyWorkingOnTheLandingPage = false;
+  const [isFormDisplayed, setIsFormDisplayed] = useState(false);
+  const areYouCurrentlyWorkingOnTheLandingPage = false;
 
-	return (
-		<div className="App">
-			<Navbar />
-			<main>
-				{areYouCurrentlyWorkingOnTheLandingPage ? (
-					<LandingPage />
-				) : (
-					<Flex {...flexProps}>
-						<LeftSideHabitDetails />
-						<Calendar />
-					</Flex>
-				)}
-			</main>
-			<Footer />
-		</div>
-	);
+  function displayForm() {
+    if (!isFormDisplayed) {
+      setIsFormDisplayed(true);
+    }
+  }
+
+  return (
+    <div className="App">
+      <Navbar />
+      <main>
+        {areYouCurrentlyWorkingOnTheLandingPage ? (
+          <LandingPage />
+        ) : (
+          <Flex {...flexProps}>
+            <LeftSideHabitDetails isFormDisplayed={isFormDisplayed} />
+            <Calendar displayForm={displayForm} />
+          </Flex>
+        )}
+      </main>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
