@@ -71,7 +71,9 @@ function UploadHabit() {
 	/** 📩 Takes the data from the new habit form submission and sends to the database. Note that the back-end currently only expects three values: name, description and userId. The other values are hard-coded (MVP behaviour). */
 	async function postHabit(habit) {
 		//TODO: Be sure to change this if working on another port or once backend is deployed.
+
 		const url = `https://status418-project.herokuapp.com/habits`;
+
 		console.log(`URL set to: ${url}`);
         console.log("Habit", habit[0].name, habit[0].description, habit[0].userId, "sent!")
 		const response = await fetch(url, {
