@@ -4,8 +4,9 @@ import "./Calendar.css";
 import HabitRow from "./HabitRow/HabitRow";
 import { useEffect, useState } from "react";
 import { default as dayjs } from "dayjs";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const habits = [
+let habits = [
 	{
 		id: 2,
 		name: "Drink more water",
@@ -42,7 +43,24 @@ const habits = [
 ];
 
 const Calendar = () => {
-	let name = "Robert";
+	const { isAuthenticated, user } = useAuth0();
+	const [habits, setHabits] = useState([]);
+	let name = user ? user.nickname : "Unknown User";
+	let userId = user ? user.sub : "unknown user";
+
+	// 🤝 Helper function: fetch habits for the current user
+	async function retrieveHabits() {
+		// const url = "https://status418-project.herokuapp.com/";
+		const url = "https://localhost:3001";
+		const fetchUrl = `${url}/habits/?userId=${userId}`;
+		const result = await fetch(fetchUrl);
+		const data = await result.json();
+		console.log(data);
+	}
+
+	useEffect(() => {
+		retrieveHabits();
+	});
 
 	const [daysOfWeek, setDaysOfWeek] = useState([]);
 	const [section, setSection] = useState(daysOfWeek.slice(0, 3));
