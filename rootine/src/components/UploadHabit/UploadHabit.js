@@ -79,9 +79,10 @@ function UploadHabit() {
 				"Content-type": "application/json",
 				'Access-Control-Allow-Origin': '*'
 			}, body: {
-				name: 'sleep more',
-				description: 'atleast 8 hours clearly ',
-				userId: 'abc456'
+				name: '',
+				description: '',
+				userId: '3'
+                //THIS MUST BE AN EXISTING USER'S ID, 1 | 2 | 3
 			}
 		})
 		// TODO:
