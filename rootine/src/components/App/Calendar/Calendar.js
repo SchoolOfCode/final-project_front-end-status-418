@@ -44,44 +44,45 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 //fakedata
 
-const fakeData = [
-	{
-		description: "Failed to retrieve habits",
-		everyday: true,
-		frequency: { fr_reps: null, fr_interval: null },
-		id: 0,
-		name: "Failed to retrieve habits",
-		userId: "Unable to retrieve user",
-	},
-];
+// const fakeData = [
+// 	{
+// 		description: "Failed to retrieve habits",
+// 		everyday: true,
+// 		frequency: { fr_reps: null, fr_interval: null },
+// 		id: 0,
+// 		name: "Failed to retrieve habits",
+// 		userId: "Unable to retrieve user",
+// 	},
+// ];
+
+let newHabits = [];
 
 const Calendar = () => {
-	const { isAuthenticated, user } = useAuth0();
-	const [habits, setHabits] = useState(fakeData);
-	let name = user ? user.nickname : "Unknown User";
-	let userId = user ? user.sub : "Unknown user";
+	const [habits, setHabits] = useState(newHabits);
+	const [daysOfWeek, setDaysOfWeek] = useState([]);
+	const [section, setSection] = useState(daysOfWeek.slice(0, 3));
+	// console.log("section", section);
+	async function setExistingHabitsOnPageLoad() {
+		const newHabits = await retrieveHabits(userId);
+		console.log("newHabits", newHabits);
+		// setHabits(newHabits);
+	}
 
-	// 🤝 Helper function: fetch habits for the current user
 	async function retrieveHabits() {
 		// const url = "https://status418-project.herokuapp.com/";
 		const url = "http://localhost:3001";
 		const fetchUrl = `${url}/habits/?userId=${userId}`;
 		const result = await fetch(fetchUrl);
 		const data = await result.json();
-		// console.log(data.data);
+		console.log(data.data);
 		return data.data;
 	}
+	const { isAuthenticated, user } = useAuth0();
 
-	useEffect(() => {
-		async function setExistingHabitsOnPageLoad() {
-			const newHabits = await retrieveHabits();
-			setHabits(newHabits);
-		}
-		setExistingHabitsOnPageLoad();
-	}, []);
+	let name = user ? user.nickname : "Unknown User";
+	let userId = user ? user.sub : "Unknown user";
 
-	const [daysOfWeek, setDaysOfWeek] = useState([]);
-	const [section, setSection] = useState(daysOfWeek.slice(0, 3));
+	// 🤝 Helper function: fetch habits for the current user
 
 	const getCurrentWeekDays = () => {
 		const weekStart = dayjs().startOf("week");
@@ -89,10 +90,21 @@ const Calendar = () => {
 		for (let i = -5; i <= 100; i++) {
 			days.push(dayjs(weekStart).add(i, "days"));
 		}
+		console.log("days", days);
 		return days;
 	};
 
 	useEffect(() => {
+		setExistingHabitsOnPageLoad();
+	}, [section, habits]);
+
+	useEffect(() => {
+		// async function setExistingHabitsOnPageLoad() {
+		// 	const newHabits = await retrieveHabits();
+		// 	console.log("newHabits", newHabits);
+		// 	setHabits(newHabits);
+		// }
+		// setExistingHabitsOnPageLoad();
 		setDaysOfWeek(getCurrentWeekDays());
 	}, []);
 
@@ -109,6 +121,10 @@ const Calendar = () => {
 				<Heading as="h3" size="lg">
 					Welcome, {name}
 				</Heading>
+				<p>
+					Section length: {section.length} and Habits length:{" "}
+					{habits.length}
+				</p>
 				<Box
 					className="calendar-bar-container"
 					mb="20px"
@@ -125,6 +141,7 @@ const Calendar = () => {
 				<Box>
 					{habits.length > 0
 						? habits.map((habit) => {
+								console.log("habit", habit);
 								return (
 									<HabitRow
 										habitName={habit.name}
