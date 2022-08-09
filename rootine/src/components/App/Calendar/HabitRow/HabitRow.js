@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./HabitRow.css";
 
 function HabitRow({ habitName, habitid, section }) {
@@ -51,7 +51,7 @@ function HabitRow({ habitName, habitid, section }) {
 	// 	},
 	// ];
 
-	const habitArr = [
+	let habitArr = [
 		{
 			habit_id: 4,
 			date: "20220802",
@@ -90,10 +90,37 @@ function HabitRow({ habitName, habitid, section }) {
 	];
 	// 🎉 ALMOST READY TO FETCH the habitArr data from backend by userid!!
 
-	const habitsByRowId = habitArr.filter((i) => i.habit_id === habitid);
-	// console.log("habitsByRowId", habitid, habitsByRowId);
+	// useEffect(() => {
+	// 	const habitsfromDatabase = retrieveHabitsByHabitId();
+	// 	setHabitItems(habitsfromDatabase);
+	// }, []);
 
+	// async function retrieveHabitsByHabitId() {
+	// 	const url = "http://localhost:3001";
+	// 	const fetchUrl = `${url}/calendar/${habitid}`;
+	// 	console.log(fetchUrl);
+	// 	const result = await fetch(fetchUrl);
+	// 	const payload = await result.json();
+	// 	const data = payload.payload;
+	// 	// console.log(data);
+	// 	const habitsfromDatabase = convertBackEndDataToFrontEnd(data);
+	// 	console.log("h", habitsfromDatabase);
+	// 	return habitsfromDatabase;
+	// }
+
+	// function convertBackEndDataToFrontEnd(data) {
+	// 	let h = data.map((ob, index) => ({
+	// 		habit_id: ob.habit_id,
+	// 		date: ob.date,
+	// 		status: ob.status,
+	// 	}));
+	// 	return h;
+	// }
+
+	const habitsByRowId = habitArr.filter((i) => i.habit_id === habitid);
 	const [habitItems, setHabitItems] = useState(habitsByRowId);
+
+	// console.log("habitsByRowId", habitid, habitsByRowId);
 
 	/** Function that takes in habit state (habitObj), new value of status, id of habitItemList obj to change,
      and returns state with updated status  
