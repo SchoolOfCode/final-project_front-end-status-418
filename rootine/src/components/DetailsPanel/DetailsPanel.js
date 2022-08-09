@@ -2,16 +2,17 @@ import "./detailsPanel.css";
 import { FaFire, FaTrophy } from "react-icons/fa";
 
 //prettier-ignore
-import { Box, VStack, HStack, Stack, Heading, Text, Checkbox, Editable, EditableInput, EditablePreview, useEditableControls, EditableTextarea,  ButtonGroup, IconButton, Input, Wrap, WrapItem, useColorModeValue, Tooltip, Select, Button, Center } from "@chakra-ui/react";
+import { Box, VStack, HStack, Stack, Heading, Text, Checkbox, Editable, EditableInput, EditablePreview, useEditableControls, EditableTextarea,  ButtonGroup, IconButton, Input, Wrap, WrapItem,  Tooltip, Select, Button, Center } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 
 //prettier-ignore
 import { boxProps, fieldFrRepsProps, inputFrRepsProps, inputFrIntervalProps, saveButtonProps } from "./DetailsPanelProps.js";
 
 const DetailsPanel = ({ currentHabitDisplayed }) => {
-  const { isEditing, getSubmitButtonProps, getCancelButtonProps } =
-    useEditableControls();
   function EditableControls() {
+    const { isEditing, getSubmitButtonProps, getCancelButtonProps } =
+      useEditableControls();
+
     return isEditing ? (
       <ButtonGroup justifyContent="center" size="sm">
         <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
@@ -20,28 +21,86 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
     ) : null;
   }
 
+  function EditableName() {
+    const { isEditing } = useEditableControls();
+
+    return isEditing ? (
+      <Editable
+        fontSize="3xl"
+        fontWeight="bold"
+        textAlign="center"
+        className="habit-name"
+      >
+        <Tooltip label="Click to edit">
+          <EditablePreview py={2} px={4} />
+        </Tooltip>
+        <Input py={2} px={4} as={EditableInput} />
+        <EditableControls />
+      </Editable>
+    ) : (
+      <Editable
+        fontSize="3xl"
+        fontWeight="bold"
+        textAlign="center"
+        className="habit-name"
+        defaultValue={currentHabitDisplayed.name}
+      >
+        <Tooltip label="Click to edit">
+          <EditablePreview py={2} px={4} />
+        </Tooltip>
+        <Input py={2} px={4} as={EditableInput} />
+        <EditableControls />
+      </Editable>
+    );
+  }
+
+  function EditableDescription() {
+    const { isEditing } = useEditableControls();
+
+    return isEditing ? (
+      <Box className="description">
+        <Heading size="sm" display="inline">
+          Description
+        </Heading>
+        <Editable
+          textAlign="center"
+          isPreviewFocusable={true}
+          // selectAllOnFocus={false}
+        >
+          <Tooltip label="Click to edit">
+            <EditablePreview py={2} px={4} />
+          </Tooltip>
+          <EditableControls />
+          <EditableTextarea rows="4" />
+        </Editable>
+      </Box>
+    ) : (
+      <Box className="description">
+        <Heading size="sm" display="inline">
+          Description
+        </Heading>
+        <Editable
+          defaultValue={currentHabitDisplayed.description}
+          textAlign="center"
+          isPreviewFocusable={true}
+          // selectAllOnFocus={false}
+        >
+          <Tooltip label="Click to edit">
+            <EditablePreview py={2} px={4} />
+          </Tooltip>
+          <EditableControls />
+          <EditableTextarea rows="4" />
+        </Editable>
+      </Box>
+    );
+  }
+
   return (
     <Box {...boxProps}>
       <VStack>
         <Box>
-          <Editable
-            fontSize="3xl"
-            fontWeight="bold"
-            textAlign="center"
-            className="habit-name"
-            value={currentHabitDisplayed.name}
-          >
-            <Tooltip label="Click to edit">
-              <EditablePreview
-                py={2}
-                px={4}
-                _hover={{
-                  background: useColorModeValue("gray.100", "gray.700"),
-                }}
-              />
-            </Tooltip>
-            <Input py={2} px={4} as={EditableInput} />
-            <EditableControls />
+          <Editable>
+            <EditableName />
           </Editable>
         </Box>
 
@@ -61,30 +120,9 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
             </WrapItem>
           </Wrap>
         </Box>
-
-        <Box className="description">
-          <Heading size="sm" display="inline">
-            Description
-          </Heading>
-          <Editable
-            value={isEditing ? null : currentHabitDisplayed.description}
-            textAlign="center"
-            isPreviewFocusable={true}
-            // selectAllOnFocus={false}
-          >
-            <Tooltip label="Click to edit">
-              <EditablePreview
-                py={2}
-                px={4}
-                _hover={{
-                  background: useColorModeValue("gray.100", "gray.700"),
-                }}
-              />
-            </Tooltip>
-            <EditableControls />
-            <EditableTextarea rows="4" />
-          </Editable>
-        </Box>
+        <Editable>
+          <EditableDescription />
+        </Editable>
 
         <Box className="everyday-checkbox">
           <HStack spacing={5} mb="8px">

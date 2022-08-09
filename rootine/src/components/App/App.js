@@ -61,6 +61,8 @@ function App() {
             />
             <Calendar
               displayForm={displayForm}
+              setIsFormDisplayed={setIsFormDisplayed}
+              isFormDisplayed={isFormDisplayed}
               habits={habits}
               setCurrentHabitDisplayed={setCurrentHabitDisplayed}
             />

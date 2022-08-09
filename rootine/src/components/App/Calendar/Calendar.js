@@ -3,11 +3,20 @@ import { CalendarBar } from "../../CalendarBar/CalendarBar";
 import "./Calendar.css";
 import HabitRow from "./HabitRow/HabitRow";
 
-const Calendar = ({ habits, displayForm, setCurrentHabitDisplayed }) => {
+const Calendar = ({
+  habits,
+  displayForm,
+  setCurrentHabitDisplayed,
+  setIsFormDisplayed,
+  isFormDisplayed,
+}) => {
   let name = "Robert";
   const handleClick = (habit) => {
     // e.preventDefault();
     console.log(`clicked ${habit.name}`);
+    if (isFormDisplayed) {
+      setIsFormDisplayed(false);
+    }
     setCurrentHabitDisplayed(habit);
     console.log("habit", habit);
   };
