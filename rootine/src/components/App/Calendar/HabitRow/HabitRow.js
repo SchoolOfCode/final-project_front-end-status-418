@@ -131,12 +131,14 @@ habitItem and changes it accordingly
 		let index = habitCopy.findIndex(
 			(element) => element.date === currentDate
 		);
-		console.log("index", index);
+		// console.log("index", index);
 
 		// 📝 PLAN
-		// if index is not found (aka returns -1, aka date does not exist in habitArray)
+		// if index IS NOT FOUND (aka returns -1, aka date does not exist in habitArray)
 		// then, send a post request to the db with the new creation
 		// then, do not do rest of toggleState function
+
+		//else, if index IS FOUND (aka returns != 1, aka date does already exist in habitItems array), then toggle the state
 		if (index === -1) {
 			//define new data
 			const newHabitCalItem = {
@@ -145,65 +147,65 @@ habitItem and changes it accordingly
 				status: "complete",
 			};
 			habitCopy.push(newHabitCalItem);
-			console.log("habitCopy", habitCopy);
-			index = habitCopy.length - 1;
-			console.log(habitCopy[index]);
 			setHabitItems(habitCopy);
 			postNewCalendarData(newHabitCalItem);
-		}
+		} else {
+			/* defining the status property we want to change using the above index */
+			let status = habitCopy[index].status;
+			console.log("status", habitid, currentDate, status);
+			let updatedState = [];
 
-		/* defining the status property we want to change using the above index */
-		let status = habitCopy[index].status;
-		console.log("status", habitid, currentDate, status);
-		// console.log("habitCopy", habitCopy);
-		let updatedState = [];
-
-		switch (status) {
-			case "incomplete":
-				updatedState = changeStatus(
-					habitItems,
-					"complete",
-					currentDate
-				);
-				break;
-			case "complete":
-				updatedState = changeStatus(habitItems, "skip", currentDate);
-				break;
-			case "skip":
-				updatedState = changeStatus(habitItems, "miss", currentDate);
-				break;
-			default:
-				updatedState = changeStatus(
-					habitItems,
-					"incomplete",
-					currentDate
-				);
-				break;
+			switch (status) {
+				case "incomplete":
+					updatedState = changeStatus(
+						habitItems,
+						"complete",
+						currentDate
+					);
+					break;
+				case "complete":
+					updatedState = changeStatus(
+						habitItems,
+						"skip",
+						currentDate
+					);
+					break;
+				case "skip":
+					updatedState = changeStatus(
+						habitItems,
+						"miss",
+						currentDate
+					);
+					break;
+				default:
+					updatedState = changeStatus(
+						habitItems,
+						"incomplete",
+						currentDate
+					);
+					break;
+			}
+			// console.log("updatedState", updatedState);
+			// console.log("(Before) Status: ", habitCopy[index].status);
+			// console.log(" (After) Status: ", updatedState[index].status);
+			setHabitItems(updatedState);
 		}
-		// console.log("updatedState", updatedState);
-		// console.log("(Before) Status: ", habitCopy[index].status);
-		// console.log(" (After) Status: ", updatedState[index].status);
-		setHabitItems(updatedState);
 	}
 
 	async function postNewCalendarData(body) {
-		//TODO: SEND THIS TO NEW ASYNC Function
-		// ❌ NOt working yet :)
-		//send post request with data in correct format
-		console.log("body", body);
 		const url = "http://localhost:3001";
 		const fetchUrl = `${url}/calendar`;
 		console.log(fetchUrl);
+
 		const result = await fetch(url + "/calendar", {
 			method: "POST",
 			headers: { "Content-type": "application/json" },
 			body: JSON.stringify(body),
 		});
 		const data = await result.json();
-		console.log(data);
-		return "res goes here";
+		return data.success;
 	}
-	// 📝 PLAN
+	// 📝 PLAN - now done ✅
 	// When habit item doesn't exist, needs to
 	// (1) Still display a white box on the page
 	// (2) When clicked, create a new entry in the calendar database with status: "complete"
