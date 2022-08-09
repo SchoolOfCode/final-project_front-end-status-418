@@ -40,15 +40,13 @@ export default function Navbar() {
 						</MenuButton>
 						<MenuList>
 							<MenuGroup title="Menu">
-								<MenuItem Dark Mode>
-									<Button onClick={toggleColorMode}>
-										Toggle{" "}
-										{colorMode === "light" ? (
-											<MoonIcon />
-										) : (
-											<SunIcon />
-										)}
-									</Button>
+								<MenuItem onClick={toggleColorMode}>
+									Toggle{" "}
+									{colorMode === "light" ? (
+										<MoonIcon />
+									) : (
+										<SunIcon />
+									)}
 								</MenuItem>
 								<MenuItem>Colour blind Mode </MenuItem>
 							</MenuGroup>
@@ -56,13 +54,13 @@ export default function Navbar() {
 							<MenuGroup title="Profile">
 								{!isAuthenticated ? (
 									<MenuItem
-										as="button"
+										// as="button"
 										onClick={() => loginWithRedirect()}>
 										Login
 									</MenuItem>
 								) : (
 									<MenuItem
-										as="button"
+										// as="button"
 										onClick={() =>
 											logout({
 												returnTo:
