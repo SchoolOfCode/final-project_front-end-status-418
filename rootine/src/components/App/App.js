@@ -19,8 +19,8 @@ function App() {
 		isLoading,
 		// getAccessTokenSilently
 	} = useAuth0();
-	console.log("app isAuth", isAuthenticated);
-	console.log("app user", user);
+	// console.log("app isAuth", isAuthenticated);
+	// console.log("app user", user);
 
 	if (isLoading) {
 		return (
