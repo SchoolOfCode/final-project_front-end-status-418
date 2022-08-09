@@ -37,6 +37,7 @@ const habits = [
   },
 ];
 function App() {
+  const [currentHabitDisplayed, setCurrentHabitDisplayed] = useState(habits[0]);
   const [isFormDisplayed, setIsFormDisplayed] = useState(false);
   const areYouCurrentlyWorkingOnTheLandingPage = false;
 
@@ -54,8 +55,15 @@ function App() {
           <LandingPage />
         ) : (
           <Flex {...flexProps}>
-            <LeftSideHabitDetails isFormDisplayed={isFormDisplayed} />
-            <Calendar displayForm={displayForm} habits={habits} />
+            <LeftSideHabitDetails
+              isFormDisplayed={isFormDisplayed}
+              currentHabitDisplayed={currentHabitDisplayed}
+            />
+            <Calendar
+              displayForm={displayForm}
+              habits={habits}
+              setCurrentHabitDisplayed={setCurrentHabitDisplayed}
+            />
           </Flex>
         )}
       </main>

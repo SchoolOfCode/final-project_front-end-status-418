@@ -3,7 +3,10 @@ import DetailsPanel from "../DetailsPanel/DetailsPanel";
 //prettier-ignore
 import { Box,  VStack } from "@chakra-ui/react";
 
-export default function LeftSideHabitDetails({ isFormDisplayed }) {
+export default function LeftSideHabitDetails({
+  isFormDisplayed,
+  currentHabitDisplayed,
+}) {
   //When switchDisplay is true, the habit details panel shows, when false, AddNewHabit panel shows
   //Button added to perform the switch
   // ❗ This is temporary!
@@ -18,7 +21,11 @@ export default function LeftSideHabitDetails({ isFormDisplayed }) {
   return (
     <Box>
       <VStack {...vStackProps}>
-        {isFormDisplayed ? <UploadHabit /> : <DetailsPanel />}
+        {isFormDisplayed ? (
+          <UploadHabit />
+        ) : (
+          <DetailsPanel currentHabitDisplayed={currentHabitDisplayed} />
+        )}
       </VStack>
     </Box>
   );
