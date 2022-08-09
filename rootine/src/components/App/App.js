@@ -10,9 +10,32 @@ import Calendar from "./Calendar/Calendar";
 
 //prettier-ignore
 import { Flex } from "@chakra-ui/react"
-
 import { flexProps } from "./appProps.js";
 
+/**  Dummy Data */
+const habits = [
+  {
+    name: "Walk the dog",
+    description: "Every day after work I'll grab the dog's leash",
+    userId: "1",
+    everyday: true,
+    frequency: { fr_reps: null, fr_interval: null },
+  },
+  {
+    name: "Drink water",
+    description: "Keep a jug full of water by my desk",
+    userId: "2",
+    everyday: true,
+    frequency: { fr_reps: null, fr_interval: null },
+  },
+  {
+    name: "Go to gym",
+    description: "On Mon, Wed and Fri I'll leave my gym bag by the front door",
+    userId: "3",
+    everyday: true,
+    frequency: { fr_reps: null, fr_interval: null },
+  },
+];
 function App() {
   const [isFormDisplayed, setIsFormDisplayed] = useState(false);
   const areYouCurrentlyWorkingOnTheLandingPage = false;
@@ -32,7 +55,7 @@ function App() {
         ) : (
           <Flex {...flexProps}>
             <LeftSideHabitDetails isFormDisplayed={isFormDisplayed} />
-            <Calendar displayForm={displayForm} />
+            <Calendar displayForm={displayForm} habits={habits} />
           </Flex>
         )}
       </main>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./HabitRow.css";
 
-function HabitRow() {
+function HabitRow({ onClick }) {
   /*Mock Data */
   const habitArr = [
     {
@@ -96,7 +96,7 @@ habitItem and changes it accordingly
   }
 
   return (
-    <div className="habit-row">
+    <div className="habit-row" onClick={onClick}>
       <div className="habit-name-container">
         <h3 className="habit-name">random habit </h3>
       </div>

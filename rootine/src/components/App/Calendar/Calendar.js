@@ -3,8 +3,12 @@ import { CalendarBar } from "../../CalendarBar/CalendarBar";
 import "./Calendar.css";
 import HabitRow from "./HabitRow/HabitRow";
 
-const Calendar = ({ displayForm }) => {
+const Calendar = ({ habits, displayForm }) => {
   let name = "Robert";
+  const handleClick = (e) => {
+    // e.preventDefault();
+    console.log("clicked me");
+  };
   return (
     <Container
       className="calendar-view"
@@ -18,15 +22,17 @@ const Calendar = ({ displayForm }) => {
           Welcome, {name}
         </Heading>
         <CalendarBar />
-        <HabitRow />
-        <p>This is a container</p>
-        <p>This is a container</p>
-        <p>This is a container</p>
-        <p>This is a container</p>
-        <p>This is a container</p>
-        <p>This is a container</p>
-        <p>This is a container</p>
-        <p>This is a container</p>
+        <Box>
+          {habits.map((habit) => {
+            return (
+              <HabitRow
+                habitName={habit.name}
+                key={habit.id}
+                habitid={habit.id}
+              />
+            );
+          })}
+        </Box>
         <Button
           bgGradient={["linear(to-l, red.400, orange.300)"]}
           onClick={displayForm}
