@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./UploadHabit.css";
+
 //prettier-ignore
 import { boxProps, addHabitSubmitButtonProps, frIntervalInputProps,	frRepsFieldProps, frRepsInputProps, everydayCheckBoxProps } from "./uploadHabitProps.js";
 
@@ -28,9 +30,12 @@ Functionality:
 */
 
 function UploadHabit() {
+	// let user = 'testuser'
+	const {
+		user
+	} = useAuth0();
 	// TODO: This should be changed to the Auth0 userid once Auth0 implementation is sorted.
 	const userId = "hannahtest";
-
 	//📝 Note that the values for everyday, fr_reps and fr_interval are hard-coded, which is MVP behaviour. Should be updated when features added.
 	const [newHabit, setNewHabit] = useState([
 		{
@@ -68,7 +73,7 @@ function UploadHabit() {
 		postHabit(createdHabit);
 	}
 
-	/** 📩 Takes the data from the new habit form submission and sends to the database. Note that the back-end currently only expects three values: name, description and userId. The other values are hard-coded (MVP behaviour). */
+	/** 📩 It Takes the data from the new habit form submission and sends to the database. Note that the back-end currently only expects three values: name, description and userId. The other values are hard-coded (MVP behaviour). */
 	async function postHabit(habit) {
 		//TODO: Be sure to change this if working on another port or once backend is deployed.
 
@@ -84,7 +89,8 @@ function UploadHabit() {
 			}, body: JSON.stringify({
 				name: `${habit[0].name}`,
 				description: `${habit[0].description}`,
-				userId: `${habit[0].userId}`
+				userId: user.sub,
+
 			})
 		})
         const data = await response.json();
