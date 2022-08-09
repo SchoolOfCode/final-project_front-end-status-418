@@ -95,8 +95,8 @@ export const CalendarBar = ({ dayList, section, setSection }) => {
 			);
 			let firstItemOfSnapshot = indexOfLastItem + 1;
 
-			console.log("dataCopy", dataCopy);
-			console.log("indexOfLastItemy", indexOfLastItem);
+			// console.log("dataCopy", dataCopy);
+			// console.log("indexOfLastItemy", indexOfLastItem);
 
 			// if there are 3 more items to display
 			if (firstItemOfSnapshot + 3 <= dataCopy.length) {
@@ -104,7 +104,7 @@ export const CalendarBar = ({ dayList, section, setSection }) => {
 					firstItemOfSnapshot,
 					firstItemOfSnapshot + 3
 				);
-				console.log("nextSnapshot", nextSnapshot);
+				// console.log("nextSnapshot", nextSnapshot);
 
 				setSection(nextSnapshot);
 				// if there are two more items to display
@@ -113,7 +113,7 @@ export const CalendarBar = ({ dayList, section, setSection }) => {
 					firstItemOfSnapshot,
 					firstItemOfSnapshot + 2
 				);
-				console.log("nextSnapshot", nextSnapshot);
+				// console.log("nextSnapshot", nextSnapshot);
 
 				setSection(nextSnapshot);
 				// if there is one more item to display
@@ -122,7 +122,7 @@ export const CalendarBar = ({ dayList, section, setSection }) => {
 					firstItemOfSnapshot,
 					firstItemOfSnapshot + 1
 				);
-				console.log("nextSnapshot", nextSnapshot);
+				// console.log("nextSnapshot", nextSnapshot);
 
 				setSection(nextSnapshot);
 			}

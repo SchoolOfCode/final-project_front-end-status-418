@@ -68,7 +68,7 @@ const Calendar = () => {
 		const fetchUrl = `${url}/habits/?userId=${userId}`;
 		const result = await fetch(fetchUrl);
 		const data = await result.json();
-		console.log(data.data);
+		// console.log(data.data);
 		return data.data;
 	}
 

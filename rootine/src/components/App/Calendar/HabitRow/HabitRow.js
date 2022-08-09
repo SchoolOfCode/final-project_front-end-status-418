@@ -3,55 +3,97 @@ import "./HabitRow.css";
 
 function HabitRow({ habitName, habitid, section }) {
 	/*Mock Data */
+	// const habitArr = [
+	// 	{
+	// 		habit_id: 1,
+	// 		date: "20220807",
+	// 		status: "complete",
+	// 	},
+	// 	{
+	// 		habit_id: 1,
+	// 		date: "20220806",
+	// 		status: "complete",
+	// 	},
+	// 	{
+	// 		habit_id: 1,
+	// 		date: "20220805",
+	// 		status: "complete",
+	// 	},
+	// 	{
+	// 		habit_id: 1,
+	// 		date: "20220804",
+	// 		status: "complete",
+	// 	},
+	// 	{
+	// 		habit_id: 1,
+	// 		date: "20220803",
+	// 		status: "complete",
+	// 	},
+	// 	{
+	// 		habit_id: 1,
+	// 		date: "20220802",
+	// 		status: "complete",
+	// 	},
+	// 	{
+	// 		habit_id: 1,
+	// 		date: "20220801",
+	// 		status: "skip",
+	// 	},
+	// 	{
+	// 		habit_id: 1,
+	// 		date: "20220731",
+	// 		status: "complete",
+	// 	},
+	// 	{
+	// 		habit_id: 1,
+	// 		date: "20220730",
+	// 		status: "miss",
+	// 	},
+	// ];
+
 	const habitArr = [
 		{
-			habit_id: 1,
-			date: "20220807",
-			status: "complete",
-		},
-		{
-			habit_id: 1,
-			date: "20220806",
-			status: "complete",
-		},
-		{
-			habit_id: 1,
-			date: "20220805",
-			status: "complete",
-		},
-		{
-			habit_id: 1,
-			date: "20220804",
-			status: "complete",
-		},
-		{
-			habit_id: 1,
-			date: "20220803",
-			status: "complete",
-		},
-		{
-			habit_id: 1,
+			habit_id: 4,
 			date: "20220802",
 			status: "complete",
 		},
 		{
-			habit_id: 1,
-			date: "20220801",
+			habit_id: 4,
+			date: "20220803",
+			status: "miss",
+		},
+		{
+			habit_id: 4,
+			date: "20220804",
 			status: "skip",
 		},
 		{
-			habit_id: 1,
-			date: "20220731",
+			habit_id: 5,
+			date: "20220802",
 			status: "complete",
 		},
 		{
-			habit_id: 1,
-			date: "20220730",
+			habit_id: 5,
+			date: "20220803",
 			status: "miss",
 		},
+		{
+			habit_id: 6,
+			date: "20220804",
+			status: "skip",
+		},
+		{
+			habit_id: 6,
+			date: "20220803",
+			status: "complete",
+		},
 	];
+	// 🎉 ALMOST READY TO FETCH the habitArr data from backend by userid!!
 
-	const [habitItems, setHabitItems] = useState(habitArr);
+	const habitsByRowId = habitArr.filter((i) => i.habit_id === habitid);
+	// console.log("habitsByRowId", habitid, habitsByRowId);
+
+	const [habitItems, setHabitItems] = useState(habitsByRowId);
 
 	/** Function that takes in habit state (habitObj), new value of status, id of habitItemList obj to change,
      and returns state with updated status  
@@ -59,6 +101,7 @@ function HabitRow({ habitName, habitid, section }) {
 	const changeStatus = (state, newStatus, id) => {
 		// shallow copy of habitObj
 		let newArr = [...state];
+		// console.log("newArr", newArr);
 
 		// index of habitItem we want to change
 		let indexOfObject = newArr.findIndex((element) => element.date === id);
@@ -71,6 +114,8 @@ function HabitRow({ habitName, habitid, section }) {
 
 		// inserting our updated item into duplicate array
 		let updatedArr = [...firstChunk, updatedObj, ...secondChunk];
+		// let updatedArr = [updatedObj];
+		// console.log("updatedArr", updatedArr);
 
 		return updatedArr;
 	};
@@ -80,7 +125,7 @@ habitItem and changes it accordingly
 */
 	function toggleState(currentDate) {
 		/* defining the index of the specific object in habitItemList that we are toggling */
-		console.log("currentDate", currentDate);
+		console.log("currentDate", habitid, currentDate, typeof currentDate);
 		let habitCopy = [...habitItems];
 		// console.log("habitCopy", habitCopy);
 		let index = habitCopy.findIndex(
@@ -92,7 +137,6 @@ habitItem and changes it accordingly
 		// if index is not found (aka returns -1, aka date does not exist in habitArray)
 		// then, send a post request to the db with the new creation
 		// then, do not do rest of toggleState function
-
 		if (index === -1) {
 			//define new data
 			const newHabitCalItem = {
@@ -100,23 +144,18 @@ habitItem and changes it accordingly
 				date: currentDate,
 				status: "complete",
 			};
-
-			//TODO: SEND THIS TO NEW ASYNC Function
-			// ❌ NOt working yet :)
-			//send post request with data in correct format
-			const url = "https://status418-project.herokuapp.com/";
-			console.log(url);
-			// const result = await fetch(url + "/calendar", {
-			// 	method: "POST",
-			// 	headers: { "Content-type": "application/json" },
-			// 	body: newHabitCalItem,
-			// });
-
-			// console.log(result);
+			habitCopy.push(newHabitCalItem);
+			console.log("habitCopy", habitCopy);
+			index = habitCopy.length - 1;
+			console.log(habitCopy[index]);
+			setHabitItems(habitCopy);
+			postNewCalendarData(newHabitCalItem);
 		}
 
 		/* defining the status property we want to change using the above index */
 		let status = habitCopy[index].status;
+		console.log("status", habitid, currentDate, status);
+		// console.log("habitCopy", habitCopy);
 		let updatedState = [];
 
 		switch (status) {
@@ -141,11 +180,29 @@ habitItem and changes it accordingly
 				);
 				break;
 		}
+		// console.log("updatedState", updatedState);
 		// console.log("(Before) Status: ", habitCopy[index].status);
 		// console.log(" (After) Status: ", updatedState[index].status);
 		setHabitItems(updatedState);
 	}
 
+	async function postNewCalendarData(body) {
+		//TODO: SEND THIS TO NEW ASYNC Function
+		// ❌ NOt working yet :)
+		//send post request with data in correct format
+		console.log("body", body);
+		const url = "http://localhost:3001";
+		const fetchUrl = `${url}/calendar`;
+		console.log(fetchUrl);
+		const result = await fetch(url + "/calendar", {
+			method: "POST",
+			headers: { "Content-type": "application/json" },
+			body: JSON.stringify(body),
+		});
+		const data = await result.json();
+		console.log(data);
+		return "res goes here";
+	}
 	// 📝 PLAN
 	// When habit item doesn't exist, needs to
 	// (1) Still display a white box on the page
@@ -159,7 +216,7 @@ habitItem and changes it accordingly
 		return (
 			<div className="habit-row">
 				<div className="habit-name-container">
-					<h3 className="habit-name"> {habitName} </h3>
+					<h3 className="habit-name">{habitName}</h3>
 				</div>
 				<div className="habit-item-container">
 					{section.map((sectionday) => {
@@ -180,7 +237,8 @@ habitItem and changes it accordingly
 							];
 						}
 
-						console.log("displayItem", displayItem);
+						/* console.log("displayItem", habitid, ymd, displayItem); */
+
 						return (
 							<button
 								onClick={() => toggleState(displayItem[0].date)}
