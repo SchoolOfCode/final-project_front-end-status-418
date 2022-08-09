@@ -30,13 +30,12 @@ Functionality:
 */
 
 function UploadHabit() {
-	let user = 'testuser'
-	// const {
-	// 	user
-	// } = useAuth0();
+	// let user = 'testuser'
+	const {
+		user
+	} = useAuth0();
 	// TODO: This should be changed to the Auth0 userid once Auth0 implementation is sorted.
 	const userId = "hannahtest";
-
 	//📝 Note that the values for everyday, fr_reps and fr_interval are hard-coded, which is MVP behaviour. Should be updated when features added.
 	const [newHabit, setNewHabit] = useState([
 		{
@@ -90,7 +89,7 @@ function UploadHabit() {
 			}, body: JSON.stringify({
 				name: `${habit[0].name}`,
 				description: `${habit[0].description}`,
-				userId: user,
+				userId: user.sub,
 
 			})
 		})
