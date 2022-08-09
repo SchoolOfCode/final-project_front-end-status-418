@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./UploadHabit.css";
+
 //prettier-ignore
 import { boxProps, addHabitSubmitButtonProps, frIntervalInputProps,	frRepsFieldProps, frRepsInputProps, everydayCheckBoxProps } from "./uploadHabitProps.js";
 
@@ -28,6 +30,10 @@ Functionality:
 */
 
 function UploadHabit() {
+	let user = 'testuser'
+	// const {
+	// 	user
+	// } = useAuth0();
 	// TODO: This should be changed to the Auth0 userid once Auth0 implementation is sorted.
 	const userId = "hannahtest";
 
@@ -84,7 +90,8 @@ function UploadHabit() {
 			}, body: JSON.stringify({
 				name: `${habit[0].name}`,
 				description: `${habit[0].description}`,
-				userId: `${habit[0].userId}`
+				userId: user,
+
 			})
 		})
         const data = await response.json();
