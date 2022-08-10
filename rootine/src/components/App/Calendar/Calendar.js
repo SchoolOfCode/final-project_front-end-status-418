@@ -1,16 +1,30 @@
+import { useState } from "react";
 import { Container, Box, Heading, Button } from "@chakra-ui/react";
 import { CalendarBar } from "../../CalendarBar/CalendarBar";
 import "./Calendar.css";
 import HabitRow from "./HabitRow/HabitRow";
 
+const fakeData = [
+  {
+    description: "Failed to retrieve habits",
+    everyday: true,
+    frequency: { fr_reps: null, fr_interval: null },
+    id: 0,
+    name: "Failed to retrieve habits",
+    userId: "Unable to retrieve user",
+  },
+];
+
 const Calendar = ({
-  habits,
   displayForm,
   setCurrentHabitDisplayed,
   setIsFormDisplayed,
   isFormDisplayed,
 }) => {
   let name = "Robert";
+
+  const [habits, setHabits] = useState(fakeData);
+
   const handleClick = (habit) => {
     // e.preventDefault();
     console.log(`clicked ${habit.name}`);
@@ -20,6 +34,7 @@ const Calendar = ({
     setCurrentHabitDisplayed(habit);
     console.log("habit", habit);
   };
+
   return (
     <Container
       className="calendar-view"
@@ -39,7 +54,7 @@ const Calendar = ({
               <HabitRow
                 habitName={habit.name}
                 key={habit.id}
-                habitid={habit.name} // no id present yet
+                habitid={habit.id}
                 onClick={() => handleClick(habit)}
               />
             );
