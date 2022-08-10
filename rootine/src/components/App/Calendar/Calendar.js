@@ -55,19 +55,31 @@ import { useAuth0 } from "@auth0/auth0-react";
 // 	},
 // ];
 
-let newHabits = [];
-
 const getCurrentWeekDays = () => {
 	const weekStart = dayjs().startOf("week");
 	const days = [];
 	for (let i = -5; i <= 100; i++) {
 		days.push(dayjs(weekStart).add(i, "days"));
 	}
-	console.log("days", days);
+	// console.log("days", days);
 	return days;
 };
 
+// 🤝 Helper function: fetch habits for the current user
+async function retrieveHabits(userIdString) {
+	// const url = "https://status418-project.herokuapp.com/";
+	const url = "http://localhost:3001";
+	const fetchUrl = `${url}/habits/?userId=${userIdString}`;
+	const result = await fetch(fetchUrl);
+	const data = await result.json();
+	console.log(data.data);
+	// setHabits(data.data);
+	return data.data;
+}
+
 const Calendar = () => {
+	let newHabits = [];
+	console.log(typeof newHabits);
 	const { isAuthenticated, user } = useAuth0();
 	let name = user ? user.nickname : "Unknown User";
 	let userId = user ? user.sub : "Unknown user";
@@ -75,21 +87,10 @@ const Calendar = () => {
 	async function setExistingHabitsOnPageLoad() {
 		const newHabits = await retrieveHabits(userId);
 		console.log("newHabits", newHabits);
-		// setHabits(newHabits);
-		return [...newHabits];
+		setHabits(newHabits);
+		// return [...newHabits];
 	}
 
-	// 🤝 Helper function: fetch habits for the current user
-	async function retrieveHabits() {
-		// const url = "https://status418-project.herokuapp.com/";
-		const url = "http://localhost:3001";
-		const fetchUrl = `${url}/habits/?userId=${userId}`;
-		const result = await fetch(fetchUrl);
-		const data = await result.json();
-		console.log(data.data);
-		// setHabits(data.data);
-		return data.data;
-	}
 	const [habits, setHabits] = useState(newHabits);
 	const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
 	const [section, setSection] = useState(daysOfWeek.slice(0, 3));
@@ -97,10 +98,10 @@ const Calendar = () => {
 
 	// setExistingHabitsOnPageLoad();
 
-	// useEffect(() => {
-	// 	setExistingHabitsOnPageLoad();
-	// 	// setHabits(newHabits);
-	// }, []);
+	useEffect(() => {
+		setExistingHabitsOnPageLoad();
+		// setHabits(newHabits);
+	}, []);
 
 	// useEffect(() => {
 	// 	// async function setExistingHabitsOnPageLoad() {
@@ -128,7 +129,8 @@ const Calendar = () => {
 				</Heading>
 				<p>
 					Section length: {section.length} and Habits length:{" "}
-					{habits.length}, {typeof habits}
+					{habits.length},{" "}
+					{Array.isArray(habits) ? "is array" : "is not array"}
 				</p>
 				<Box
 					className="calendar-bar-container"
@@ -148,12 +150,18 @@ const Calendar = () => {
 						? habits.map((habit) => {
 								console.log("habit", habit);
 								return (
-									<HabitRow
-										habitName={habit.name}
-										key={habit.id}
-										habitid={habit.id}
-										section={section}
-									/>
+									<div>
+										<p>
+											{habit.id}, {habit.name},{" "}
+											{section[0].format("YYYYMMDD")}
+										</p>
+										<HabitRow
+											habitName={habit.name}
+											key={habit.id}
+											habitid={habit.id}
+											section={section}
+										/>
+									</div>
 								);
 						  })
 						: "Error, no habits found"}

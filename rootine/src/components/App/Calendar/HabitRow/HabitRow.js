@@ -7,6 +7,38 @@ function HabitRow({ habitName, habitid, section }) {
 	console.log("section", section);
 	let initialiseHabits = [];
 	const [habitItems, setHabitItems] = useState(initialiseHabits);
+
+	async function retrieveHabitsByHabitId(hId) {
+		const url = "http://localhost:3001";
+		const fetchUrl = `${url}/calendar/${hId}`;
+		console.log(fetchUrl);
+		const result = await fetch(fetchUrl);
+		const payload = await result.json();
+		const data = payload.payload;
+		// console.log(data);
+		const habitsfromDatabase = convertBackEndDataToFrontEnd(data);
+		console.log("h", habitsfromDatabase);
+		if (habitsfromDatabase.length > 1) {
+			setHabitItems(habitsfromDatabase);
+		} else {
+			throw new Error("no habits found for user (retrievehabitsbyid)");
+			// return habitsfromDatabase;
+		}
+	}
+
+	function convertBackEndDataToFrontEnd(data) {
+		let h = data.map((ob) => ({
+			habit_id: ob.habit_id,
+			date: ob.date,
+			status: ob.status,
+		}));
+		return h;
+	}
+
+	useEffect(() => {
+		retrieveHabitsByHabitId(habitid);
+	}, []);
+
 	// const [habitLength, setHabitLength] = useState(habitItems.length);
 
 	// if (habitsByRowId.length > 1) {
@@ -102,37 +134,6 @@ function HabitRow({ habitName, habitid, section }) {
 	// 	},
 	// ];
 	// 🎉 ALMOST READY TO FETCH the habitArr data from backend by userid!!
-
-	useEffect(() => {
-		const habitsfromDatabase = retrieveHabitsByHabitId();
-		// if (habitsfromDatabase.length > 1) {
-		setHabitItems(habitsfromDatabase);
-		// } else {
-		// throw new Error("no habits found for user");
-		// }
-	}, []);
-
-	async function retrieveHabitsByHabitId() {
-		const url = "http://localhost:3001";
-		const fetchUrl = `${url}/calendar/${habitid}`;
-		console.log(fetchUrl);
-		const result = await fetch(fetchUrl);
-		const payload = await result.json();
-		const data = payload.payload;
-		// console.log(data);
-		const habitsfromDatabase = convertBackEndDataToFrontEnd(data);
-		console.log("h", habitsfromDatabase);
-		return habitsfromDatabase;
-	}
-
-	function convertBackEndDataToFrontEnd(data) {
-		let h = data.map((ob) => ({
-			habit_id: ob.habit_id,
-			date: ob.date,
-			status: ob.status,
-		}));
-		return h;
-	}
 
 	// console.log("habitsByRowId", habitid, habitsByRowId);
 
@@ -283,12 +284,19 @@ habitItem and changes it accordingly
 						/* console.log("displayItem", habitid, ymd, displayItem); */
 
 						return (
-							<button
-								onClick={() => toggleState(displayItem[0].date)}
-								className={`habit-item ${displayItem[0].status}`}
-								id={ymd}
-								key={ymd}
-							/>
+							<div>
+								<p>
+									{ymd}, {displayItem.status}
+								</p>
+								<button
+									onClick={() =>
+										toggleState(displayItem[0].date)
+									}
+									className={`habit-item ${displayItem[0].status}`}
+									id={ymd}
+									key={ymd}
+								/>
+							</div>
 						);
 					})}
 				</div>
