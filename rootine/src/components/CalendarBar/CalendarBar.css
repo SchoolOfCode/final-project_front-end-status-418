@@ -12,6 +12,20 @@
   padding: 10px;
 }
 
+.react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.react-horizontal-scrolling-menu--scroll-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.calendar-items-container {
+display: flex;
+
+} 
+
 .menu-item {
   padding: 0 4px;
   margin: 5px 10px;

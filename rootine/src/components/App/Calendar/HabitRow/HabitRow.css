@@ -12,15 +12,19 @@
   font-family: var(--headings);
 }
 .habit-item-container {
-  width: 65%;
+  min-width: 80%;
   display: flex;
   justify-content: space-evenly;
 }
 .habit-item {
   border-radius: 25%;
   border: 2px solid black;
-  height: 15px;
-  width: 15px;
+  
+  width: 4em;
+  min-width: 20px;
+  height: 4em;
+  padding: 0 4px;
+  margin: 5px 10px;
 }
 .complete {
   background-color: green;
