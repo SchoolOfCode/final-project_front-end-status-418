@@ -93,6 +93,10 @@ const Calendar = ({
 		const newHabits = await retrieveHabits(userId);
 		console.log("newHabits", newHabits);
 		setHabits(newHabits);
+
+		//Sets the default value for the habits Display Panel
+		setCurrentHabitDisplayed(newHabits[0]);
+
 		// return [...newHabits];
 	}
 
