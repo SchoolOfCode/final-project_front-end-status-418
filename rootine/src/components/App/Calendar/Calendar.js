@@ -1,8 +1,8 @@
+import { useEffect, useState } from "react";
 import { Container, Box, Heading, Button } from "@chakra-ui/react";
 import { CalendarBar } from "../../CalendarBar/CalendarBar";
 import "./Calendar.css";
 import HabitRow from "./HabitRow/HabitRow";
-import { useEffect, useState } from "react";
 import { default as dayjs } from "dayjs";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -77,7 +77,12 @@ async function retrieveHabits(userIdString) {
 	return data.data;
 }
 
-const Calendar = () => {
+const Calendar = ({
+	displayForm,
+	setCurrentHabitDisplayed,
+	setIsFormDisplayed,
+	isFormDisplayed,
+}) => {
 	let newHabits = [];
 	console.log(typeof newHabits);
 	const { isAuthenticated, user } = useAuth0();
@@ -102,6 +107,16 @@ const Calendar = () => {
 		setExistingHabitsOnPageLoad();
 		// setHabits(newHabits);
 	}, []);
+
+	const handleClick = (habit) => {
+		// e.preventDefault();
+		console.log(`clicked ${habit.name}`);
+		if (isFormDisplayed) {
+			setIsFormDisplayed(false);
+		}
+		setCurrentHabitDisplayed(habit);
+		console.log("habit", habit);
+	};
 
 	// useEffect(() => {
 	// 	// async function setExistingHabitsOnPageLoad() {
@@ -160,6 +175,7 @@ const Calendar = () => {
 											key={habit.id}
 											habitid={habit.id}
 											section={section}
+											onClick={() => handleClick(habit)}
 										/>
 									</div>
 								);
@@ -167,7 +183,9 @@ const Calendar = () => {
 						: "Error, no habits found"}
 				</Box>
 
-				<Button bgGradient={["linear(to-l, red.400, orange.300)"]}>
+				<Button
+					bgGradient={["linear(to-l, red.400, orange.300)"]}
+					onClick={displayForm}>
 					Add +
 				</Button>
 			</Box>

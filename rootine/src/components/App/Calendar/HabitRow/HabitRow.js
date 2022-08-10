@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./HabitRow.css";
 
-function HabitRow({ habitName, habitid, section }) {
+function HabitRow({ onClick, habitName, habitid, section }) {
 	console.log("habitid", habitid);
 	console.log("habitName", habitName);
 	console.log("section", section);
@@ -260,7 +260,9 @@ habitItem and changes it accordingly
 		return (
 			<div className="habit-row">
 				<div className="habit-name-container">
-					<h3 className="habit-name">{habitName}</h3>
+					<h3 className="habit-name" onClick={onClick}>
+						{habitName}
+					</h3>
 				</div>
 				<div className="habit-item-container">
 					{section.map((sectionday) => {
