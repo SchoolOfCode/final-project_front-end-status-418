@@ -1,7 +1,4 @@
-
-import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-
 import Footer from "../Footer/Footer";
 import "./App.css";
 import Navbar from "../Navbar/Navbar";
@@ -16,17 +13,6 @@ import { Flex } from "@chakra-ui/react"
 import { flexProps } from "./appProps.js";
 
 function App() {
-
-  const [currentHabitDisplayed, setCurrentHabitDisplayed] = useState();
-  const [isFormDisplayed, setIsFormDisplayed] = useState(false);
- 
-
-  function displayForm() {
-    if (!isFormDisplayed) {
-      setIsFormDisplayed(true);
-    }
-  }
-
 	const {
 		user,
 		isAuthenticated,
@@ -60,23 +46,14 @@ function App() {
 					<LandingPage />
 				) : (
 					<Flex {...flexProps}>
-						<LeftSideHabitDetails
-              isFormDisplayed={isFormDisplayed}
-              currentHabitDisplayed={currentHabitDisplayed}
-            />
-						 <Calendar
-              displayForm={displayForm}
-              setIsFormDisplayed={setIsFormDisplayed}
-              isFormDisplayed={isFormDisplayed}
-              setCurrentHabitDisplayed={setCurrentHabitDisplayed}
-            />
+						<LeftSideHabitDetails />
+						<Calendar />
 					</Flex>
 				)}
 			</main>
 			<Footer />
 		</div>
 	);
-
 }
 
 export default App;
