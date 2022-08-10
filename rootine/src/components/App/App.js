@@ -4,7 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "../Footer/Footer";
 import "./App.css";
 import Navbar from "../Navbar/Navbar";
-// import DetailsPanel from "../DetailsPanel/DetailsPanel";
 
 import LandingPage from "../LandingPage/LandingPage";
 import LeftSideHabitDetails from "../LeftSideHabitDetails/LeftSideHabitDetails";
@@ -24,14 +23,7 @@ function App() {
 		}
 	}
 
-	const {
-		user,
-		isAuthenticated,
-		isLoading,
-		// getAccessTokenSilently
-	} = useAuth0();
-	// console.log("app isAuth", isAuthenticated);
-	// console.log("app user", user);
+	const { user, isAuthenticated, isLoading } = useAuth0();
 
 	if (isLoading) {
 		return (

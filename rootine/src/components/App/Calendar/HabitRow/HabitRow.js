@@ -15,14 +15,12 @@ function HabitRow({ onClick, habitName, habitid, section }) {
 		const result = await fetch(fetchUrl);
 		const payload = await result.json();
 		const data = payload.payload;
-		// console.log(data);
 		const habitsfromDatabase = convertBackEndDataToFrontEnd(data);
 		console.log("h", habitsfromDatabase);
 		if (habitsfromDatabase.length > 1) {
 			setHabitItems(habitsfromDatabase);
 		} else {
 			throw new Error("no habits found for user (retrievehabitsbyid)");
-			// return habitsfromDatabase;
 		}
 	}
 
@@ -39,111 +37,12 @@ function HabitRow({ onClick, habitName, habitid, section }) {
 		retrieveHabitsByHabitId(habitid);
 	}, []);
 
-	// const [habitLength, setHabitLength] = useState(habitItems.length);
-
-	// if (habitsByRowId.length > 1) {
-	// } else {
-	// 	throw new Error("No habits found for user");
-	// }
-	// const habitsByRowId = habitArr.filter((i) => i.habit_id === habitid);
-
-	/*Mock Data */
-	// const habitArr = [
-	// 	{
-	// 		habit_id: 1,
-	// 		date: "20220807",
-	// 		status: "complete",
-	// 	},
-	// 	{
-	// 		habit_id: 1,
-	// 		date: "20220806",
-	// 		status: "complete",
-	// 	},
-	// 	{
-	// 		habit_id: 1,
-	// 		date: "20220805",
-	// 		status: "complete",
-	// 	},
-	// 	{
-	// 		habit_id: 1,
-	// 		date: "20220804",
-	// 		status: "complete",
-	// 	},
-	// 	{
-	// 		habit_id: 1,
-	// 		date: "20220803",
-	// 		status: "complete",
-	// 	},
-	// 	{
-	// 		habit_id: 1,
-	// 		date: "20220802",
-	// 		status: "complete",
-	// 	},
-	// 	{
-	// 		habit_id: 1,
-	// 		date: "20220801",
-	// 		status: "skip",
-	// 	},
-	// 	{
-	// 		habit_id: 1,
-	// 		date: "20220731",
-	// 		status: "complete",
-	// 	},
-	// 	{
-	// 		habit_id: 1,
-	// 		date: "20220730",
-	// 		status: "miss",
-	// 	},
-	// ];
-
-	// let habitArr = [
-	// 	{
-	// 		habit_id: 4,
-	// 		date: "20220802",
-	// 		status: "complete",
-	// 	},
-	// 	{
-	// 		habit_id: 4,
-	// 		date: "20220803",
-	// 		status: "miss",
-	// 	},
-	// 	{
-	// 		habit_id: 4,
-	// 		date: "20220804",
-	// 		status: "skip",
-	// 	},
-	// 	{
-	// 		habit_id: 5,
-	// 		date: "20220802",
-	// 		status: "complete",
-	// 	},
-	// 	{
-	// 		habit_id: 5,
-	// 		date: "20220803",
-	// 		status: "miss",
-	// 	},
-	// 	{
-	// 		habit_id: 6,
-	// 		date: "20220804",
-	// 		status: "skip",
-	// 	},
-	// 	{
-	// 		habit_id: 6,
-	// 		date: "20220803",
-	// 		status: "complete",
-	// 	},
-	// ];
-	// 🎉 ALMOST READY TO FETCH the habitArr data from backend by userid!!
-
-	// console.log("habitsByRowId", habitid, habitsByRowId);
-
 	/** Function that takes in habit state (habitObj), new value of status, id of habitItemList obj to change,
      and returns state with updated status  
   */
 	const changeStatus = (state, newStatus, id) => {
 		// shallow copy of habitObj
 		let newArr = [...state];
-		// console.log("newArr", newArr);
 
 		// index of habitItem we want to change
 		let indexOfObject = newArr.findIndex((element) => element.date === id);
@@ -156,8 +55,6 @@ function HabitRow({ onClick, habitName, habitid, section }) {
 
 		// inserting our updated item into duplicate array
 		let updatedArr = [...firstChunk, updatedObj, ...secondChunk];
-		// let updatedArr = [updatedObj];
-		// console.log("updatedArr", updatedArr);
 
 		return updatedArr;
 	};
@@ -173,14 +70,7 @@ habitItem and changes it accordingly
 		let index = habitCopy.findIndex(
 			(element) => element.date === currentDate
 		);
-		// console.log("index", index);
 
-		// 📝 PLAN
-		// if index IS NOT FOUND (aka returns -1, aka date does not exist in habitArray)
-		// then, send a post request to the db with the new creation
-		// then, do not do rest of toggleState function
-
-		//else, if index IS FOUND (aka returns != 1, aka date does already exist in habitItems array), then toggle the state
 		if (index === -1) {
 			//define new data
 			const newHabitCalItem = {
@@ -227,9 +117,6 @@ habitItem and changes it accordingly
 					);
 					break;
 			}
-			// console.log("updatedState", updatedState);
-			// console.log("(Before) Status: ", habitCopy[index].status);
-			// console.log(" (After) Status: ", updatedState[index].status);
 			setHabitItems(updatedState);
 		}
 	}
@@ -247,14 +134,6 @@ habitItem and changes it accordingly
 		const data = await result.json();
 		return data.success;
 	}
-	// 📝 PLAN - now done ✅
-	// When habit item doesn't exist, needs to
-	// (1) Still display a white box on the page
-	// (2) When clicked, create a new entry in the calendar database with status: "complete"
-	// (3) Then, it can be interacted with normally because the data will exist.
-
-	// 🙋‍♂️ FIRST: Even if the data doesn't exist in the habitArry, a white square (aka button with className = "incomplete") should still exist
-	// 🤞 SECOND: Send a post request when its clicked on
 
 	try {
 		return (
@@ -267,8 +146,6 @@ habitItem and changes it accordingly
 				<div className="habit-item-container">
 					{section.map((sectionday) => {
 						const ymd = sectionday.format("YYYYMMDD");
-						/* console.log("habitItem", habitItems[0].date);
-						   console.log("sectiondayformatted", ymd); */
 						let displayItem = habitItems.filter(
 							(item) => item.date === ymd
 						);
@@ -282,9 +159,6 @@ habitItem and changes it accordingly
 								},
 							];
 						}
-
-						/* console.log("displayItem", habitid, ymd, displayItem); */
-
 						return (
 							<div>
 								<p>
