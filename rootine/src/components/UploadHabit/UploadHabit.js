@@ -108,6 +108,7 @@ function UploadHabit() {
 						<FormLabel fontWeight="bold">
 							Habit name
 							<Input
+                                placeholder='Add habit name here'
 								type="text"
 								onChange={(e) => {
 									handleChangeInput(e, "name");
