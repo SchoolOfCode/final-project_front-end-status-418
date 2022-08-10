@@ -1,102 +1,162 @@
 import { default as dayjs } from "dayjs";
-import { useEffect, useState } from "react";
 import "../CalendarBar/CalendarBar.css";
-import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import React from "react";
 
-export const CalendarBar = () => {
-  const [daysOfweek, setDaysOfWeek] = useState([]);
-  const [selected, setSelected] = useState();
-  const currentDay = dayjs().format("DDMM");
+/* Plan 
+Edit Menu Item component 
+Replace buttons with new functionality 
+Remove onselect function and Scroll menu component 
+render menu item with new buttons 
+*/
 
-  const getCurrentWeekDays = () => {
-    const weekStart = dayjs().startOf("week");
+export const CalendarBar = ({ dayList, section, setSection }) => {
+	/*     const [daysOfweek, setDaysOfWeek] = useState([]);
+    const [section, setSection] = useState(daysOfweek.slice(0, 3));
+    const currentDay = dayjs().format("DDMM");
 
-    const days = [];
-    for (let i = -5; i <= 21; i++) {
-      days.push(dayjs(weekStart).add(i, "days"));
-    }
+    const getCurrentWeekDays = () => {
+        const weekStart = dayjs().startOf("week");
 
-    return days;
-  };
+        const days = [];
+        for (let i = -5; i <= 100; i++) {
+            days.push(dayjs(weekStart).add(i, "days"));
+        }
 
-  useEffect(() => {
-    setDaysOfWeek(getCurrentWeekDays());
-  }, []);
+        return days;
+    };
 
-  const MenuItem = ({ title, text, selected, now }) => {
-    return (
-      <div
-        className={`menu-item dayItem ${selected ? "active" : ""} ${
-          currentDay === now ? "today" : null
-        }`}
-      >
-        <h5 className="title">{title}</h5>
-        <span className="text"> {text}</span>
-      </div>
-    );
-  };
+    useEffect(() => {
+        setDaysOfWeek(getCurrentWeekDays());
+    }, []); */
+	const currentDay = dayjs().format("DDMM");
+	// console.log("daylist (cb): ", dayList);
+	const CalendarItem = ({ title, text, selected, now }) => {
+		return (
+			<div
+				className={`menu-item dayItem ${selected ? "active" : ""} ${
+					currentDay === now ? "today" : null
+				}`}>
+				<h5 className="title">{title}</h5>
+				<span className="text"> {text}</span>
+			</div>
+		);
+	};
 
-  function LeftArrow() {
-    const { isFirstItemVisible, scrollPrev } =
-      React.useContext(VisibilityContext);
+	function LeftArrow() {
+		const getPrevSection = () => {
+			let firstItem = section[0];
+			const dataCopy = [...dayList];
+			let indexOfFirstItem = dataCopy.findIndex(
+				(element) => element === firstItem
+			);
 
-    return (
-      <button
-        className="left-button"
-        disabled={isFirstItemVisible}
-        onClick={() => scrollPrev()}
-      >
-        Left
-      </button>
-    );
-  }
-  function RightArrow() {
-    const { isLastItemVisible, scrollNext } =
-      React.useContext(VisibilityContext);
+			// console.log("dataCopy", dataCopy);
+			// console.log("indexOfFirstItem", indexOfFirstItem);
 
-    return (
-      <button
-        className="right-button"
-        disabled={isLastItemVisible}
-        onClick={() => scrollNext()}
-      >
-        Right
-      </button>
-    );
-  }
+			// if there are 3 more items to display
+			if (indexOfFirstItem - 3 >= 0) {
+				let prevSnapshot = dataCopy.slice(
+					indexOfFirstItem - 3,
+					indexOfFirstItem
+				);
+				// console.log("nextSnapshot", prevSnapshot);
+				setSection(prevSnapshot);
+				// if there are two more items to display
+			} else if (indexOfFirstItem - 2 >= 0) {
+				let prevSnapshot = dataCopy.slice(
+					indexOfFirstItem - 2,
+					indexOfFirstItem
+				);
+				console.log("nextSnapshot", prevSnapshot);
+				setSection(prevSnapshot);
+				// if there is one more item to display
+			} else if (indexOfFirstItem - 1 >= 0) {
+				let prevSnapshot = dataCopy.slice(
+					indexOfFirstItem - 1,
+					indexOfFirstItem
+				);
+				// console.log("nextSnapshot", prevSnapshot);
+				setSection(prevSnapshot);
+			}
+		};
+		return (
+			<button className="left-button" onClick={getPrevSection}>
+				Prev
+			</button>
+		);
+	}
 
-  const onSelect = (id) => {
-    if (id === selected) {
-      setSelected(0);
-    } else {
-      setSelected(id);
-    }
-  };
+	function RightArrow() {
+		const getNextSection = () => {
+			const dataCopy = [...dayList];
+			let lastItem = section[section.length - 1];
+			let indexOfLastItem = dataCopy.findIndex(
+				(element) => element === lastItem
+			);
+			let firstItemOfSnapshot = indexOfLastItem + 1;
 
-  return (
-    <>
-      <ScrollMenu
-        LeftArrow={LeftArrow}
-        RightArrow={RightArrow}
-        selected={selected}
-        onClick={onSelect}
-        scrollToSelected={true}
-      >
-        {daysOfweek.map((day) => {
-          return (
-            <MenuItem
-              itemId={day.format("D")}
-              title={day.format("ddd")}
-              text={day.format("DD")}
-              key={day.format("D")}
-              id={day.format("D")}
-              selected={selected}
-              now={day.format("DDMM")}
-            />
-          );
-        })}
-      </ScrollMenu>
-    </>
-  );
+			// console.log("dataCopy", dataCopy);
+			// console.log("indexOfLastItemy", indexOfLastItem);
+
+			// if there are 3 more items to display
+			if (firstItemOfSnapshot + 3 <= dataCopy.length) {
+				let nextSnapshot = dataCopy.slice(
+					firstItemOfSnapshot,
+					firstItemOfSnapshot + 3
+				);
+				// console.log("nextSnapshot", nextSnapshot);
+
+				setSection(nextSnapshot);
+				// if there are two more items to display
+			} else if (firstItemOfSnapshot + 2 <= dataCopy.length) {
+				let nextSnapshot = dataCopy.slice(
+					firstItemOfSnapshot,
+					firstItemOfSnapshot + 2
+				);
+				// console.log("nextSnapshot", nextSnapshot);
+
+				setSection(nextSnapshot);
+				// if there is one more item to display
+			} else if (firstItemOfSnapshot + 1 <= dataCopy.length) {
+				let nextSnapshot = dataCopy.slice(
+					firstItemOfSnapshot,
+					firstItemOfSnapshot + 1
+				);
+				// console.log("nextSnapshot", nextSnapshot);
+
+				setSection(nextSnapshot);
+			}
+		};
+		return (
+			<button className="right-button" onClick={getNextSection}>
+				Next
+			</button>
+		);
+	}
+	// console.log(dayList);
+	return (
+		<div className=" calendar-bar-main">
+			<LeftArrow />
+			<div className="calendar-items-container">
+				{section.map((day) => {
+					return (
+						<CalendarItem
+							itemId={day.format("D")}
+							title={day.format("MMM")}
+							text={day.format("DD")}
+							key={day.format("YYYYMMDD")}
+							id={day.format("YYYYMMDD")}
+							now={day.format("DDMM")}
+						/>
+					);
+				})}
+			</div>
+
+			<RightArrow />
+		</div>
+	);
 };
+
+/* 
+
+*/
