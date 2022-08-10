@@ -33,9 +33,13 @@ function HabitRow({ onClick, habitName, habitid, section }) {
 		return h;
 	}
 
-	useEffect(() => {
-		retrieveHabitsByHabitId(habitid);
-	}, []);
+	useEffect(
+		() => {
+			retrieveHabitsByHabitId(habitid);
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[]
+	);
 
 	/** Function that takes in habit state (habitObj), new value of status, id of habitItemList obj to change,
      and returns state with updated status  

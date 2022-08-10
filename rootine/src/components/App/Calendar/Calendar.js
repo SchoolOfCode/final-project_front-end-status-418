@@ -34,7 +34,7 @@ const Calendar = ({
 }) => {
 	let newHabits = [];
 	console.log(typeof newHabits);
-	const { isAuthenticated, user } = useAuth0();
+	const { user } = useAuth0();
 	let name = user ? user.nickname : "Unknown User";
 	let userId = user ? user.sub : "Unknown user";
 
@@ -48,11 +48,13 @@ const Calendar = ({
 	}
 
 	const [habits, setHabits] = useState(newHabits);
+	// eslint-disable-next-line no-unused-vars
 	const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
 	const [section, setSection] = useState(daysOfWeek.slice(0, 3));
 
 	useEffect(() => {
 		setExistingHabitsOnPageLoad();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const handleClick = (habit) => {
