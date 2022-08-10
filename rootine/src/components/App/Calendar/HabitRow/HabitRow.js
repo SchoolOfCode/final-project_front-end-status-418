@@ -105,11 +105,11 @@ function HabitRow({ habitName, habitid, section }) {
 
 	useEffect(() => {
 		const habitsfromDatabase = retrieveHabitsByHabitId();
-		if (habitsfromDatabase.length > 1) {
-			setHabitItems(habitsfromDatabase);
-		} else {
-			throw new Error("no habits found for user");
-		}
+		// if (habitsfromDatabase.length > 1) {
+		setHabitItems(habitsfromDatabase);
+		// } else {
+		// throw new Error("no habits found for user");
+		// }
 	}, []);
 
 	async function retrieveHabitsByHabitId() {
