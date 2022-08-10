@@ -57,15 +57,26 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 let newHabits = [];
 
+const getCurrentWeekDays = () => {
+	const weekStart = dayjs().startOf("week");
+	const days = [];
+	for (let i = -5; i <= 100; i++) {
+		days.push(dayjs(weekStart).add(i, "days"));
+	}
+	console.log("days", days);
+	return days;
+};
+
 const Calendar = () => {
 	const [habits, setHabits] = useState(newHabits);
-	const [daysOfWeek, setDaysOfWeek] = useState([]);
+	const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
 	const [section, setSection] = useState(daysOfWeek.slice(0, 3));
 	// console.log("section", section);
+
 	async function setExistingHabitsOnPageLoad() {
 		const newHabits = await retrieveHabits(userId);
 		console.log("newHabits", newHabits);
-		// setHabits(newHabits);
+		setHabits(newHabits);
 	}
 
 	async function retrieveHabits() {
@@ -84,29 +95,20 @@ const Calendar = () => {
 
 	// 🤝 Helper function: fetch habits for the current user
 
-	const getCurrentWeekDays = () => {
-		const weekStart = dayjs().startOf("week");
-		const days = [];
-		for (let i = -5; i <= 100; i++) {
-			days.push(dayjs(weekStart).add(i, "days"));
-		}
-		console.log("days", days);
-		return days;
-	};
-
 	useEffect(() => {
 		setExistingHabitsOnPageLoad();
 	}, [section, habits]);
 
-	useEffect(() => {
-		// async function setExistingHabitsOnPageLoad() {
-		// 	const newHabits = await retrieveHabits();
-		// 	console.log("newHabits", newHabits);
-		// 	setHabits(newHabits);
-		// }
-		// setExistingHabitsOnPageLoad();
-		setDaysOfWeek(getCurrentWeekDays());
-	}, []);
+	// useEffect(() => {
+	// 	// async function setExistingHabitsOnPageLoad() {
+	// 	// 	const newHabits = await retrieveHabits();
+	// 	// 	console.log("newHabits", newHabits);
+	// 	// 	setHabits(newHabits);
+	// 	// }
+	// 	// setExistingHabitsOnPageLoad();
+	// 	setDaysOfWeek(getCurrentWeekDays());
+	// 	console.log("useeffect called");
+	// }, []);
 
 	// console.log("days: ", getCurrentWeekDays());
 	//   console.log("DoW: ", daysOfWeek);
