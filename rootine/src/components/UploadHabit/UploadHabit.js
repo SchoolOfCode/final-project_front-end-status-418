@@ -118,6 +118,7 @@ function UploadHabit() {
 						<FormLabel fontWeight="bold">
 							Habit name
 							<Input
+                                placeholder='Add habit name here'
 								type="text"
 								onChange={(e) => {
 									handleChangeInput(e, "name");
@@ -130,6 +131,7 @@ function UploadHabit() {
 							Habit description
 							<Textarea
 								overflow="auto"
+								placeholder='Add habit description here'
 								onChange={(e) => {
 									handleChangeInput(e, "description");
 								}}
@@ -200,12 +202,12 @@ function UploadHabit() {
 					</Center>
 				</FormControl>
 			</form>
-			<p
+			<article
 				id="print-current-state"
 				style={{ marginTop: "1em", fontSize: "0.8em" }}>
 				[...when form is submitted, new habit data will appear here
 				(temporary)]
-			</p>
+			</article>
 		</Box>
 	);
 }
