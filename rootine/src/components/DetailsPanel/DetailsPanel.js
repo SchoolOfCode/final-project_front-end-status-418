@@ -8,7 +8,7 @@ import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 //prettier-ignore
 import { boxProps, fieldFrRepsProps, inputFrRepsProps, inputFrIntervalProps, saveButtonProps } from "./DetailsPanelProps.js";
 
-const DetailsPanel = ({ currentHabitDisplayed }) => {
+function DetailsPanel  ({ currentHabitDisplayed })  {
     console.log("currentHabitDisplayed: ",currentHabitDisplayed)
   function EditableControls() {
     const { isEditing, getSubmitButtonProps, getCancelButtonProps } =

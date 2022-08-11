@@ -17,8 +17,9 @@ const getCurrentWeekDays = () => {
 
 // 🤝 Helper function: fetch habits for the current user
 
+/* 
 async function retrieveHabits(userIdString) {
-    console.log("SLICER",userIdString.substr(6))
+    console.log("Retrieving habits for: ",userIdString.substr(6))
     const url = "https://status418-project.herokuapp.com";
     // const url = "http://localhost:3001";
     const fetchUrl = `${url}/habits?userId=${userIdString}`;
@@ -27,13 +28,14 @@ async function retrieveHabits(userIdString) {
     console.log(data.data);
     return data.data;
 }
-
-const Calendar = ({
+*/
+function Calendar({
     displayForm,
     setCurrentHabitDisplayed,
     setIsFormDisplayed,
     isFormDisplayed,
-}) => {
+    habits,
+}) {
     let newHabits = [];
     console.log(typeof newHabits);
     const { user } = useAuth0();
@@ -41,15 +43,16 @@ const Calendar = ({
 
     console.log("usersub (calender) SUBSTR: ", user.sub.substr(6));
 
-    async function fetchAllUsers() {
+    /*  async function fetchAllUsers() {
         let response = await fetch(
             "https://status418-project.herokuapp.com/user"
         );
         let data = await response.json();
         return data.payload;
     }
+*/
 
-    async function setExistingHabitsOnPageLoad() {
+    /*  async function setExistingHabitsOnPageLoad() {
         let userId = user ? user.sub.substring(6) : "Unknown user";
         console.log("userid = user.sub?: " ,userId===user.sub.substring(6))
 
@@ -65,7 +68,7 @@ const Calendar = ({
         }
 
         // for (let i = 0; i < userlist.length; i++) {
-        //     console.log("current user being checked(forloop)", i/* userlist[i].user_id */);
+        //     console.log("current user being checked(forloop)", i //userlist[i].user_id);
         //     if (userlist[i].user_id !== userId) {
         //         console.log(
         //             "Habits doesn't exist for this user in the database"
@@ -83,17 +86,19 @@ const Calendar = ({
         //     }
             
         // }
-    }
-    const [habits, setHabits] = useState(newHabits);
+    } 
+*/
+
+    //const [habits, setHabits] = useState(newHabits);
     // eslint-disable-next-line no-unused-vars
     const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
     const [section, setSection] = useState(daysOfWeek.slice(0, 3));
 
-    useEffect(() => {
+    /*     useEffect(() => {
         setExistingHabitsOnPageLoad();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
+ */
     const handleClick = (habit) => {
         console.log(`clicked ${habit.name}`);
         if (isFormDisplayed) {
@@ -157,6 +162,6 @@ const Calendar = ({
             </Box>
         </Container>
     );
-};
+}
 
 export default Calendar;

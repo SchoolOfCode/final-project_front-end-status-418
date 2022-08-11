@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import Footer from "../Footer/Footer";
@@ -13,26 +13,35 @@ import Calendar from "./Calendar/Calendar";
 import { Flex } from "@chakra-ui/react"
 import { flexProps } from "./appProps.js";
 
-/* 
-    Upon logging in, check whether incoming user_id matches already exists
-        If it does, do nothing
-        If it doesn't, send post req 
-*/
-
 async function fetchAllUsers() {
     let response = await fetch("https://status418-project.herokuapp.com/user");
     let data = await response.json();
-    console.log("datapayload: ",data.payload)
     return data.payload;
 }
-
-async function checkIncomingUserid(user) {
+async function retrieveHabits(userIdString) {
+    console.log("Retrieving habits for: ",userIdString)
+    const url = "https://status418-project.herokuapp.com";
+    // const url = "http://localhost:3001";
+    const fetchUrl = `${url}/habits?userId=${userIdString}`;
+    const result = await fetch(fetchUrl);
+    const data = await result.json();
+    console.log(data.data);
+    return data.data;
+}
+async function checkIncomingUserId(user) {
     let userlist = await fetchAllUsers();
     for (let i = 0; i < userlist.length; i++) {
-        console.log("entry: ",i, "userSub: ",user.sub.substr(6), "vs user_id: ", userlist[i].user_id )
+        /* console.log("user: ", user)
+        console.log("entry: ",i, "checking userSub: ",user.sub.substr(6), "vs user_id: ", userlist[i].user_id ) */
         if (userlist[i].user_id === user.sub.substr(6)) {
-            console.log("incoming user",user.sub.substr(6),"already exists")
-            return;
+            console.log("incoming user ",user.sub.substr(6),"already exists")
+            return user.sub.substr(6)
+            /* const newHabits = await retrieveHabits(user.sub.substr(6))
+                console.log("newHabits: ",newHabits)
+                setHabits(newHabits);
+                setCurrentHabitDisplayed(newHabits[0]);
+            
+            return; */
         } 
         /* else {
             console.log("Creating new user with sub: ",user.sub.substr(6),"and nick: ",user.nickname)
@@ -52,7 +61,7 @@ async function checkIncomingUserid(user) {
         //  The else statement above will run for EVERY entry that doesn't match the case - multiple identical post requests made.
     }    
     console.log("Creating new user with sub: ",user.sub.substr(6),"and nick: ",user.nickname)
-    await fetch("https://status418-project.herokuapp.com/user", {
+    let response = await fetch("https://status418-project.herokuapp.com/user", {
         method: "POST",
         headers: {
             "Content-type": "application/json",
@@ -62,20 +71,40 @@ async function checkIncomingUserid(user) {
             username: `${user.nickname}`,
             user_id: `${user.sub.substr(6)}`,
         }),
-    });        
+    });
+    console.log("Response (App): ",response)
+    return response.payload[0].user_id
+      
 }
 
 function App() {
+    //let newHabits = [];
     const [currentHabitDisplayed, setCurrentHabitDisplayed] = useState([]);
     const [isFormDisplayed, setIsFormDisplayed] = useState(false);
+    const [habits, setHabits] = useState([]);
     const { user, isAuthenticated, isLoading } = useAuth0();
-    checkIncomingUserid(user);
+    let userid=checkIncomingUserId(user);
     function displayForm() {
         if (!isFormDisplayed) {
             setIsFormDisplayed(true);
         }
     }
+    useEffect(()=>{
+        
+    })
+    async function setExistingHabitsOnPageLoad () {
+        const newHabits = await retrieveHabits(userid);
+        console.log("newHabits", newHabits);
+        setHabits(newHabits);
+        console.log("newHabit0: ", newHabits[0]);
+        //Sets the default value for the habits Display Panel
+        setCurrentHabitDisplayed(newHabits[0]);
+    }
 
+    /* useEffect(()=>{
+        
+    }) */
+    setExistingHabitsOnPageLoad(userid)
     
 
     if (isLoading) {
@@ -99,7 +128,7 @@ function App() {
             <main>
                 <p>Authenticated? {isAuthenticated ? "yes" : "no"}</p>
                 <p>{user ? "user = " + user.nickname : "no username info"}</p>
-                <p>{user ? "user = " + user.sub.substr(6) : "no id info"}</p>
+                <p>{user ? "user = " + user.sub.substring(6) : "no id info"}</p>
                 {!isAuthenticated ? (
                     <LandingPage />
                 ) : (
@@ -113,6 +142,7 @@ function App() {
                             setIsFormDisplayed={setIsFormDisplayed}
                             isFormDisplayed={isFormDisplayed}
                             setCurrentHabitDisplayed={setCurrentHabitDisplayed}
+                            habits={habits}
                         />
                     </Flex>
                 )}
