@@ -37,6 +37,25 @@ const Calendar = ({
 	const { user } = useAuth0();
 	let name = user ? user.nickname : "Unknown User";
 	let userId = user ? user.sub : "Unknown user";
+    setExistingHabitsOnPageLoad()
+    useEffect(
+        setExistingHabitsOnPageLoad()
+        /* function (userIdString) {
+            setExistingHabitsOnPageLoad()
+            console.log("useEffect called");
+            async function retrieveHabits(userIdString) {
+                const url = "https://status418-project.herokuapp.com";
+                // const url = "http://localhost:3001";
+                const fetchUrl = `${url}/habits/?userId=${userIdString}`;
+                const result = await fetch(fetchUrl);
+                const data = await result.json();
+                setHabits(data);
+            }
+            retrieveHabits(userIdString);
+        }, */
+    );
+
+
 
 	async function setExistingHabitsOnPageLoad() {
 		const newHabits = await retrieveHabits(userId);
@@ -52,10 +71,10 @@ const Calendar = ({
 	const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
 	const [section, setSection] = useState(daysOfWeek.slice(0, 3));
 
-	useEffect(() => {
+	/* useEffect(() => {
 		setExistingHabitsOnPageLoad();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, []); */
 
 	const handleClick = (habit) => {
 		console.log(`clicked ${habit.name}`);
