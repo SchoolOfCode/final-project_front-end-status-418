@@ -13,54 +13,43 @@ import Calendar from "./Calendar/Calendar";
 import { Flex } from "@chakra-ui/react"
 import { flexProps } from "./appProps.js";
 
-async function fetchAllUsers() {
+/* async function fetchAllUsers() {
     let response = await fetch("https://status418-project.herokuapp.com/user");
     let data = await response.json();
-    return data.payload;
-}
-async function retrieveHabits(userIdString) {
-    console.log("Retrieving habits for: ",userIdString)
-    const url = "https://status418-project.herokuapp.com";
-    // const url = "http://localhost:3001";
-    const fetchUrl = `${url}/habits?userId=${userIdString}`;
-    const result = await fetch(fetchUrl);
-    const data = await result.json();
-    console.log(data.data);
-    return data.data;
-}
-async function checkIncomingUserId(user) {
-    let userlist = await fetchAllUsers();
+    return data.payload; // An Array of objects. Each object = user_id, username.
+} */
+
+
+/* async function checkIncomingUserId(auth0User) {
+    //let userlist = await fetchAllUsers();
     for (let i = 0; i < userlist.length; i++) {
-        /* console.log("user: ", user)
-        console.log("entry: ",i, "checking userSub: ",user.sub.substr(6), "vs user_id: ", userlist[i].user_id ) */
-        if (userlist[i].user_id === user.sub.substr(6)) {
-            console.log("incoming user ",user.sub.substr(6),"already exists")
-            return user.sub.substr(6)
-            /* const newHabits = await retrieveHabits(user.sub.substr(6))
-                console.log("newHabits: ",newHabits)
-                setHabits(newHabits);
-                setCurrentHabitDisplayed(newHabits[0]);
+        if (userlist[i].user_id === auth0User.sub.substr(6)) {
+            console.log("incoming user exists in db")
+            return auth0User.sub.substr(6) //returns the "auth0|xyz123" without the "auth0|"
+            // const newHabits = await retrieveHabits(user.sub.substr(6))
+            //     console.log("newHabits: ",newHabits)
+            //     setHabits(newHabits);
+            //     setCurrentHabitDisplayed(newHabits[0]);
             
-            return; */
+            // return;
         } 
-        /* else {
-            console.log("Creating new user with sub: ",user.sub.substr(6),"and nick: ",user.nickname)
-            await fetch("https://status418-project.herokuapp.com/user", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json",
-                    "Access-Control-Allow-Origin": "*",
-                },
-                body: JSON.stringify({
-                    username: `${user.nickname}`,
-                    user_id: `${user.sub.substr(6)}`,
-                }),
-            });
-        } 
-        */
+        // else {
+        //     console.log("Creating new user with sub: ",user.sub.substr(6),"and nick: ",user.nickname)
+        //     await fetch("https://status418-project.herokuapp.com/user", {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-type": "application/json",
+        //             "Access-Control-Allow-Origin": "*",
+        //         },
+        //         body: JSON.stringify({
+        //             username: `${user.nickname}`,
+        //             user_id: `${user.sub.substr(6)}`,
+        //         }),
+        //     });
+        // } 
+       
         //  The else statement above will run for EVERY entry that doesn't match the case - multiple identical post requests made.
     }    
-    console.log("Creating new user with sub: ",user.sub.substr(6),"and nick: ",user.nickname)
     let response = await fetch("https://status418-project.herokuapp.com/user", {
         method: "POST",
         headers: {
@@ -68,45 +57,108 @@ async function checkIncomingUserId(user) {
             "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
-            username: `${user.nickname}`,
-            user_id: `${user.sub.substr(6)}`,
+            username: `${auth0User.nickname}`,
+            user_id: `${auth0User.sub.substr(6)}`,
         }),
     });
-    console.log("Response (App): ",response)
-    return response.payload[0].user_id
-      
-}
+    return response.payload[0].user_id   
+} */
+/* async function retrieveHabits(userIdString) {
+    console.log("Retrieving habits for: ",userIdString)
+    const url = "https://status418-project.herokuapp.com";
+    const fetchUrl = `${url}/habits?userId=${userIdString}`;
+    const result = await fetch(fetchUrl);
+    const data = await result.json();
+    console.log("data: ",data.data);
+    return data.data;
+} */
+
 
 function App() {
     //let newHabits = [];
-    const [currentHabitDisplayed, setCurrentHabitDisplayed] = useState([]);
+    const [currentHabitDisplayed, setCurrentHabitDisplayed] = useState();
     const [isFormDisplayed, setIsFormDisplayed] = useState(false);
     const [habits, setHabits] = useState([]);
     const { user, isAuthenticated, isLoading } = useAuth0();
-    let userid=checkIncomingUserId(user);
+
+    async function fetchAllUsers() {
+        let response = await fetch("https://status418-project.herokuapp.com/user");
+        let data = await response.json();
+        return data.payload; // An Array of objects. Each object = user_id, username.
+    }
+    async function checkIncomingUserId(auth0User) {
+        //let userlist = await fetchAllUsers();
+        for (let i = 0; i < userlist.length; i++) {
+            if (userlist[i].user_id === auth0User.sub.substr(6)) {
+                console.log("incoming user exists in db")
+                return auth0User.sub.substr(6) //returns the "auth0|xyz123" without the "auth0|"
+                /* const newHabits = await retrieveHabits(user.sub.substr(6))
+                    console.log("newHabits: ",newHabits)
+                    setHabits(newHabits);
+                    setCurrentHabitDisplayed(newHabits[0]);
+                
+                return; */
+            } 
+            /* else {
+                console.log("Creating new user with sub: ",user.sub.substr(6),"and nick: ",user.nickname)
+                await fetch("https://status418-project.herokuapp.com/user", {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json",
+                        "Access-Control-Allow-Origin": "*",
+                    },
+                    body: JSON.stringify({
+                        username: `${user.nickname}`,
+                        user_id: `${user.sub.substr(6)}`,
+                    }),
+                });
+            } 
+            */
+            //  The else statement above will run for EVERY entry that doesn't match the case - multiple identical post requests made.
+        }    
+        let response = await fetch("https://status418-project.herokuapp.com/user", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify({
+                username: `${auth0User.nickname}`,
+                user_id: `${auth0User.sub.substr(6)}`,
+            }),
+        });
+        return response.payload[0].user_id
+          
+    }
+    async function retrieveHabits(userIdString) {
+        console.log("Retrieving habits for: ",userIdString)
+        const url = "https://status418-project.herokuapp.com";
+        const fetchUrl = `${url}/habits?userId=${userIdString}`;
+        const result = await fetch(fetchUrl);
+        const data = await result.json();
+        console.log("data: ",data.data);
+        return data.data;
+    }
+    let userlist = fetchAllUsers(); //Fetch all users and store in userList
+
+
+    let xuser = user
+    let xuserId = checkIncomingUserId(xuser)
+    let xuserHabits = retrieveHabits(xuserId)
+       
+    // async function setExistingHabitsOnPageLoad1 () {
+        
+    // }
+    useEffect(()=>{
+        setHabits(xuserHabits)
+        setCurrentHabitDisplayed(xuserHabits[0])
+        // setExistingHabitsOnPageLoad1()
+    },[])
     function displayForm() {
         if (!isFormDisplayed) {
             setIsFormDisplayed(true);
         }
     }
-    useEffect(()=>{
-        
-    })
-    async function setExistingHabitsOnPageLoad () {
-        const newHabits = await retrieveHabits(userid);
-        console.log("newHabits", newHabits);
-        setHabits(newHabits);
-        console.log("newHabit0: ", newHabits[0]);
-        //Sets the default value for the habits Display Panel
-        setCurrentHabitDisplayed(newHabits[0]);
-    }
-
-    /* useEffect(()=>{
-        
-    }) */
-    setExistingHabitsOnPageLoad(userid)
-    
-
     if (isLoading) {
         return (
             <div
@@ -121,6 +173,18 @@ function App() {
             </div>
         );
     }
+
+    /*  
+    async function setExistingHabitsOnPageLoad () {
+        const newHabits = await retrieveHabits(userid);
+        console.log("newHabits", newHabits);
+        setHabits(newHabits);
+        console.log("newHabit0: ", newHabits[0]);
+        //Sets the default value for the habits Display Panel
+        setCurrentHabitDisplayed(newHabits[0]);
+    }
+    setExistingHabitsOnPageLoad(userid)
+    */
 
     return (
         <div className="App">

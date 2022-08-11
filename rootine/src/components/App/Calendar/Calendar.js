@@ -102,7 +102,7 @@ function Calendar({
     const handleClick = (habit) => {
         console.log(`clicked ${habit.name}`);
         if (isFormDisplayed) {
-            setIsFormDisplayed(false);
+            setIsFormDisplayed((isFormDisplayed)=>!isFormDisplayed);
         }
         setCurrentHabitDisplayed(habit);
         console.log("habit", habit);
