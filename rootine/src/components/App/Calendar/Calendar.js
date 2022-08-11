@@ -50,29 +50,39 @@ const Calendar = ({
     }
 
     async function setExistingHabitsOnPageLoad() {
-        let userId = user ? user.sub.substr(6) : "Unknown user";
+        let userId = user ? user.sub.substring(6) : "Unknown user";
+        console.log("userid = user.sub?: " ,userId===user.sub.substring(6))
 
-        console.log("usersub(cal2): ", user.sub);
         let userlist = await fetchAllUsers();
-        console.log("Uselist: ", userlist);
-        for (let i = 0; i < userlist.length; i++) {
-            console.log("current user id (forloop)", userlist[i].user_id);
-            if (userlist[i].user_id !== userId) {
-                console.log(
-                    "Habits doesn't exist for this user in the database"
-                );
-                return <p>Nothing found for you</p>;
-            } if (userlist[i].user_id === userId) {
-
-                console.log("userid:", userId);
-                const newHabits = await retrieveHabits(user.sub.substr(6));
-                console.log("newHabits", newHabits);
+        console.log("Uselist: ", userlist); 
+        for (let i = 0; i<userlist.length;i++) {
+            if (userlist[i].user_id===user.sub.substring(6)) {
+                const newHabits = await retrieveHabits(user.sub.substr(6))
+                console.log("newHabits: ",newHabits)
                 setHabits(newHabits);
-                console.log("newHabit0: ", newHabits[0]);
-                //Sets the default value for the habits Display Panel
                 setCurrentHabitDisplayed(newHabits[0]);
             }
         }
+
+        // for (let i = 0; i < userlist.length; i++) {
+        //     console.log("current user being checked(forloop)", i/* userlist[i].user_id */);
+        //     if (userlist[i].user_id !== userId) {
+        //         console.log(
+        //             "Habits doesn't exist for this user in the database"
+        //         );
+        //         return <p>Nothing found for you</p>;
+        //     } if (userlist[i].user_id === userId) {
+
+        //         console.log("userid:", userId);
+        //         const newHabits = await retrieveHabits(user.sub.substr(6));
+        //         console.log("newHabits", newHabits);
+        //         setHabits(newHabits);
+        //         console.log("newHabit0: ", newHabits[0]);
+        //         //Sets the default value for the habits Display Panel
+        //         setCurrentHabitDisplayed(newHabits[0]);
+        //     }
+            
+        // }
     }
     const [habits, setHabits] = useState(newHabits);
     // eslint-disable-next-line no-unused-vars
