@@ -12,7 +12,7 @@ describe('Auth0', function () {
     beforeEach(function () {
       cy.task('db:seed')
       cy.loginByAuth0Api(
-        Cypress.env('qwerty1@gmail.com'),
+        Cypress.env('qwerty@gmail.com'),
         Cypress.env("Qwerty1@")
       )
     })
