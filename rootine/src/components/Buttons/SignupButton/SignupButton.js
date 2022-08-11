@@ -4,32 +4,11 @@ import { buttonStyles } from "../landingPageButtonsStyle";
 
 function SignupButton() {
 	const { loginWithRedirect } = useAuth0();
-	const {
-		colorScheme,
-		variant,
-		height,
-		width,
-		borderRadius,
-		color,
-		bg,
-		marginTop,
-		fontFamily,
-		fontWeight,
-	} = buttonStyles;
 
 	return (
 		<Button
+			{...buttonStyles}
 			className="landing-page-signup-button"
-			colorScheme={colorScheme}
-			variant={variant}
-			height={height}
-			width={width}
-			borderRadius={borderRadius}
-			color={color}
-			bg={bg}
-			marginTop={marginTop}
-			fontFamily={fontFamily}
-			fontWeight={fontWeight}
 			onClick={() => loginWithRedirect({ screen_hint: "signup" })}>
 			Sign up
 		</Button>
