@@ -44,10 +44,10 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 
 	function handleChange(e, input, inputType) {
 		// e.preventDefault();
-		console.log("Handle change running");
+		// console.log("Handle change running");
 		// let n = e.currentTarget.value;
-		console.log("input", input);
-		console.log("inputType", inputType);
+		// console.log("input", input);
+		// console.log("inputType", inputType);
 
 		if (inputType === "name") {
 			setName(input);
@@ -149,11 +149,12 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 					Description
 				</Heading>
 				<Editable
-					defaultValue={
-						currentHabitDisplayed.description !== undefined
-							? currentHabitDisplayed.description
-							: ""
-					}
+					// defaultValue={
+					// 	currentHabitDisplayed.description !== undefined
+					// 		? currentHabitDisplayed.description
+					// 		: ""
+					// }
+					defaultValue={description}
 					textAlign="center"
 					isPreviewFocusable={true}
 					// selectAllOnFocus={false}
@@ -170,6 +171,13 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 						// onChange={() => {
 						// 	handleChange("description");
 						// }}
+						onBlur={(e) =>
+							handleChange(
+								e,
+								e.currentTarget.value,
+								"description"
+							)
+						}
 					/>
 				</Editable>
 			</Box>
@@ -178,7 +186,9 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 
 	return (
 		<Box {...boxProps}>
-			<p>{name ? name : "error"}</p>
+			<p>
+				{name ? name : "error"} & {description ? description : "error"}
+			</p>
 			<form id="details-form">
 				<VStack>
 					<Box>
