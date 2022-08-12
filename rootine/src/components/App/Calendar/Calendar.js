@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Box, Heading, Button } from "@chakra-ui/react";
+import { Container, Box, Heading, Button, Text } from "@chakra-ui/react";
 import { CalendarBar } from "../../CalendarBar/CalendarBar";
 import "./Calendar.css";
 import HabitRow from "./HabitRow/HabitRow";
@@ -10,7 +10,7 @@ import { retrieveHabits } from "../AppHelperFunctions";
 const getCurrentWeekDays = () => {
 	const weekStart = dayjs().startOf("week");
 	const days = [];
-	for (let i = -6; i <= 100; i++) {
+	for (let i = -5; i <= 100; i++) {
 		days.push(dayjs(weekStart).add(i, "days"));
 	}
 	return days;
@@ -114,23 +114,22 @@ const Calendar = ({
 			p="10"
 			maxW="75vw">
 			<Box as="div">
-				<Heading as="h3" size="lg">
-					Welcome, {name}
+				<Text display="inline" pr="0.25em" fontSize="xl">
+					Welcome,{" "}
+				</Text>
+				<Heading as="p" size="lg" display="inline">
+					{name}
 				</Heading>
 				<Box
 					className="calendar-bar-container"
-					mb="20px"
-					justifyContent="flex-end"
-					// border="2px"
-					// borderColor="red"
-					// pl="180px"
-				>
+					justifyContent="flex-end">
 					<CalendarBar
 						dayList={daysOfWeek}
 						section={section}
 						setSection={setSection}
 					/>
 				</Box>
+				<div id="calendar-divider"></div>
 				<Box>
 					{habits.length > 0
 						? habits.map((habit) => {

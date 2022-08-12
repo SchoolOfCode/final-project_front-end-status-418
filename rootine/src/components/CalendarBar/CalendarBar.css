@@ -57,7 +57,7 @@
 	border-image: linear-gradient(to bottom, #3acfd5 0%, #3a4ed5 100%) 1;
 }
 .menu-item.today {
-	border-bottom: 4px solid #349eeb;
+	outline: 4px solid #349eeb;
 }
 .scroll-menu-arrow {
 	padding: 10px;
@@ -74,4 +74,13 @@
 	/* border: 3px solid var(--red); */
 	border-radius: 7px;
 	width: 3em;
+}
+
+#calendar-divider {
+	margin: 0.7em auto;
+	width: calc(100% - 55px);
+	height: 3px;
+	background-color: var(--black);
+	opacity: 85%;
+	border-radius: 0.5em;
 }
