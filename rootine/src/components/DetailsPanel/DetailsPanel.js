@@ -44,7 +44,7 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
         fontWeight="bold"
         textAlign="center"
         className="habit-name"
-        defaultValue={currentHabitDisplayed.name}
+        //defaultValue={currentHabitDisplayed.name}
       >
         <Tooltip label="Click to edit">
           <EditablePreview py={2} px={4} />
@@ -81,7 +81,7 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
           Description
         </Heading>
         <Editable
-          defaultValue={currentHabitDisplayed.description}
+          //defaultValue={currentHabitDisplayed.description}
           textAlign="center"
           isPreviewFocusable={true}
           // selectAllOnFocus={false}

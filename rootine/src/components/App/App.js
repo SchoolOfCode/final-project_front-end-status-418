@@ -69,6 +69,7 @@ function App() {
     const [currentHabitDisplayed, setCurrentHabitDisplayed] = useState([]);
     const [isFormDisplayed, setIsFormDisplayed] = useState(false);
     const { user, isAuthenticated, isLoading } = useAuth0();
+    const tempLogIn = true;
     checkIncomingUserid(user);
     function displayForm() {
         if (!isFormDisplayed) {
@@ -100,7 +101,7 @@ function App() {
                 <p>Authenticated? {isAuthenticated ? "yes" : "no"}</p>
                 <p>{user ? "user = " + user.nickname : "no username info"}</p>
                 <p>{user ? "user = " + user.sub.substr(6) : "no id info"}</p>
-                {!isAuthenticated ? (
+                {!tempLogIn ? (
                     <LandingPage />
                 ) : (
                     <Flex {...flexProps}>

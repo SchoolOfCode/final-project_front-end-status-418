@@ -18,7 +18,8 @@ const getCurrentWeekDays = () => {
 // 🤝 Helper function: fetch habits for the current user
 
 async function retrieveHabits(userIdString) {
-    console.log("SLICER",userIdString.substr(6))
+    try {
+         console.log("SLICER",userIdString.substr(6))
     const url = "https://status418-project.herokuapp.com";
     // const url = "http://localhost:3001";
     const fetchUrl = `${url}/habits?userId=${userIdString}`;
@@ -26,6 +27,10 @@ async function retrieveHabits(userIdString) {
     const data = await result.json();
     console.log(data.data);
     return data.data;
+    } catch (error) {
+        console.log(error)
+    }
+   
 }
 
 const Calendar = ({
@@ -87,7 +92,7 @@ const Calendar = ({
     const [habits, setHabits] = useState(newHabits);
     // eslint-disable-next-line no-unused-vars
     const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
-    const [section, setSection] = useState(daysOfWeek.slice(0, 3));
+    const [section, setSection] = useState(daysOfWeek.slice(0, 7));
 
     useEffect(() => {
         setExistingHabitsOnPageLoad();
