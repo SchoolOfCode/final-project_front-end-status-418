@@ -3,6 +3,7 @@ export const flexProps = {
 	width: "auto",
 	display: "flex",
 	alignItems: "center",
+	// alignItems: "flex-start",
 	margin: "2em",
 	gap: "20",
 };

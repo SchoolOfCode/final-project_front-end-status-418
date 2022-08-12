@@ -15,7 +15,7 @@ const DetailsPanel = ({
 	pleaseRefresh,
 	setPleaseRefresh,
 }) => {
-	console.log("currentHabitDisplayed: ", currentHabitDisplayed);
+	// console.log("currentHabitDisplayed: ", currentHabitDisplayed);
 
 	const [name, setName] = useState("Add a new habit");
 	const [description, setDescription] = useState("No description found");

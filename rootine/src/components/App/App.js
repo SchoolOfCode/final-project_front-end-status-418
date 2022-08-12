@@ -71,7 +71,6 @@ async function checkIncomingUserid(user) {
 }
 
 function App() {
-
 	const [currentHabitDisplayed, setCurrentHabitDisplayed] = useState([]);
 	const [isFormDisplayed, setIsFormDisplayed] = useState(false);
 	const [pleaseRefresh, setPleaseRefresh] = useState(true);
@@ -82,7 +81,6 @@ function App() {
 			setIsFormDisplayed(true);
 		}
 	}
-
 
 	if (isLoading) {
 		return (
@@ -102,9 +100,9 @@ function App() {
 		<div className="App">
 			<Navbar />
 			<main>
-				<p>Authenticated? {isAuthenticated ? "yes" : "no"}</p>
+				{/* <p>Authenticated? {isAuthenticated ? "yes" : "no"}</p>
 				<p>{user ? "user = " + user.nickname : "no username info"}</p>
-				<p>{user ? "user = " + user.sub.substr(6) : "no id info"}</p>
+				<p>{user ? "user = " + user.sub.substr(6) : "no id info"}</p> */}
 				{!isAuthenticated ? (
 					<LandingPage />
 				) : (

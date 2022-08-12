@@ -16,7 +16,7 @@ export const boxProps = {
 	overflow: "hidden",
 	color: "black",
 	boxShadow: "md",
-	m: 20,
+	m: 0,
 	p: 10,
 	pt: 1,
 	bg: "white",

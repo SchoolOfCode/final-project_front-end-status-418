@@ -1,61 +1,59 @@
-.buttonContainer {
-  display: flex;
-  width: 50px;
-  height: 50px;
-}
+/* .buttonContainer {
+	display: flex;
+	width: 50px;
+	height: 50px;
+} */
 .dayItem {
-  display: flex;
-
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
 }
 
 .react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 
 .react-horizontal-scrolling-menu--scroll-container {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }
 
 .calendar-items-container {
-display: flex;
-
-} 
+	display: flex;
+}
 
 .menu-item {
-  padding: 0 4px;
-  margin: 5px 10px;
-  user-select: none;
-  -webkit-user-select: none;
-  cursor: pointer;
-  border: 3px red solid;
-  width: 4em;
-  border-radius: 0.7em;
+	padding: 0 4px;
+	margin: 5px 10px;
+	user-select: none;
+	-webkit-user-select: none;
+	cursor: pointer;
+	border: 3px red solid;
+	width: 4em;
+	border-radius: 0.7em;
 }
 .menu-item-wrapper.active {
-  border: 1px blue solid;
-  border-image: linear-gradient(to bottom, #3acfd5 0%, #3a4ed5 100%) 1;
+	border: 1px blue solid;
+	border-image: linear-gradient(to bottom, #3acfd5 0%, #3a4ed5 100%) 1;
 }
 .menu-item.today {
-  border-bottom: 4px solid #349eeb;
+	border-bottom: 4px solid #349eeb;
 }
 .scroll-menu-arrow {
-  padding: 10px;
-  cursor: pointer;
+	padding: 10px;
+	cursor: pointer;
 }
 
 .right-button {
-  border: 3px solid var(--red);
-  border-radius: 7px;
-  width: 3em;
+	border: 3px solid var(--red);
+	border-radius: 7px;
+	width: 3em;
 }
 
 .left-button {
-  border: 3px solid var(--red);
-  border-radius: 7px;
-  width: 3em;
+	border: 3px solid var(--red);
+	border-radius: 7px;
+	width: 3em;
 }
