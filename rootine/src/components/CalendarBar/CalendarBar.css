@@ -30,7 +30,7 @@
 	user-select: none;
 	-webkit-user-select: none;
 	cursor: pointer;
-	border: 3px red solid;
+	border: 2px red solid;
 	width: 4em;
 	border-radius: 0.7em;
 }

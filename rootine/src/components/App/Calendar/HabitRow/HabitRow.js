@@ -167,9 +167,9 @@ habitItem and changes it accordingly
 						}
 						return (
 							<div key={ymd + "_" + habitid}>
-								<p>
+								{/* <p>
 									{ymd}, {displayItem.status}
-								</p>
+								</p> */}
 								<button
 									onClick={() =>
 										toggleState(displayItem[0].date)

@@ -16,7 +16,6 @@ const getCurrentWeekDays = () => {
 	return days;
 };
 
-
 const Calendar = ({
 	displayForm,
 	setCurrentHabitDisplayed,
@@ -80,12 +79,10 @@ const Calendar = ({
 	const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
 	const [section, setSection] = useState(daysOfWeek.slice(0, 7));
 
-
 	useEffect(() => {
 		setExistingHabitsOnPageLoad();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
 
 	//refresh habits list when 'pleaserefresh' state is changed
 	useEffect(() => {
@@ -125,7 +122,7 @@ const Calendar = ({
 					justifyContent="flex-end"
 					border="2px"
 					borderColor="red"
-					pl="130px">
+					pl="180px">
 					<CalendarBar
 						dayList={daysOfWeek}
 						section={section}
