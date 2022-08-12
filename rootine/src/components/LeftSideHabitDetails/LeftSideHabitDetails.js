@@ -4,29 +4,35 @@ import DetailsPanel from "../DetailsPanel/DetailsPanel";
 import { Box,  VStack } from "@chakra-ui/react";
 
 export default function LeftSideHabitDetails({
-  isFormDisplayed,
-  currentHabitDisplayed,
+	isFormDisplayed,
+	currentHabitDisplayed,
+	pleaseRefresh,
+	setPleaseRefresh,
 }) {
-  //When switchDisplay is true, the habit details panel shows, when false, AddNewHabit panel shows
-  //Button added to perform the switch
-  // ❗ This is temporary!
+	//When switchDisplay is true, the habit details panel shows, when false, AddNewHabit panel shows
+	//Button added to perform the switch
+	// ❗ This is temporary!
 
-  const vStackProps = {
-    className: "view-container",
-    width: "auto",
-    display: "flex",
-    alignItems: "center",
-  };
+	const vStackProps = {
+		className: "view-container",
+		width: "auto",
+		display: "flex",
+		alignItems: "center",
+	};
 
-  return (
-    <Box>
-      <VStack {...vStackProps}>
-        {isFormDisplayed ? (
-          <UploadHabit />
-        ) : (
-          <DetailsPanel currentHabitDisplayed={currentHabitDisplayed} />
-        )}
-      </VStack>
-    </Box>
-  );
+	return (
+		<Box>
+			<VStack {...vStackProps}>
+				{isFormDisplayed ? (
+					<UploadHabit />
+				) : (
+					<DetailsPanel
+						currentHabitDisplayed={currentHabitDisplayed}
+						pleaseRefresh={pleaseRefresh}
+						setPleaseRefresh={setPleaseRefresh}
+					/>
+				)}
+			</VStack>
+		</Box>
+	);
 }

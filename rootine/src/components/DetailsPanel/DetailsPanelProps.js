@@ -1,3 +1,10 @@
+export const editableNameProps = {
+	fontSize: "3xl",
+	fontWeight: "bold",
+	textAlign: "center",
+	className: "habit-name",
+};
+
 export const boxProps = {
 	className: "details-panel-parent",
 	maxW: "1000px",
@@ -26,8 +33,6 @@ export const inputFrRepsProps = {
 export const fieldFrRepsProps = {
 	pl: 1,
 	pr: 1,
-	// minW: "30px",
-	// maxW: "50px",
 	borderRadius: "0.5em",
 	borderWidth: "3px",
 	defaultValue: "1",
