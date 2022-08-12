@@ -33,7 +33,7 @@ function UploadHabit() {
 	// let user = 'testuser'
 	const { user } = useAuth0();
 	// TODO: This should be changed to the Auth0 userid once Auth0 implementation is sorted.
-	const userId = user.sub;
+	const userId = user.sub.substr(6);
 	//📝 Note that the values for everyday, fr_reps and fr_interval are hard-coded, which is MVP behaviour. Should be updated when features added.
 	const [newHabit, setNewHabit] = useState([
 		{
@@ -74,7 +74,7 @@ function UploadHabit() {
 	/** 📩 It Takes the data from the new habit form submission and sends to the database. Note that the back-end currently only expects three values: name, description and userId. The other values are hard-coded (MVP behaviour). */
 	async function postHabit(habit) {
 		//TODO: Be sure to change this if working on another port or once backend is deployed.
-
+        console.log("usersub (uploadhabit)",user.sub)
 		const url = `https://status418-project.herokuapp.com/habits`;
 
 		console.log(`URL set to: ${url}`);
@@ -94,7 +94,7 @@ function UploadHabit() {
 			body: JSON.stringify({
 				name: `${habit[0].name}`,
 				description: `${habit[0].description}`,
-				userId: user.sub,
+				userId: user.sub.substr(6),
 			}),
 		});
 		const data = await response.json();
