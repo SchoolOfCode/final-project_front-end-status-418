@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import "./HabitRow.css";
 
 function HabitRow({ onClick, habitName, habitid, section }) {
-	console.log("habitid", habitid);
-	console.log("habitName", habitName);
-	console.log("section", section);
+	// console.log("habitid", habitid);
+	// console.log("habitName", habitName);
+	// console.log("section", section);
 	let initialiseHabits = [];
 	const [habitItems, setHabitItems] = useState(initialiseHabits);
 
@@ -12,12 +12,12 @@ function HabitRow({ onClick, habitName, habitid, section }) {
 		// const url = "http://localhost:3001";
 		const url = "https://status418-project.herokuapp.com";
 		const fetchUrl = `${url}/calendar/${hId}`;
-		console.log(fetchUrl);
+		// console.log(fetchUrl);
 		const result = await fetch(fetchUrl);
 		const payload = await result.json();
 		const data = payload.payload;
 		const habitsfromDatabase = convertBackEndDataToFrontEnd(data);
-		console.log("h", habitsfromDatabase);
+		// console.log("h", habitsfromDatabase);
 		if (habitsfromDatabase.length > 1) {
 			setHabitItems(habitsfromDatabase);
 		} else {
@@ -166,7 +166,7 @@ habitItem and changes it accordingly
 							];
 						}
 						return (
-							<div>
+							<div key={ymd + "_" + habitid}>
 								<p>
 									{ymd}, {displayItem.status}
 								</p>
