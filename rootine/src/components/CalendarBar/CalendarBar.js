@@ -3,7 +3,7 @@ import "../CalendarBar/CalendarBar.css";
 import { default as dayjs } from "dayjs";
 import { Text, Flex, Spacer, Center } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { chevronProps } from "./calendarBarProps";
+import { chevronProps } from "./calendarBarProps.js";
 
 /* Plan 
 Edit Menu Item component 
