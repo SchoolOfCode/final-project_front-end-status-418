@@ -73,6 +73,7 @@ async function checkIncomingUserid(user) {
 function App() {
 	const [currentHabitDisplayed, setCurrentHabitDisplayed] = useState([]);
 	const [isFormDisplayed, setIsFormDisplayed] = useState(false);
+	const [pleaseRefresh, setPleaseRefresh] = useState(true);
 	const { user, isAuthenticated, isLoading } = useAuth0();
 	checkIncomingUserid(user);
 	function displayForm() {
@@ -109,12 +110,15 @@ function App() {
 						<LeftSideHabitDetails
 							isFormDisplayed={isFormDisplayed}
 							currentHabitDisplayed={currentHabitDisplayed}
+							pleaseRefresh={pleaseRefresh}
+							setPleaseRefresh={setPleaseRefresh}
 						/>
 						<Calendar
 							displayForm={displayForm}
 							setIsFormDisplayed={setIsFormDisplayed}
 							isFormDisplayed={isFormDisplayed}
 							setCurrentHabitDisplayed={setCurrentHabitDisplayed}
+							pleaseRefresh={pleaseRefresh}
 						/>
 					</Flex>
 				)}

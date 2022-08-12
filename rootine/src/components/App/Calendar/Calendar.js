@@ -5,6 +5,7 @@ import "./Calendar.css";
 import HabitRow from "./HabitRow/HabitRow";
 import { default as dayjs } from "dayjs";
 import { useAuth0 } from "@auth0/auth0-react";
+import { retrieveHabits } from "../AppHelperFunctions";
 
 const getCurrentWeekDays = () => {
 	const weekStart = dayjs().startOf("week");
@@ -15,24 +16,12 @@ const getCurrentWeekDays = () => {
 	return days;
 };
 
-// 🤝 Helper function: fetch habits for the current user
-
-async function retrieveHabits(userIdString) {
-	// console.log("SLICER", userIdString.substr(6));
-	const url = "https://status418-project.herokuapp.com";
-	// const url = "http://localhost:3001";
-	const fetchUrl = `${url}/habits?userId=${userIdString}`;
-	const result = await fetch(fetchUrl);
-	const data = await result.json();
-	// console.log(data.data);
-	return data.data;
-}
-
 const Calendar = ({
 	displayForm,
 	setCurrentHabitDisplayed,
 	setIsFormDisplayed,
 	isFormDisplayed,
+	pleaseRefresh,
 }) => {
 	let newHabits = [];
 	// console.log(typeof newHabits);
@@ -93,6 +82,17 @@ const Calendar = ({
 		setExistingHabitsOnPageLoad();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	//refresh habits list when 'pleaserefresh' state is changed
+	useEffect(() => {
+		async function refreshCalendar() {
+			const newHabits = await retrieveHabits(user.sub.substr(6));
+			// console.log("newHabits: ", newHabits);
+			setHabits(newHabits);
+			setCurrentHabitDisplayed(newHabits[0]);
+		}
+		refreshCalendar();
+	}, [pleaseRefresh]);
 
 	const handleClick = (habit) => {
 		console.log(`clicked ${habit.name}`);

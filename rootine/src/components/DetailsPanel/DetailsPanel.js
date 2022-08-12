@@ -10,7 +10,11 @@ import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import { boxProps, fieldFrRepsProps, inputFrRepsProps, inputFrIntervalProps, saveButtonProps, editableNameProps } from "./DetailsPanelProps.js";
 import { useState } from "react";
 
-const DetailsPanel = ({ currentHabitDisplayed }) => {
+const DetailsPanel = ({
+	currentHabitDisplayed,
+	pleaseRefresh,
+	setPleaseRefresh,
+}) => {
 	console.log("currentHabitDisplayed: ", currentHabitDisplayed);
 
 	const [name, setName] = useState("Add a new habit");
@@ -24,6 +28,10 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 		setNameAndDesc();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	function refreshCalendar() {
+		setPleaseRefresh(!pleaseRefresh);
+	}
 
 	async function sendPatch() {
 		const url = "https://status418-project.herokuapp.com/habits/";
@@ -42,7 +50,7 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 			}),
 		});
 		const nameData = await resultName.json();
-		console.log(nameData);
+		// console.log(nameData);
 		const resultDesc = await fetch(fetchUrl, {
 			method: "PATCH",
 			headers: {
@@ -54,7 +62,8 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 			}),
 		});
 		const descData = await resultDesc.json();
-		console.log(descData);
+		// console.log(descData);
+		refreshCalendar();
 	}
 
 	function setNameAndDesc() {
@@ -212,9 +221,6 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 
 	return (
 		<Box {...boxProps}>
-			<p>
-				{name ? name : "error"} & {description ? description : "error"}
-			</p>
 			<form id="details-form">
 				<VStack>
 					<Box>
@@ -297,23 +303,3 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 };
 
 export default DetailsPanel;
-
-// {
-//   /* Habit Title header , use theme font */
-// }
-// {
-//   /* Current Habit Streak / Icon and p tag */
-// }
-// {
-//   /* Longest Habit Streak / Icon and p tag*/
-// }
-
-// {
-//   /* Description / p tag */
-// }
-// {
-//   /* Everyday Toggle  / checkbox */
-// }
-// {
-//   /* Frequency / p tag with input field and dropdown */
-// }
