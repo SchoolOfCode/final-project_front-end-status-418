@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import "./Navbar.css";
 import { useColorMode } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
@@ -21,10 +22,10 @@ export default function Navbar() {
 					<img className="header-name" src="" alt="rootine" />
 				</div>
 				<div className="header-div-right">
-					<a className="blogs" href="https://www.google.com">
-						Blogs
+					<a className="blogs" href="#">
+						Blog
 					</a>
-					<a className="about" href="https://www.google.com">
+					<a className="about" href="#">
 						About
 					</a>
 					<Menu>

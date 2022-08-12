@@ -10,7 +10,7 @@ import { retrieveHabits } from "../AppHelperFunctions";
 const getCurrentWeekDays = () => {
 	const weekStart = dayjs().startOf("week");
 	const days = [];
-	for (let i = -5; i <= 100; i++) {
+	for (let i = -6; i <= 100; i++) {
 		days.push(dayjs(weekStart).add(i, "days"));
 	}
 	return days;
@@ -78,6 +78,7 @@ const Calendar = ({
 	// eslint-disable-next-line no-unused-vars
 	const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
 	const [section, setSection] = useState(daysOfWeek.slice(0, 7));
+	console.log(section);
 
 	useEffect(() => {
 		setExistingHabitsOnPageLoad();
@@ -120,9 +121,10 @@ const Calendar = ({
 					className="calendar-bar-container"
 					mb="20px"
 					justifyContent="flex-end"
-					border="2px"
-					borderColor="red"
-					pl="180px">
+					// border="2px"
+					// borderColor="red"
+					// pl="180px"
+				>
 					<CalendarBar
 						dayList={daysOfWeek}
 						section={section}

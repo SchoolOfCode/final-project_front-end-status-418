@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Heading, Center } from "@chakra-ui/react";
 import "./HabitRow.css";
 
 function HabitRow({ onClick, habitName, habitid, section }) {
@@ -143,11 +144,15 @@ habitItem and changes it accordingly
 
 	try {
 		return (
-			<div className="habit-row">
+			<div className="habit-row-grid">
 				<div className="habit-name-container">
-					<h3 className="habit-name" onClick={onClick}>
+					<Heading
+						as="h3"
+						size="sm"
+						className="habit-name"
+						onClick={onClick}>
 						{habitName}
-					</h3>
+					</Heading>
 				</div>
 				<div className="habit-item-container">
 					{section.map((sectionday) => {
@@ -166,7 +171,7 @@ habitItem and changes it accordingly
 							];
 						}
 						return (
-							<div key={ymd + "_" + habitid}>
+							<Center key={ymd + "_" + habitid}>
 								{/* <p>
 									{ymd}, {displayItem.status}
 								</p> */}
@@ -178,7 +183,7 @@ habitItem and changes it accordingly
 									id={ymd}
 									key={ymd}
 								/>
-							</div>
+							</Center>
 						);
 					})}
 				</div>

@@ -3,6 +3,7 @@
 	width: 50px;
 	height: 50px;
 } */
+
 .dayItem {
 	display: flex;
 	flex-direction: column;
@@ -20,8 +21,22 @@
 	scrollbar-width: none; /* Firefox */
 }
 
+.calendar-container-grid {
+	display: grid;
+	/* grid- */
+	grid-template-columns: 180px 1fr 55px;
+}
+
 .calendar-items-container {
+	display: grid;
+	justify-content: space-around;
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-items-left-region,
+.calendar-items-right-region {
 	display: flex;
+	justify-content: flex-end;
 }
 
 .menu-item {
@@ -30,9 +45,12 @@
 	user-select: none;
 	-webkit-user-select: none;
 	cursor: pointer;
-	border: 2px red solid;
-	width: 4em;
+	/* border: 2px red solid; */
+	max-width: 4em;
+	min-width: 45px;
+	width: 100%;
 	border-radius: 0.7em;
+	outline: 2px solid var(--black);
 }
 .menu-item-wrapper.active {
 	border: 1px blue solid;
@@ -47,13 +65,13 @@
 }
 
 .right-button {
-	border: 3px solid var(--red);
+	/* border: 3px solid var(--red); */
 	border-radius: 7px;
 	width: 3em;
 }
 
 .left-button {
-	border: 3px solid var(--red);
+	/* border: 3px solid var(--red); */
 	border-radius: 7px;
 	width: 3em;
 }

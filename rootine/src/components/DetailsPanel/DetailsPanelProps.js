@@ -3,6 +3,7 @@ export const editableNameProps = {
 	fontWeight: "bold",
 	textAlign: "center",
 	className: "habit-name",
+	fontFamily: "var(--headings)",
 };
 
 export const boxProps = {
