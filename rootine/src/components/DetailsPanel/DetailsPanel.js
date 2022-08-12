@@ -25,6 +25,38 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	async function sendPatch() {
+		const url = "https://status418-project.herokuapp.com/habits/";
+		const fetchUrl = url + currentHabitDisplayed.id;
+		console.log(fetchUrl);
+		//send patch req to url for both current name and description
+		//update the page with new data
+		const resultName = await fetch(fetchUrl, {
+			method: "PATCH",
+			headers: {
+				"Content-type": "application/json",
+				"Access-Control-Allow-Origin": "*",
+			},
+			body: JSON.stringify({
+				name: name,
+			}),
+		});
+		const nameData = await resultName.json();
+		console.log(nameData);
+		const resultDesc = await fetch(fetchUrl, {
+			method: "PATCH",
+			headers: {
+				"Content-type": "application/json",
+				"Access-Control-Allow-Origin": "*",
+			},
+			body: JSON.stringify({
+				description: description,
+			}),
+		});
+		const descData = await resultDesc.json();
+		console.log(descData);
+	}
+
 	function setNameAndDesc() {
 		setName(currentHabitDisplayed.name);
 		setDescription(currentHabitDisplayed.description);
@@ -43,12 +75,6 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 	}
 
 	function handleChange(e, input, inputType) {
-		// e.preventDefault();
-		// console.log("Handle change running");
-		// let n = e.currentTarget.value;
-		// console.log("input", input);
-		// console.log("inputType", inputType);
-
 		if (inputType === "name") {
 			setName(input);
 		} else if (inputType === "description") {
@@ -261,7 +287,9 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 					</Stack>
 				</Box>
 				<Center>
-					<Button {...saveButtonProps}>Save</Button>
+					<Button {...saveButtonProps} onClick={sendPatch}>
+						Save
+					</Button>
 				</Center>
 			</form>
 		</Box>
