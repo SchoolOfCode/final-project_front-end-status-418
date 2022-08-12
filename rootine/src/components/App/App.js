@@ -81,7 +81,7 @@ function App() {
   const [currentHabitDisplayed, setCurrentHabitDisplayed] = useState([]);
   const [isFormDisplayed, setIsFormDisplayed] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
-  checkIncomingUserid(user);
+  let userSub = checkIncomingUserid(user);
   function displayForm() {
     if (!isFormDisplayed) {
       setIsFormDisplayed(true);
@@ -123,6 +123,7 @@ function App() {
               setIsFormDisplayed={setIsFormDisplayed}
               isFormDisplayed={isFormDisplayed}
               setCurrentHabitDisplayed={setCurrentHabitDisplayed}
+              userSub={userSub}
             />
           </Flex>
         )}
