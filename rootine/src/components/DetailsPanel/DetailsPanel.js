@@ -13,13 +13,13 @@ import { useState } from "react";
 const DetailsPanel = ({ currentHabitDisplayed }) => {
 	console.log("currentHabitDisplayed: ", currentHabitDisplayed);
 
-	const [name, setName] = useState(
-		currentHabitDisplayed.name || "Add a new habit"
-	);
-	const [description, setDescription] = useState(
-		currentHabitDisplayed.description || "No description found"
-	);
+	const [name, setName] = useState("Add a new habit");
+	const [description, setDescription] = useState("No description found");
 
+	useEffect(() => {
+		setNameAndDesc();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [currentHabitDisplayed]);
 	useEffect(() => {
 		setNameAndDesc();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,6 +47,7 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 		console.log("Handle change running");
 		// let n = e.currentTarget.value;
 		console.log("input", input);
+		console.log("inputType", inputType);
 
 		if (inputType === "name") {
 			setName(input);
