@@ -42,7 +42,7 @@ function HabitRow({ onClick, habitName, habitid, section }) {
     []
   );
 
-  /** Function that takes in habit state (habitObj), new value of status, id of habitItemList obj to change,
+  /* Function that takes in habit state (habitObj), new value of status, id of habitItemList obj to change,
      and returns state with updated status  
   */
   const changeStatus = (state, newStatus, id) => {
