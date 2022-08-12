@@ -71,6 +71,7 @@ async function checkIncomingUserid(user) {
 }
 
 function App() {
+
 	const [currentHabitDisplayed, setCurrentHabitDisplayed] = useState([]);
 	const [isFormDisplayed, setIsFormDisplayed] = useState(false);
 	const [pleaseRefresh, setPleaseRefresh] = useState(true);
@@ -81,6 +82,7 @@ function App() {
 			setIsFormDisplayed(true);
 		}
 	}
+
 
 	if (isLoading) {
 		return (
