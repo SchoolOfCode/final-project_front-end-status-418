@@ -39,6 +39,7 @@ const Calendar = ({
 	}
 
 	async function setExistingHabitsOnPageLoad() {
+		// eslint-disable-next-line no-unused-vars
 		let userId = user ? user.sub.substring(6) : "Unknown user";
 		// console.log("userid = user.sub?: ", userId === user.sub.substring(6));
 
@@ -92,6 +93,7 @@ const Calendar = ({
 			setCurrentHabitDisplayed(newHabits[0]);
 		}
 		refreshCalendar();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pleaseRefresh]);
 
 	const handleClick = (habit) => {

@@ -49,6 +49,7 @@ const DetailsPanel = ({
 				name: name,
 			}),
 		});
+		// eslint-disable-next-line no-unused-vars
 		const nameData = await resultName.json();
 		// console.log(nameData);
 		const resultDesc = await fetch(fetchUrl, {
@@ -61,6 +62,7 @@ const DetailsPanel = ({
 				description: description,
 			}),
 		});
+		// eslint-disable-next-line no-unused-vars
 		const descData = await resultDesc.json();
 		// console.log(descData);
 		refreshCalendar();
