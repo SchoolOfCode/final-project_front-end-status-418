@@ -78,7 +78,7 @@ const Calendar = ({
 	const [habits, setHabits] = useState(newHabits);
 	// eslint-disable-next-line no-unused-vars
 	const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
-	const [section, setSection] = useState(daysOfWeek.slice(0, 3));
+	const [section, setSection] = useState(daysOfWeek.slice(0, 7));
 
 
 	useEffect(() => {
