@@ -17,7 +17,7 @@ function HabitRow({ onClick, habitName, habitid, section }) {
 		const payload = await result.json();
 		const data = payload.payload;
 		const habitsfromDatabase = convertBackEndDataToFrontEnd(data);
-		// console.log("h", habitsfromDatabase);
+		 console.log("h", habitsfromDatabase);
 		if (habitsfromDatabase.length > 1) {
 			setHabitItems(habitsfromDatabase);
 		} else {
@@ -123,6 +123,10 @@ habitItem and changes it accordingly
 					break;
 			}
 			setHabitItems(updatedState);
+			console.log('updatedState', updatedState)
+			console.log(habitid)
+			patchNewCalendarData(habitCopy[index]);
+			
 		}
 	}
 
@@ -139,6 +143,26 @@ habitItem and changes it accordingly
 		});
 		const data = await result.json();
 		return data.success;
+	}
+
+	async function patchNewCalendarData(item) {
+		try {
+			// const url = "http://localhost:3001";
+		const url = "https://status418-project.herokuapp.com";
+		const patchUrl = `${url}/calendar/${habitid}?date=${item.date}`;
+		console.log(patchUrl);
+
+		const result = await fetch(patchUrl , {
+			method: "PATCH",
+			headers: { "Content-type": "application/json" },
+			body: JSON.stringify(item),
+		});
+		const data = await result.json();
+		return data.success;
+		} catch (error) {
+			console.log(error)
+		}
+		
 	}
 
 	try {
