@@ -29,17 +29,18 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 		) : null;
 	}
 
-	function handleChange(e, inputType) {
+	function handleChange(e, input, inputType) {
+		e.preventDefault();
 		console.log("Handle change running");
-		let n = e.target;
-		console.log(n);
+		// let n = e.currentTarget.value;
+		console.log("input", input);
 
-		if (inputType === "name") {
-			setName(n);
-		} else if (inputType === "description") {
-			setDescription(n);
-		} else
-			throw new Error("Incorrect input type in handle change function");
+		// if (inputType === "name") {
+		// 	setName(input);
+		// } else if (inputType === "description") {
+		// 	setDescription(input);
+		// } else
+		// 	throw new Error("Incorrect input type in handle change function");
 	}
 
 	function EditableName() {
@@ -66,12 +67,7 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 		// );
 
 		return isEditing ? (
-			<Editable
-				{...editableNameProps}
-				// onChange={() => {
-				// 	handleChange();
-				// }}
-			>
+			<Editable>
 				<Tooltip label="Click to edit">
 					<EditablePreview py={2} px={4} />
 				</Tooltip>
@@ -85,6 +81,9 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 					currentHabitDisplayed.name !== undefined
 						? currentHabitDisplayed.name
 						: "Add a new habit to get started"
+				}
+				value={
+					name !== undefined ? name : "Add a new habit to get started"
 				}>
 				<Tooltip label="Click to edit">
 					<EditablePreview py={2} px={4} />
@@ -93,9 +92,12 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 					py={2}
 					px={4}
 					as={EditableInput}
-					onChange={() => {
-						handleChange("name");
-					}}
+					// onChange={(e) => {
+					// 	handleChange("name");
+					// }}
+					onChange={(e) =>
+						handleChange(e, e.currentTarget.value, "name")
+					}
 				/>
 				<EditableControls />
 			</Editable>
@@ -115,7 +117,12 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 						<EditablePreview py={2} px={4} />
 					</Tooltip>
 					<EditableControls />
-					<EditableTextarea rows="4" />
+					<EditableTextarea
+						rows="4"
+						// onChange={() => {
+						// 	handleChange("description");
+						// }}
+					/>
 				</Editable>
 			</Box>
 		) : (
@@ -132,14 +139,20 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 					textAlign="center"
 					isPreviewFocusable={true}
 					// selectAllOnFocus={false}
-					onChange={() => {
-						handleChange("description");
-					}}>
+					// onChange={() => {
+					// 	handleChange("description");
+					// }}
+				>
 					<Tooltip label="Click to edit">
 						<EditablePreview py={2} px={4} />
 					</Tooltip>
 					<EditableControls />
-					<EditableTextarea rows="4" />
+					<EditableTextarea
+						rows="4"
+						// onChange={() => {
+						// 	handleChange("description");
+						// }}
+					/>
 				</Editable>
 			</Box>
 		);
@@ -147,6 +160,7 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 
 	return (
 		<Box {...boxProps}>
+			<p>{name ? name : "error"}</p>
 			<form id="details-form">
 				<VStack>
 					<Box>
