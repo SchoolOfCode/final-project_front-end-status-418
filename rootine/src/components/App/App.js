@@ -18,7 +18,16 @@ import { flexProps } from "./appProps.js";
         If it does, do nothing
         If it doesn't, send post req 
 */
-
+async function retrieveHabits(userIdString) {
+    
+    const url = "https://status418-project.herokuapp.com";
+    // const url = "http://localhost:3001";
+    const fetchUrl = `${url}/habits?userId=${userIdString}`;
+    const result = await fetch(fetchUrl);
+    const data = await result.json();
+    console.log(data.data);
+    return data.data;
+  }
 async function fetchAllUsers() {
   let response = await fetch("https://status418-project.herokuapp.com/user");
   let data = await response.json();
@@ -29,17 +38,17 @@ async function fetchAllUsers() {
 async function checkIncomingUserid(user) {
   let userlist = await fetchAllUsers();
   for (let i = 0; i < userlist.length; i++) {
-    console.log(
-      "entry: ",
-      i,
-      "userSub: ",
-      user.sub.substr(6),
-      "vs user_id: ",
-      userlist[i].user_id
-    );
+        /* console.log(
+        "entry: ",
+        i,
+        "userSub: ",
+        user.sub.substr(6),
+        "vs user_id: ",
+        userlist[i].user_id
+        ); */
     if (userlist[i].user_id === user.sub.substr(6)) {
       console.log("incoming user", user.sub.substr(6), "already exists");
-      return user.sub.substr(6);
+      return retrieveHabits(user.sub.substr(6));
     }
     /* else {
             console.log("Creating new user with sub: ",user.sub.substr(6),"and nick: ",user.nickname)
@@ -74,20 +83,27 @@ async function checkIncomingUserid(user) {
       username: `${user.nickname}`,
       user_id: `${user.sub.substr(6)}`,
     }),
+    
   });
+  return retrieveHabits(user.sub.substr(6))
 }
 
 function App() {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
   const [currentHabitDisplayed, setCurrentHabitDisplayed] = useState([]);
   const [isFormDisplayed, setIsFormDisplayed] = useState(false);
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  let userSub = checkIncomingUserid(user);
+//   const { user, isAuthenticated, isLoading } = useAuth0();
+  const [passedDownHabits, setPassedDownHabits] = useState()
+//   let userSub = checkIncomingUserid(user);
+//  let habitsOfCurrentUser = checkIncomingUserid(user); 
+ setCurrentHabitDisplayed(checkIncomingUserid(user).data.length >0 ? checkIncomingUserid(user)[0]: {} )
   function displayForm() {
     if (!isFormDisplayed) {
       setIsFormDisplayed(true);
     }
   }
-
+  setPassedDownHabits(checkIncomingUserid(user))
   if (isLoading) {
     return (
       <div
@@ -102,7 +118,7 @@ function App() {
       </div>
     );
   }
-
+  let userSub = user.sub.substring(6)
   return (
     <div className="App">
       <Navbar />
@@ -124,6 +140,8 @@ function App() {
               isFormDisplayed={isFormDisplayed}
               setCurrentHabitDisplayed={setCurrentHabitDisplayed}
               userSub={userSub}
+             // habitList={habitsOfCurrentUser}
+              passedDownHabits={passedDownHabits}
             />
           </Flex>
         )}

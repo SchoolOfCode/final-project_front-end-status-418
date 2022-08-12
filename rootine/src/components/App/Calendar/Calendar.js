@@ -17,38 +17,41 @@ const getCurrentWeekDays = () => {
 
 // 🤝 Helper function: fetch habits for the current user
 
-async function retrieveHabits(userIdString) {
+/* async function retrieveHabits(userIdString) {
   console.log("SLICER", userIdString.substr(6));
   const url = "https://status418-project.herokuapp.com";
   // const url = "http://localhost:3001";
-  const fetchUrl = `${url}/habits?userId=${userIdString}`;
+  const fetchUrl = `${url}/habits?userId=62f6413a276e28eb38cf01e9`;
   const result = await fetch(fetchUrl);
   const data = await result.json();
   console.log(data.data);
   return data.data;
-}
+} */
 
 const Calendar = ({
   displayForm,
   setCurrentHabitDisplayed,
   setIsFormDisplayed,
   isFormDisplayed,
+  passedDownHabits,
   userSub,
+    habitList
 }) => {
-  let newHabits = [];
+//   let newHabits = [];
+//   let newHabits2=habitList
   console.log(typeof newHabits);
   const { user } = useAuth0();
   let name = user ? user.nickname : "Unknown User";
 
   console.log("usersub (calender) SUBSTR: ", user.sub.substr(6));
 
-  async function setExistingHabitsOnPageLoad(userSub) {
-    const newHabits = await retrieveHabits(userSub);
+/*   async function setExistingHabitsOnPageLoad(userSub) {
+    // const newHabits = await retrieveHabits(userSub);
     console.log("newHabits: ", newHabits);
     setHabits(newHabits);
     setCurrentHabitDisplayed(newHabits[0]);
   }
-
+ */
   // for (let i = 0; i < userlist.length; i++) {
   //     console.log("current user being checked(forloop)", i/* userlist[i].user_id */);
   //     if (userlist[i].user_id !== userId) {
@@ -69,13 +72,16 @@ const Calendar = ({
 
   // }
   //   }
-  const [habits, setHabits] = useState(newHabits);
+//   const [habits, setHabits] = useState(newHabits);
   // eslint-disable-next-line no-unused-vars
   const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
   const [section, setSection] = useState(daysOfWeek.slice(0, 3));
 
   useEffect(() => {
-    setExistingHabitsOnPageLoad(userSub);
+    if (passedDownHabits.length>0) {
+        setCurrentHabitDisplayed(passedDownHabits)
+    }
+    // setExistingHabitsOnPageLoad();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -115,8 +121,8 @@ const Calendar = ({
           />
         </Box>
         <Box>
-          {habits.length > 0
-            ? habits.map((habit) => {
+          {passedDownHabits.length > 0
+            ? passedDownHabits.map((habit) => {
                 console.log("habit", habit);
                 return (
                   <div>
