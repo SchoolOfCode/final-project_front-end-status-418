@@ -7,9 +7,15 @@ import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 
 //prettier-ignore
 import { boxProps, fieldFrRepsProps, inputFrRepsProps, inputFrIntervalProps, saveButtonProps, editableNameProps } from "./DetailsPanelProps.js";
+import { useState } from "react";
 
 const DetailsPanel = ({ currentHabitDisplayed }) => {
-	// console.log("currentHabitDisplayed: ", currentHabitDisplayed);
+	console.log("currentHabitDisplayed: ", currentHabitDisplayed);
+
+	const [name, setName] = useState(currentHabitDisplayed.name);
+	const [description, setDescription] = useState(
+		currentHabitDisplayed.description
+	);
 
 	function EditableControls() {
 		const { isEditing, getSubmitButtonProps, getCancelButtonProps } =
@@ -23,9 +29,17 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 		) : null;
 	}
 
-	function handleChange(e) {
-		let n = e.target.value;
+	function handleChange(e, inputType) {
+		console.log("Handle change running");
+		let n = e.target;
 		console.log(n);
+
+		if (inputType === "name") {
+			setName(n);
+		} else if (inputType === "description") {
+			setDescription(n);
+		} else
+			throw new Error("Incorrect input type in handle change function");
 	}
 
 	function EditableName() {
@@ -54,10 +68,10 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 		return isEditing ? (
 			<Editable
 				{...editableNameProps}
-				defaultValue=""
-				onChange={() => {
-					handleChange();
-				}}>
+				// onChange={() => {
+				// 	handleChange();
+				// }}
+			>
 				<Tooltip label="Click to edit">
 					<EditablePreview py={2} px={4} />
 				</Tooltip>
@@ -75,7 +89,14 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 				<Tooltip label="Click to edit">
 					<EditablePreview py={2} px={4} />
 				</Tooltip>
-				<Input py={2} px={4} as={EditableInput} />
+				<Input
+					py={2}
+					px={4}
+					as={EditableInput}
+					onChange={() => {
+						handleChange("name");
+					}}
+				/>
 				<EditableControls />
 			</Editable>
 		);
@@ -111,7 +132,9 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 					textAlign="center"
 					isPreviewFocusable={true}
 					// selectAllOnFocus={false}
-				>
+					onChange={() => {
+						handleChange("description");
+					}}>
 					<Tooltip label="Click to edit">
 						<EditablePreview py={2} px={4} />
 					</Tooltip>
