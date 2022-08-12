@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./detailsPanel.css";
 import { FaFire, FaTrophy } from "react-icons/fa";
 
@@ -12,10 +13,22 @@ import { useState } from "react";
 const DetailsPanel = ({ currentHabitDisplayed }) => {
 	console.log("currentHabitDisplayed: ", currentHabitDisplayed);
 
-	const [name, setName] = useState(currentHabitDisplayed.name);
-	const [description, setDescription] = useState(
-		currentHabitDisplayed.description
+	const [name, setName] = useState(
+		currentHabitDisplayed.name || "Add a new habit"
 	);
+	const [description, setDescription] = useState(
+		currentHabitDisplayed.description || "No description found"
+	);
+
+	useEffect(() => {
+		setNameAndDesc();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	function setNameAndDesc() {
+		setName(currentHabitDisplayed.name);
+		setDescription(currentHabitDisplayed.description);
+	}
 
 	function EditableControls() {
 		const { isEditing, getSubmitButtonProps, getCancelButtonProps } =
@@ -30,17 +43,17 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 	}
 
 	function handleChange(e, input, inputType) {
-		e.preventDefault();
+		// e.preventDefault();
 		console.log("Handle change running");
 		// let n = e.currentTarget.value;
 		console.log("input", input);
 
-		// if (inputType === "name") {
-		// 	setName(input);
-		// } else if (inputType === "description") {
-		// 	setDescription(input);
-		// } else
-		// 	throw new Error("Incorrect input type in handle change function");
+		if (inputType === "name") {
+			setName(input);
+		} else if (inputType === "description") {
+			setDescription(input);
+		} else
+			throw new Error("Incorrect input type in handle change function");
 	}
 
 	function EditableName() {
@@ -77,14 +90,17 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 		) : (
 			<Editable
 				{...editableNameProps}
-				defaultValue={
-					currentHabitDisplayed.name !== undefined
-						? currentHabitDisplayed.name
-						: "Add a new habit to get started"
-				}
-				value={
-					name !== undefined ? name : "Add a new habit to get started"
-				}>
+				// defaultValue={
+				// 	currentHabitDisplayed.name !== undefined
+				// 		? currentHabitDisplayed.name
+				// 		: "Add a new habit to get started"
+				// }
+				// defaultValue={currentHabitDisplayed.name}
+				defaultValue={name}
+				// value={
+				// 	name !== undefined ? name : "Add a new habit to get started"
+				// }
+			>
 				<Tooltip label="Click to edit">
 					<EditablePreview py={2} px={4} />
 				</Tooltip>
@@ -95,9 +111,10 @@ const DetailsPanel = ({ currentHabitDisplayed }) => {
 					// onChange={(e) => {
 					// 	handleChange("name");
 					// }}
-					onChange={(e) =>
+					onBlur={(e) =>
 						handleChange(e, e.currentTarget.value, "name")
 					}
+					// onChange={(e) => console.log(e.currentTarget.value)}
 				/>
 				<EditableControls />
 			</Editable>
