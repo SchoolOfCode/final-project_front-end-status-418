@@ -319,7 +319,9 @@ const DetailsPanel = ({
 						onClose={onClose}
 						isOpen={isOpen}
 						habit={currentHabitDisplayed}
-						deleteFunction={deleteHabit}
+						deleteFunction={() => {
+							deleteHabit();
+						}}
 					/>
 				</VStack>
 			</form>
@@ -327,7 +329,7 @@ const DetailsPanel = ({
 	);
 };
 
-function DeleteModal({ onClose, isOpen, habit, deleteHabit }) {
+function DeleteModal({ onClose, isOpen, habit, deleteFunction }) {
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
 			<ModalOverlay />
@@ -351,7 +353,7 @@ function DeleteModal({ onClose, isOpen, habit, deleteHabit }) {
 							className="delete-button-modal"
 							onClick={() => {
 								onClose();
-								deleteHabit();
+								deleteFunction();
 							}}>
 							Yes, delete
 						</Button>
