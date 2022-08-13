@@ -55,5 +55,17 @@ export const saveButtonProps = {
 	bgGradient: "linear(to-l, #f05d4d, #f8a642 )",
 	align: "center",
 	direction: "row",
-	mt: "10px",
+	mt: "1em",
+	mb: "1em",
+};
+
+export const delButtonProps = {
+	className: "delete-button",
+	// bgColor: "red.600",
+	// color: "white",
+	colorScheme: "red",
+	align: "center",
+	size: "sm",
+	fontWeight: "normal",
+	mr: "1",
 };
