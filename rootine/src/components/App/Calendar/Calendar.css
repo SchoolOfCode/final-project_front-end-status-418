@@ -1,10 +1,15 @@
 .calendar-view {
-	border: 3px;
+	border-width: 3px;
 	border-radius: 4.5em;
-	box-shadow: 0px 0px 5px gray;
-	background-color: white;
+	/* box-shadow: 0px 0px 5px gray; */
+	/* background-color: white; */
 	/* margin-left: 0.01mm; */
-	width: 150vw;
+	/* width: 150vw; */
 	height: 65vh;
 	overflow-y: auto;
+	padding: 2.5rem;
+	padding-top: calc(0.25rem + 3px);
+	margin: 2.5rem;
+	margin-top: 0.5rem;
+	max-width: 75vw;
 }

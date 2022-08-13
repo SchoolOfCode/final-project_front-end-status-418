@@ -223,25 +223,15 @@ const DetailsPanel = ({
 		);
 	}
 
-	async function deleteHabit(id) {
+	async function deleteHabit() {
 		const url = "https://status418-project.herokuapp.com/habits/";
 		const fetchUrl = url + currentHabitDisplayed.id;
 		console.log(fetchUrl);
-		//send delete req to url by id
-		//update the page with new data
 		const result = await fetch(fetchUrl, {
 			method: "DELETE",
-			// headers: {
-			// 	"Content-type": "application/json",
-			// 	"Access-Control-Allow-Origin": "*",
-			// },
-			// body: JSON.stringify({
-			// 	name: name,
-			// }),
 		});
-		// eslint-disable-next-line no-unused-vars
 		const data = await result.json();
-		// console.log(data);
+		console.log(data);
 		refreshCalendar();
 	}
 
@@ -337,7 +327,7 @@ const DetailsPanel = ({
 	);
 };
 
-function DeleteModal({ onClose, isOpen, habit, deleteFunction }) {
+function DeleteModal({ onClose, isOpen, habit, deleteHabit }) {
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
 			<ModalOverlay />
@@ -349,7 +339,7 @@ function DeleteModal({ onClose, isOpen, habit, deleteFunction }) {
 				<ModalBody>
 					Are you sure you wish to delete your habit “
 					<b>{habit.name}</b>
-					”?
+					”? This will remove all past tracking.
 				</ModalBody>
 
 				<ModalFooter>
@@ -361,7 +351,7 @@ function DeleteModal({ onClose, isOpen, habit, deleteFunction }) {
 							className="delete-button-modal"
 							onClick={() => {
 								onClose();
-								deleteFunction(habit.id);
+								deleteHabit();
 							}}>
 							Yes, delete
 						</Button>

@@ -111,13 +111,15 @@ const Calendar = ({
 			className="calendar-view"
 			color="black"
 			// overflow="hidden"
-			p="10"
+			// p="10"
+			pt="1"
+			// m="10"
 			maxW="75vw">
-			<Box as="div">
+			<Box as="div" pr="4" pl="4" pt="2" pb="2">
 				<Text display="inline" pr="0.25em" fontSize="xl">
 					Welcome,{" "}
 				</Text>
-				<Heading as="p" size="lg" display="inline">
+				<Heading as="p" size="lg" display="inline" lineHeight="1.5">
 					{name}
 				</Heading>
 				<Box
