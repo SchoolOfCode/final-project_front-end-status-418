@@ -1,16 +1,14 @@
 # Rootine - Team Status 418
 
-## 🌱 _Plant the seeds of good habits_ 🌱
-
-<br>
+### 🌱 _Plant the seeds of good habits_ 🌱
 
 > ### “Sure, it’s easy to _start_ a new habit, but how do you make it stick?”
-<br>
+
+## Overview
+TODO: Adjust tone <<<<<<<<<<<<<
 
 [Open app](https://rootine.netlify.app "Rootine deployed on Netlify")
 <br>
-
-TODO: Adjust tone <<<<<<<<<<<<<
 
 As our final project for School of Code, our team, _Status 418_, made "Rootine", a habit-tracking app developed in React. The purpose of this app is to allow users to define some daily habits that they would like to start (or keep) and be able to easily fill in and track their record of doing these habits over time. This app enables users to simply add a new habit along with a brief description and have this stored on our database. The user may then login in and open the page at a different time and update their progress for any day. 
 
@@ -24,11 +22,10 @@ This repository contains the frontend code for the app, which has several featur
     +   Details of the currently selected habit may be edited through here as well
 -   Form through which a new habit may be created, shown by clicking the "add +" button
 -   A row of clickable items for each habit, indicating the status of the user's habit for that day - incomplete, complete, skipped or missed
-
+<br>
+<br>
 ## CSS Styling
-![#f03c15](https://via.placeholder.com/15/f03c15/f03c15.png) `#f03c15`
----
-https://via.placeholder.com/15/f8a642/f8a642.png
+
 
 | Color                              | Hex                                                              |
 | ---------------------------------- | ---------------------------------------------------------------- |
@@ -50,8 +47,7 @@ Upon first opening the app, the user is greeted by the screen below - a simple i
 <details>
 <summary>Landing page preview</summary>
 
-![Landing page screenshot](/../main/rootine/screenshots/LandingPage.JPG)
-
+![Landing page screenshot](/rootine/screenshots/LandingPage.JPG)
 </details>
 <br>
 
@@ -63,12 +59,10 @@ where they may sign up for a new account (with any email, even a fake one), or l
 
 ![Sign up page screenshot](/rootine/screenshots/SignupPage.JPG)
 Clicking the _sign up_ button takes the user to this page
-
 <br>
 
 ![Log in page screenshot](/rootine/screenshots/LoginPage.JPG)
 Clicking the _log in_ button takes the user to this (slightly different) page
-
 </details>
 
 <br>
@@ -80,7 +74,6 @@ TODO: Paragraph about the main page goes here <<<<<<<<<<<<<<<<<
 <summary>Main page preview</summary>
 
 ![Main page screenshot](/rootine/screenshots/MainPage.JPG)
-
 </details>
 <br>
 
@@ -91,7 +84,74 @@ This shows 1 weeks' worth of dates, where each date box is synchronised with a c
 <summary>Calendar bar preview</summary>
 
 ![Calendar bar screenshot](rootine/screenshots/CalendarBar.JPG)
-
 </details>
+<br>
 
+### Habit rows:
+TODO: <<<<<<<<<<<<<<
+
+Description of functionality and usage of habit row component
+
+<details>
+<summary>Habit row preview</summary>
+
+![Habit row screenshot](rootine/screenshots/HabitRow.JPG)
+</details>
+<br>
+
+### Details panel:
+TODO: <<<<<<<<<<<<<<
+
+Description of functionality and usage of details panel component
+
+<details>
+<summary>Detail panel preview</summary>
+
+![Detail panel screenshot](rootine/screenshots/DetailsPanel.JPG)
+</details>
+<br>
+
+### Habit Form:
+TODO: <<<<<<<<<<<<<<
+
+Description of functionality and usage of Habit Form component
+
+<details>
+<summary>Habit form preview</summary>
+
+![Habit form screenshot](rootine/screenshots/HabitForm.JPG)
+</details>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+## Languages and Tools
+
+<br>
+
+ <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/> </a> 
+ <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> 
+ <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a>
+ <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> 
+ <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> 
+ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> 
+ <a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> 
+ <a href="https://www.cypress.io" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/6e46ec1fc23b60c8fd0d2f2ff46db82e16dbd75f/icons/cypress.svg" alt="cypress" width="40" height="40"/> </a> 
+ <a href="https://jestjs.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/jestjsio/jestjsio-icon.svg" alt="jest" width="40" height="40"/> </a> 
 
