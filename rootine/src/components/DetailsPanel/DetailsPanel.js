@@ -31,6 +31,7 @@ const DetailsPanel = ({
 	}, []);
 
 	function refreshCalendar() {
+		console.log("data refresh requested");
 		setPleaseRefresh(!pleaseRefresh);
 	}
 
@@ -222,6 +223,28 @@ const DetailsPanel = ({
 		);
 	}
 
+	async function deleteHabit(id) {
+		const url = "https://status418-project.herokuapp.com/habits/";
+		const fetchUrl = url + currentHabitDisplayed.id;
+		console.log(fetchUrl);
+		//send delete req to url by id
+		//update the page with new data
+		const result = await fetch(fetchUrl, {
+			method: "DELETE",
+			// headers: {
+			// 	"Content-type": "application/json",
+			// 	"Access-Control-Allow-Origin": "*",
+			// },
+			// body: JSON.stringify({
+			// 	name: name,
+			// }),
+		});
+		// eslint-disable-next-line no-unused-vars
+		const data = await result.json();
+		// console.log(data);
+		refreshCalendar();
+	}
+
 	return (
 		<Box {...boxProps}>
 			<form id="details-form">
@@ -306,6 +329,7 @@ const DetailsPanel = ({
 						onClose={onClose}
 						isOpen={isOpen}
 						habit={currentHabitDisplayed}
+						deleteFunction={deleteHabit}
 					/>
 				</VStack>
 			</form>
@@ -313,7 +337,7 @@ const DetailsPanel = ({
 	);
 };
 
-function DeleteModal({ onClose, isOpen, habit }) {
+function DeleteModal({ onClose, isOpen, habit, deleteFunction }) {
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
 			<ModalOverlay />
@@ -335,13 +359,16 @@ function DeleteModal({ onClose, isOpen, habit }) {
 							colorScheme="red"
 							fontWeight="normal"
 							className="delete-button-modal"
-							onClick={onClose}>
+							onClick={() => {
+								onClose();
+								deleteFunction(habit.id);
+							}}>
 							Yes, delete
 						</Button>
 						<Button
 							colorScheme="green"
 							fontWeight="normal"
-							lassName="return-button-modal"
+							className="return-button-modal"
 							onClick={onClose}>
 							No, don’t delete!
 						</Button>
