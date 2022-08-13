@@ -4,7 +4,7 @@
 
 <br>
 
-### “Sure, it’s easy to _start_ a new habit, but how do you make it stick?”
+> ### “Sure, it’s easy to _start_ a new habit, but how do you make it stick?”
 <br>
 
 [Open app](https://rootine.netlify.app "Rootine deployed on Netlify")
@@ -49,7 +49,7 @@ Upon first opening the app, the user is greeted by the screen below - a simple i
 <details>
 <summary>Landing page preview</summary>
 
-![Login page screenshot](/rootine/screenshots/LandingPage.jpg)
+![Login page screenshot](/../main/rootine/screenshots/landingPage.JPG)
 
 </details>
 <br>
@@ -60,12 +60,12 @@ where they may sign up for a new account (with any email, even a fake one), or l
 <details>
 <summary>Sign up & Log in pages preview</summary>
 
-![Sign up page screenshot](/rootine/screenshots/SignupPage.jpg)
+![Sign up page screenshot](/rootine/screenshots/SignupPage.JPG)
 Clicking the _sign up_ button takes the user to this page
 
 <br>
 
-![Log in page screenshot](/rootine/screenshots/LoginPage.jpg)
+![Log in page screenshot](/rootine/screenshots/LoginPage.JPG)
 Clicking the _log in_ button takes the user to this (slightly different) page
 
 </details>
@@ -78,7 +78,7 @@ TODO: Paragraph about the main page goes here <<<<<<<<<<<<<<<<<
 <details>
 <summary>Main page preview</summary>
 
-![Main page screenshot](/rootine/screenshots/MainPage.jpg)
+![Main page screenshot](/rootine/screenshots/MainPage.JPG)
 
 </details>
 <br>
@@ -89,6 +89,6 @@ This shows 1 weeks' worth of dates, where each date box is synchronised with a c
 <details>
 <summary>Calendar bar preview</summary>
 
-![Calendar bar screenshot](/rootine/screenshots/CalendarBar.jpg)
+![Calendar bar screenshot](rootine/screenshots/CalendarBar.JPG)
 
 </details>
