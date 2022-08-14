@@ -24,6 +24,7 @@ This repository contains the frontend code for the app, which has several featur
 -   A row of clickable items for each habit, indicating the status of the user's habit for that day - incomplete, complete, skipped or missed
 <br>
 <br>
+
 ## CSS Styling
 
 
@@ -68,12 +69,21 @@ Clicking the _log in_ button takes the user to this (slightly different) page
 <br>
 
 ## Main page
-TODO: Paragraph about the main page goes here <<<<<<<<<<<<<<<<<
-
+Upon signing up, the user is presented with this page. There are no habits currently added (since they only just signed up), but there is a section on the left, prompting the user to add a new habit as well as an "add" button which the user may click on to access the form view of that section. It is through this form that new habits are defined and submitted. 
 <details>
 <summary>Main page preview</summary>
 
 ![Main page screenshot](/rootine/screenshots/MainPage.JPG)
+</details>
+<br>
+
+### Habit Form:
+The form view of the left section has a "Habit name" input, where the user can define the name of their new habit, as well as a "Habit description" input where a note may be made, giving more detail about that particular habit. Pressing the submit button will add this habit and its description to a database, and associate with the user's account. 
+
+<details>
+<summary>Habit form preview</summary>
+
+![Habit form screenshot](rootine/screenshots/HabitForm.JPG)
 </details>
 <br>
 
@@ -111,17 +121,6 @@ Description of functionality and usage of details panel component
 </details>
 <br>
 
-### Habit Form:
-TODO: <<<<<<<<<<<<<<
-
-Description of functionality and usage of Habit Form component
-
-<details>
-<summary>Habit form preview</summary>
-
-![Habit form screenshot](rootine/screenshots/HabitForm.JPG)
-</details>
-<br>
 
 
 
