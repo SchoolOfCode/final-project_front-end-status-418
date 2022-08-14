@@ -341,7 +341,7 @@ function DeleteModal({ onClose, isOpen, habit, deleteFunction }) {
 				<ModalBody>
 					Are you sure you wish to delete your habit “
 					<b>{habit.name}</b>
-					”? This will remove all past tracking.
+					”? This will remove all past tracking, and cannot be undone.
 				</ModalBody>
 
 				<ModalFooter>
