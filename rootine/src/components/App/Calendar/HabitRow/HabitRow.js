@@ -200,6 +200,7 @@ habitItem and changes it accordingly
 	}
 }
 
+/** HabitRowIcon is a component that lives inside each habit row button, and shows a different icon depending on the status of the habit for that day. Accessibility feature for people with colourblindess */
 function HabitRowIcon({ status }) {
 	switch (status) {
 		case "complete":
