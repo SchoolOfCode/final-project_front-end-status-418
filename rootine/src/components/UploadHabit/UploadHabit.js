@@ -3,7 +3,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "./UploadHabit.css";
 
 //prettier-ignore
-import { boxProps, addHabitSubmitButtonProps, frIntervalInputProps,	frRepsFieldProps, frRepsInputProps, everydayCheckBoxProps } from "./uploadHabitProps.js";
+import { addHabitSubmitButtonProps, frIntervalInputProps,	frRepsFieldProps, frRepsInputProps, everydayCheckBoxProps } from "./uploadHabitProps.js";
+//📝 NOTE: Imports boxProps from DetailsPanel so that the boxes are the same!
+import { boxProps } from "../DetailsPanel/DetailsPanelProps";
 
 //prettier-ignore
 import { Box, VStack, HStack, Stack, Text, Checkbox, Textarea, Select, Button, Input, FormControl, FormLabel, Center, Heading, Tooltip, Modal,  ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, Alert, AlertIcon } from "@chakra-ui/react";
