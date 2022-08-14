@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { Heading, Center } from "@chakra-ui/react";
+// import { IoPause, IoClose, IoCheckmark } from "@chakra-ui/icons";
+import { IoPause, IoClose, IoCheckmark, IoPauseOutline } from "react-icons/io5";
+
 import "./HabitRow.css";
 
 function HabitRow({ onClick, habitName, habitid, section }) {
@@ -181,8 +184,11 @@ habitItem and changes it accordingly
 									}
 									className={`habit-item ${displayItem[0].status}`}
 									id={ymd}
-									key={ymd}
-								/>
+									key={ymd}>
+									<HabitRowIcon
+										status={displayItem[0].status}
+									/>
+								</button>
 							</Center>
 						);
 					})}
@@ -191,6 +197,21 @@ habitItem and changes it accordingly
 		);
 	} catch (error) {
 		console.log(error);
+	}
+}
+
+function HabitRowIcon({ status }) {
+	switch (status) {
+		case "complete":
+			return <IoCheckmark />;
+		case "skip":
+			return <IoPauseOutline />;
+		case "miss":
+			return <IoClose />;
+		case "incomplete":
+			return;
+		default:
+			return;
 	}
 }
 
