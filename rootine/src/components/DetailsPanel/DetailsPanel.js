@@ -71,8 +71,19 @@ const DetailsPanel = ({
 	}
 
 	function setNameAndDesc() {
-		setName(currentHabitDisplayed.name);
-		setDescription(currentHabitDisplayed.description);
+		if (currentHabitDisplayed) {
+			setName(
+				currentHabitDisplayed.name ? currentHabitDisplayed.name : ""
+			);
+			setDescription(
+				currentHabitDisplayed.description
+					? currentHabitDisplayed.description
+					: ""
+			);
+		} else {
+			setName("Add a new habit to get started");
+			setDescription("Add a description to help you acheive your goal");
+		}
 	}
 
 	function EditableControls() {
@@ -330,6 +341,13 @@ const DetailsPanel = ({
 };
 
 function DeleteModal({ onClose, isOpen, habit, deleteFunction }) {
+	// console.log("habit according to DeleteModal", habit);
+	let habitName;
+	if (habit === undefined) {
+		habitName = "";
+	} else {
+		habitName = habit.name;
+	}
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
 			<ModalOverlay />
@@ -340,7 +358,7 @@ function DeleteModal({ onClose, isOpen, habit, deleteFunction }) {
 				<ModalCloseButton />
 				<ModalBody>
 					Are you sure you wish to delete your habit “
-					<b>{habit.name}</b>
+					<b>{habitName ? habitName : ""}</b>
 					”? This will remove all past tracking, and cannot be undone.
 				</ModalBody>
 

@@ -50,7 +50,23 @@ const Calendar = ({
 				const newHabits = await retrieveHabits(user.sub.substr(6));
 				// console.log("newHabits: ", newHabits);
 				setHabits(newHabits);
-				setCurrentHabitDisplayed(newHabits[0]);
+				// setCurrentHabitDisplayed(newHabits[0]);
+				setCurrentHabitDisplayed(
+					newHabits === []
+						? [
+								{
+									name: "",
+									description: "",
+									everyday: true,
+									frequency: {
+										fr_reps: null,
+										fr_interval: null,
+									},
+									userId: userId,
+								},
+						  ]
+						: newHabits[0]
+				);
 			}
 		}
 
