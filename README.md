@@ -98,9 +98,13 @@ This shows 1 weeks' worth of dates, where each date box is synchronised with a c
 <br>
 
 ### Habit rows:
-TODO: <<<<<<<<<<<<<<
+Upon submitting a habit and description, the user will see the new habit immediately appear in the main part of the screen, along with several clickable buttons. Each button, corresponding to the dates in the Calendar bar above, may be clicked to cycle between several colours:
+- White - Incomplete (initial state) - The user is yet to complete the habit that day
+- Green - Complete - The user successfully completed the habit that day
+- Yellow - Skipped - The user did not complete the habit that day for reasons out of their control (e.g. The park was closed)
+- Red - Missed - The user did not complete the habit that day
 
-Description of functionality and usage of habit row component
+This provides a visualisation of the user's track record of sticking to their habits. The database will be update (or create a new entry) with the new status of that habit on that day as each button is clicked.
 
 <details>
 <summary>Habit row preview</summary>
@@ -120,20 +124,6 @@ Description of functionality and usage of details panel component
 ![Detail panel screenshot](rootine/screenshots/DetailsPanel.JPG)
 </details>
 <br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
