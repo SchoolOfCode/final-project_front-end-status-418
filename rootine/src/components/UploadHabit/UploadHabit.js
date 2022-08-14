@@ -29,12 +29,12 @@ Functionality:
 
 */
 
-function UploadHabit() {
+function UploadHabit({ pleaseRefresh, setPleaseRefresh }) {
 	// let user = 'testuser'
 	const { user } = useAuth0();
 	const userId = user.sub.substr(6);
 	//📝 Note that the values for everyday, fr_reps and fr_interval are hard-coded, which is MVP behaviour. Should be updated when features added.
-	const [newHabit, setNewHabit] = useState([
+	const emptyHabit = [
 		{
 			name: "",
 			description: "",
@@ -45,7 +45,9 @@ function UploadHabit() {
 			},
 			userId: userId,
 		},
-	]);
+	];
+	const [newHabit, setNewHabit] = useState(emptyHabit);
+	// const [refreshPage, setRefreshPage] = useState(true);
 
 	//For Add Habit confirmation modal
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -101,6 +103,7 @@ function UploadHabit() {
 		});
 		const data = await response.json();
 		openConfirmModal();
+		requestHabitsRefresh();
 		return data;
 		// TODO: :
 		// ✅ PLAN
@@ -113,6 +116,12 @@ function UploadHabit() {
 	function openConfirmModal() {
 		//Opens up confirmation modal
 		onOpen();
+	}
+
+	function requestHabitsRefresh() {
+		// setRefreshPage(!refreshPage);
+		// setNewHabit(emptyHabit);
+		setPleaseRefresh(!pleaseRefresh);
 	}
 
 	return (
@@ -219,7 +228,7 @@ function UploadHabit() {
 			<AddHabitConfirmModal
 				isOpen={isOpen}
 				onClose={onClose}
-				habitName={newHabit[0].name}
+				habitName={newHabit[0].name ? newHabit[0].name : ""}
 			/>
 		</Box>
 	);
@@ -242,7 +251,6 @@ function AddHabitConfirmModal({ isOpen, onClose, habitName }) {
 				</ModalBody>
 				<ModalFooter>
 					<Button
-						// leftIcon={<DeleteIcon />}
 						colorScheme="blue"
 						fontWeight="normal"
 						className="ok-button-modal"
