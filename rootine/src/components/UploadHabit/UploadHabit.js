@@ -6,7 +6,7 @@ import "./UploadHabit.css";
 import { boxProps, addHabitSubmitButtonProps, frIntervalInputProps,	frRepsFieldProps, frRepsInputProps, everydayCheckBoxProps } from "./uploadHabitProps.js";
 
 //prettier-ignore
-import { Box, VStack, HStack, Stack, Text, Checkbox, Textarea, Select, Button, Input, FormControl, FormLabel, Center, Heading, Tooltip } from "@chakra-ui/react";
+import { Box, VStack, HStack, Stack, Text, Checkbox, Textarea, Select, Button, Input, FormControl, FormLabel, Center, Heading, Tooltip, Modal,  ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, Alert, AlertIcon } from "@chakra-ui/react";
 
 //prettier-ignore
 import { NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper } from '@chakra-ui/react'
@@ -32,7 +32,6 @@ Functionality:
 function UploadHabit() {
 	// let user = 'testuser'
 	const { user } = useAuth0();
-	// TODO: This should be changed to the Auth0 userid once Auth0 implementation is sorted.
 	const userId = user.sub.substr(6);
 	//📝 Note that the values for everyday, fr_reps and fr_interval are hard-coded, which is MVP behaviour. Should be updated when features added.
 	const [newHabit, setNewHabit] = useState([
@@ -47,6 +46,9 @@ function UploadHabit() {
 			userId: userId,
 		},
 	]);
+
+	//For Add Habit confirmation modal
+	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	function handleChangeInput(e, inputType) {
 		e.preventDefault();
@@ -98,6 +100,7 @@ function UploadHabit() {
 			}),
 		});
 		const data = await response.json();
+		openConfirmModal();
 		return data;
 		// TODO: :
 		// ✅ PLAN
@@ -105,6 +108,11 @@ function UploadHabit() {
 		//send post request to url/habits
 		//if receives a success message, provide an alert
 		//Should also trigger App.js to update the habits list for display on the right-hand side of the page
+	}
+
+	function openConfirmModal() {
+		//Opens up confirmation modal
+		onOpen();
 	}
 
 	return (
@@ -208,7 +216,43 @@ function UploadHabit() {
 				[...when form is submitted, new habit data will appear here
 				(temporary)]
 			</article>
+			<AddHabitConfirmModal
+				isOpen={isOpen}
+				onClose={onClose}
+				habitName={newHabit[0].name}
+			/>
 		</Box>
 	);
 }
+
+function AddHabitConfirmModal({ isOpen, onClose, habitName }) {
+	return (
+		<Modal isOpen={isOpen} onClose={onClose}>
+			<ModalOverlay />
+			<ModalContent>
+				<ModalHeader>
+					<Text fontFamily="var(--headings)">Success!</Text>
+				</ModalHeader>
+				<ModalCloseButton />
+				<ModalBody>
+					<Alert status="success">
+						<AlertIcon />
+						New habit “{habitName}” successfully created!
+					</Alert>
+				</ModalBody>
+				<ModalFooter>
+					<Button
+						// leftIcon={<DeleteIcon />}
+						colorScheme="blue"
+						fontWeight="normal"
+						className="ok-button-modal"
+						onClick={onClose}>
+						OK
+					</Button>
+				</ModalFooter>
+			</ModalContent>
+		</Modal>
+	);
+}
+
 export default UploadHabit;
