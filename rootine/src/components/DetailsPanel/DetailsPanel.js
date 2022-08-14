@@ -36,7 +36,8 @@ const DetailsPanel = ({
 	}
 
 	async function sendPatch() {
-		const url = "https://status418-project.herokuapp.com/habits/";
+		const url = "http://localhost:3001/habits/";
+		// const url = "https://status418-project.herokuapp.com/habits/";
 		const fetchUrl = url + currentHabitDisplayed.id;
 		console.log(fetchUrl);
 		//send patch req to url for both current name and description

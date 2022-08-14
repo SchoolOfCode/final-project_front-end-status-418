@@ -13,8 +13,8 @@ function HabitRow({ onClick, habitName, habitid, section }) {
 	const [habitItems, setHabitItems] = useState(initialiseHabits);
 
 	async function retrieveHabitsByHabitId(hId) {
-		// const url = "http://localhost:3001";
-		const url = "https://status418-project.herokuapp.com";
+		const url = "http://localhost:3001";
+		// const url = "https://status418-project.herokuapp.com";
 		const fetchUrl = `${url}/calendar/${hId}`;
 		// console.log(fetchUrl);
 		const result = await fetch(fetchUrl);
