@@ -32,6 +32,7 @@ export const frRepsInputProps = {
 	marginEnd: -10,
 	paddingStart: 0,
 	paddingEnd: 0,
+	border: "none",
 };
 
 export const frIntervalInputProps = {

@@ -179,9 +179,6 @@ function UploadHabit({ pleaseRefresh, setPleaseRefresh }) {
 							direction="row"
 							align="center"
 							mt="20px">
-							TODO: NumberInput field is very large... needs
-							fixing! TODO: V faint shadow of input field box
-							visible on screen, 1px!
 							<Text fontWeight="bold">Frequency</Text>
 							<Tooltip label="Habits that occur with a specific frequency are not currently supported, please check back soon">
 								<NumberInput
