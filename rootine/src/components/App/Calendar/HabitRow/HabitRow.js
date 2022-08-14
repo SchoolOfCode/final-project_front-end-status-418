@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Heading, Center } from "@chakra-ui/react";
 // import { IoPause, IoClose, IoCheckmark } from "@chakra-ui/icons";
-import { IoPause, IoClose, IoCheckmark, IoPauseOutline } from "react-icons/io5";
+import { IoClose, IoCheckmark, IoPauseOutline } from "react-icons/io5";
 
 import "./HabitRow.css";
 
