@@ -117,7 +117,7 @@ const Calendar = ({
 	}, [pleaseRefresh]);
 
 	const handleClick = (habit) => {
-		console.log(`clicked ${habit.name}`);
+		// console.log(`clicked ${habit.name}`);
 		if (isFormDisplayed) {
 			setIsFormDisplayed(false);
 		}
