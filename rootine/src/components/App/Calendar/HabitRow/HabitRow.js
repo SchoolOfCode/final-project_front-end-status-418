@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import { Heading, Center } from "@chakra-ui/react";
+// import { IoPause, IoClose, IoCheckmark } from "@chakra-ui/icons";
+import { IoClose, IoCheckmark, IoPauseOutline } from "react-icons/io5";
+
 import "./HabitRow.css";
 
 function HabitRow({ onClick, habitName, habitid, section }) {
@@ -172,11 +176,15 @@ habitItem and changes it accordingly
 
 	try {
 		return (
-			<div className="habit-row">
+			<div className="habit-row-grid">
 				<div className="habit-name-container">
-					<h3 className="habit-name" onClick={onClick}>
+					<Heading
+						as="h3"
+						size="sm"
+						className="habit-name"
+						onClick={onClick}>
 						{habitName}
-					</h3>
+					</Heading>
 				</div>
 				<div className="habit-item-container">
 					{section.map((sectionday) => {
@@ -195,7 +203,8 @@ habitItem and changes it accordingly
 							];
 						}
 						return (
-							<div key={ymd + "_" + habitid}>
+
+							<Center key={ymd + "_" + habitid}>
 								{/* <p>
 									{ymd}, {displayItem[0].date}, status:{" "}
 									{displayItem[0].status}, id:{" "}
@@ -207,9 +216,12 @@ habitItem and changes it accordingly
 									}
 									className={`habit-item ${displayItem[0].status}`}
 									id={ymd}
-									key={ymd}
-								/>
-							</div>
+									key={ymd}>
+									<HabitRowIcon
+										status={displayItem[0].status}
+									/>
+								</button>
+							</Center>
 						);
 					})}
 				</div>
@@ -217,6 +229,22 @@ habitItem and changes it accordingly
 		);
 	} catch (error) {
 		console.log(error);
+	}
+}
+
+/** HabitRowIcon is a component that lives inside each habit row button, and shows a different icon depending on the status of the habit for that day. Accessibility feature for people with colourblindess */
+function HabitRowIcon({ status }) {
+	switch (status) {
+		case "complete":
+			return <IoCheckmark />;
+		case "skip":
+			return <IoPauseOutline />;
+		case "miss":
+			return <IoClose />;
+		case "incomplete":
+			return;
+		default:
+			return;
 	}
 }
 
