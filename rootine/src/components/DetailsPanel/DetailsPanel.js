@@ -84,7 +84,7 @@ const DetailsPanel = ({
 			);
 		} else {
 			setName("Add a new habit to get started");
-			setDescription("Add a description to help you acheive your goal");
+			setDescription("Add a description to help you achieve your goal");
 		}
 	}
 
