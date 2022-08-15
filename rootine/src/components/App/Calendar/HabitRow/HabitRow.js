@@ -17,7 +17,7 @@ function HabitRow({ onClick, habitName, habitid, section }) {
 		const payload = await result.json();
 		const data = payload.payload;
 		const habitsfromDatabase = convertBackEndDataToFrontEnd(data);
-		console.log("h", habitsfromDatabase);
+		// console.log("h", habitsfromDatabase);
 		if (habitsfromDatabase.length > 1) {
 			setHabitItems(habitsfromDatabase);
 		} else {
@@ -69,7 +69,7 @@ habitItem and changes it accordingly
 */
 	function toggleState(currentDate) {
 		/* defining the index of the specific object in habitItemList that we are toggling */
-		console.log("currentDate", habitid, currentDate, typeof currentDate);
+		// console.log("currentDate", habitid, currentDate, typeof currentDate);
 		let habitCopy = [...habitItems];
 		// console.log("habitCopy", habitCopy);
 		let index = habitCopy.findIndex(
@@ -89,7 +89,7 @@ habitItem and changes it accordingly
 		} else {
 			/* defining the status property we want to change using the above index */
 			let status = habitCopy[index].status;
-			console.log("status", habitid, currentDate, status);
+			// console.log("status", habitid, currentDate, status);
 			let updatedState = [];
 
 			switch (status) {
@@ -126,7 +126,7 @@ habitItem and changes it accordingly
 			setHabitItems(updatedState);
 			// console.log("updatedState", updatedState);
 			// console.log("updatedState index", updatedState[index]);
-			console.log(habitid);
+			// console.log(habitid);
 			patchNewCalendarData(updatedState[index]);
 		}
 	}
@@ -151,8 +151,8 @@ habitItem and changes it accordingly
 			// const url = "http://localhost:3001";
 			const url = "https://status418-project.herokuapp.com";
 			const patchUrl = `${url}/calendar/${habitid}?date=${item.date}`;
-			console.log(patchUrl);
-			console.log("patchCal item", item);
+			// console.log(patchUrl);
+			// console.log("patchCal item", item);
 
 			const result = await fetch(patchUrl, {
 				method: "PATCH",
@@ -196,11 +196,11 @@ habitItem and changes it accordingly
 						}
 						return (
 							<div key={ymd + "_" + habitid}>
-								<p>
+								{/* <p>
 									{ymd}, {displayItem[0].date}, status:{" "}
 									{displayItem[0].status}, id:{" "}
 									{displayItem[0].habit_id}
-								</p>
+								</p> */}
 								<button
 									onClick={() =>
 										toggleState(displayItem[0].date)
