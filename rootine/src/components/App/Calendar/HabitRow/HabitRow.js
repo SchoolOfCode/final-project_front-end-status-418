@@ -139,9 +139,9 @@ habitItem and changes it accordingly
 		// const url = "http://localhost:3001";
 		const url = "https://status418-project.herokuapp.com";
 		const fetchUrl = `${url}/calendar`;
-		console.log(fetchUrl);
+		// console.log(fetchUrl);
 
-		const result = await fetch(url + "/calendar", {
+		const result = await fetch(fetchUrl, {
 			method: "POST",
 			headers: { "Content-type": "application/json" },
 			body: JSON.stringify(body),
@@ -203,7 +203,6 @@ habitItem and changes it accordingly
 							];
 						}
 						return (
-
 							<Center key={ymd + "_" + habitid}>
 								{/* <p>
 									{ymd}, {displayItem[0].date}, status:{" "}
