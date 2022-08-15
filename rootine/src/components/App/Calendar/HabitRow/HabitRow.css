@@ -17,9 +17,9 @@
 	justify-content: left;
 	align-items: center;
 }
-/* .habit-name {
-	font-family: var(--headings);
-} */
+.habit-name-container .habit-name {
+	padding: 8px;
+}
 .habit-item-container {
 	/* min-width: 80%; */
 	/* display: flex; */
@@ -55,4 +55,10 @@
 }
 .incomplete {
 	background-color: white;
+}
+
+.habit-name-container .habit-name:hover {
+	background-color: #e9eef4;
+	cursor: pointer;
+	border-radius: 1em;
 }
