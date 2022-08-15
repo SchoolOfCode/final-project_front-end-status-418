@@ -239,12 +239,13 @@ const DetailsPanel = ({
 	async function deleteHabit() {
 		const url = "https://status418-project.herokuapp.com/habits/";
 		const fetchUrl = url + currentHabitDisplayed.id;
-		console.log(fetchUrl);
+		// console.log(fetchUrl);
 		const result = await fetch(fetchUrl, {
 			method: "DELETE",
 		});
+		// eslint-disable-next-line no-unused-vars
 		const data = await result.json();
-		console.log(data);
+		// console.log(data);
 		refreshCalendar();
 	}
 

@@ -70,9 +70,9 @@ function UploadHabit({ pleaseRefresh, setPleaseRefresh }) {
 		const createdHabit = [{ ...newHabit[0] }];
 
 		// #️⃣ Temporary: prints data object in the DOM just so we can see that the data have been correctly captured .
-		document.getElementById(
-			"print-current-state"
-		).innerHTML = `Name: ${newHabit[0].name}, Description: ${newHabit[0].description}, Everyday: ${newHabit[0].everyday}, FrReps: ${newHabit[0].frequency.fr_reps}, FrInterval: ${newHabit[0].frequency.fr_interval}, User: ${newHabit[0].userId}`;
+		// document.getElementById(
+		// 	"print-current-state"
+		// ).innerHTML = `Name: ${newHabit[0].name}, Description: ${newHabit[0].description}, Everyday: ${newHabit[0].everyday}, FrReps: ${newHabit[0].frequency.fr_reps}, FrInterval: ${newHabit[0].frequency.fr_interval}, User: ${newHabit[0].userId}`;
 
 		postHabit(createdHabit);
 	}
@@ -80,18 +80,18 @@ function UploadHabit({ pleaseRefresh, setPleaseRefresh }) {
 	/** 📩 It Takes the data from the new habit form submission and sends to the database. Note that the back-end currently only expects three values: name, description and userId. The other values are hard-coded (MVP behaviour). */
 	async function postHabit(habit) {
 		//TODO: Be sure to change this if working on another port or once backend is deployed.
-		console.log("usersub (uploadhabit)", user.sub);
+		// console.log("usersub (uploadhabit)", user.sub);
 		// const url = "http://localhost:3001/habits";
 		const url = `https://status418-project.herokuapp.com/habits`;
 
-		console.log(`URL set to: ${url}`);
-		console.log(
-			"Habit",
-			habit[0].name,
-			habit[0].description,
-			habit[0].userId,
-			"sent!"
-		);
+		// console.log(`URL set to: ${url}`);
+		// console.log(
+		// 	"Habit",
+		// 	habit[0].name,
+		// 	habit[0].description,
+		// 	habit[0].userId,
+		// 	"sent!"
+		// );
 		const response = await fetch(url, {
 			method: "POST",
 			headers: {
