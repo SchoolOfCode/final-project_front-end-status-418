@@ -219,12 +219,12 @@ function UploadHabit({ pleaseRefresh, setPleaseRefresh }) {
 					</Center>
 				</FormControl>
 			</form>
-			<article
+			{/* <article
 				id="print-current-state"
 				style={{ marginTop: "1em", fontSize: "0.8em" }}>
 				[...when form is submitted, new habit data will appear here
 				(temporary)]
-			</article>
+			</article> */}
 			<AddHabitConfirmModal
 				isOpen={isOpen}
 				onClose={onClose}
