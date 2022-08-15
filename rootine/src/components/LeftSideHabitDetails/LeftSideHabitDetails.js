@@ -24,7 +24,10 @@ export default function LeftSideHabitDetails({
 		<Box>
 			<VStack {...vStackProps}>
 				{isFormDisplayed ? (
-					<UploadHabit />
+					<UploadHabit
+						pleaseRefresh={pleaseRefresh}
+						setPleaseRefresh={setPleaseRefresh}
+					/>
 				) : (
 					<DetailsPanel
 						currentHabitDisplayed={currentHabitDisplayed}

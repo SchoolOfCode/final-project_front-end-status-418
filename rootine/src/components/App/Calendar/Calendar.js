@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Box, Heading, Button } from "@chakra-ui/react";
+import { Container, Box, Heading, Button, Text } from "@chakra-ui/react";
 import { CalendarBar } from "../../CalendarBar/CalendarBar";
 import "./Calendar.css";
 import HabitRow from "./HabitRow/HabitRow";
@@ -54,7 +54,23 @@ const Calendar = ({
 				const newHabits = await retrieveHabits(user.sub.substr(6));
 				// console.log("newHabits: ", newHabits);
 				setHabits(newHabits);
-				setCurrentHabitDisplayed(newHabits[0]);
+				// setCurrentHabitDisplayed(newHabits[0]);
+				setCurrentHabitDisplayed(
+					newHabits === []
+						? [
+								{
+									name: "",
+									description: "",
+									everyday: true,
+									frequency: {
+										fr_reps: null,
+										fr_interval: null,
+									},
+									userId: userId,
+								},
+						  ]
+						: newHabits[0]
+				);
 			}
 		}
 
@@ -114,25 +130,27 @@ const Calendar = ({
 			className="calendar-view"
 			color="black"
 			// overflow="hidden"
-			p="10"
+			// p="10"
+			pt="1"
+			// m="10"
 			maxW="75vw">
-			<Box as="div">
-				<Heading as="h3" size="lg">
-					Welcome, {name}
+			<Box as="div" pr="4" pl="4" pt="2" pb="2">
+				<Text display="inline" pr="0.25em" fontSize="xl">
+					Welcome,{" "}
+				</Text>
+				<Heading as="p" size="lg" display="inline" lineHeight="1.5">
+					{name}
 				</Heading>
 				<Box
 					className="calendar-bar-container"
-					mb="20px"
-					justifyContent="flex-end"
-					border="2px"
-					borderColor="red"
-					pl="130px">
+					justifyContent="flex-end">
 					<CalendarBar
 						dayList={daysOfWeek}
 						section={section}
 						setSection={setSection}
 					/>
 				</Box>
+				<div id="calendar-divider"></div>
 				<Box>
 					{habits.length > 0
 						? habits.map((habit) => {
