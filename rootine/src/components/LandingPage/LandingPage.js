@@ -27,13 +27,22 @@ export default function LandingPage() {
 					<VStack spacing={10} shouldWrapChildren>
 						<Box className="box-right">
 							<Text
-								className="landing-page-description"
+								className="landing-page-description-1"
 								color="black"
-								fontSize="lg">
-								A few sentences of context on what the app
-								offers, how it will help you maintain your
-								habits and thus you should definitely sign up to
-								use it
+								fontSize="lg"
+								textAlign="justify"
+								>
+								Intuitive design to organise your habits and
+								smart visuals to maintain your momentum.
+								</Text>
+								<Text
+								className="landing-page-description-2"
+								color="black"
+								fontSize="lg"
+								textAlign="justify"
+								> 
+								Simplify how you track your habits using Rootine.
+
 							</Text>
 						</Box>
 						<LoginButton />
