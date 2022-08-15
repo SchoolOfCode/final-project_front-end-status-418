@@ -5,6 +5,11 @@ import "./Calendar.css";
 import HabitRow from "./HabitRow/HabitRow";
 import { default as dayjs } from "dayjs";
 import { useAuth0 } from "@auth0/auth0-react";
+import { retrieveHabits } from "../AppHelperFunctions";
+import { AddIcon } from "@chakra-ui/icons";
+
+//Imports same button styling as the 'Save' button in the Upload new Habit panel for the 'Add' button.
+import { addHabitSubmitButtonProps } from "../../UploadHabit/uploadHabitProps.js";
 
 const getCurrentWeekDays = () => {
 	const weekStart = dayjs().startOf("week");
@@ -15,47 +20,85 @@ const getCurrentWeekDays = () => {
 	return days;
 };
 
-// 🤝 Helper function: fetch habits for the current user
-async function retrieveHabits(userIdString) {
-	const url = "https://status418-project.herokuapp.com";
-	// const url = "http://localhost:3001";
-	const fetchUrl = `${url}/habits/?userId=${userIdString}`;
-	const result = await fetch(fetchUrl);
-	const data = await result.json();
-	console.log(data.data);
-	return data.data;
-}
-
 const Calendar = ({
 	displayForm,
 	setCurrentHabitDisplayed,
 	setIsFormDisplayed,
 	isFormDisplayed,
+	pleaseRefresh,
 }) => {
 	let newHabits = [];
-	console.log(typeof newHabits);
+	// console.log(typeof newHabits);
 	const { user } = useAuth0();
 	let name = user ? user.nickname : "Unknown User";
-	let userId = user ? user.sub : "Unknown user";
 
-	async function setExistingHabitsOnPageLoad() {
-		const newHabits = await retrieveHabits(userId);
-		console.log("newHabits", newHabits);
-		setHabits(newHabits);
+	// console.log("usersub (calender) SUBSTR: ", user.sub.substr(6));
 
-		//Sets the default value for the habits Display Panel
-		setCurrentHabitDisplayed(newHabits[0]);
+	async function fetchAllUsers() {
+		let response = await fetch(
+			"https://status418-project.herokuapp.com/user"
+		);
+		let data = await response.json();
+		return data.payload;
 	}
 
+	async function setExistingHabitsOnPageLoad() {
+		// eslint-disable-next-line no-unused-vars
+		let userId = user ? user.sub.substring(6) : "Unknown user";
+		// console.log("userid = user.sub?: ", userId === user.sub.substring(6));
+
+		let userlist = await fetchAllUsers();
+		// console.log("Uselist: ", userlist);
+		for (let i = 0; i < userlist.length; i++) {
+			if (userlist[i].user_id === user.sub.substring(6)) {
+				const newHabits = await retrieveHabits(user.sub.substr(6));
+				// console.log("newHabits: ", newHabits);
+				setHabits(newHabits);
+				setCurrentHabitDisplayed(newHabits[0]);
+			}
+		}
+
+		// for (let i = 0; i < userlist.length; i++) {
+		//     console.log("current user being checked(forloop)", i/* userlist[i].user_id */);
+		//     if (userlist[i].user_id !== userId) {
+		//         console.log(
+		//             "Habits doesn't exist for this user in the database"
+		//         );
+		//         return <p>Nothing found for you</p>;
+		//     } if (userlist[i].user_id === userId) {
+
+		//         console.log("userid:", userId);
+		//         const newHabits = await retrieveHabits(user.sub.substr(6));
+		//         console.log("newHabits", newHabits);
+		//         setHabits(newHabits);
+		//         console.log("newHabit0: ", newHabits[0]);
+		//         //Sets the default value for the habits Display Panel
+		//         setCurrentHabitDisplayed(newHabits[0]);
+		//     }
+
+		// }
+	}
 	const [habits, setHabits] = useState(newHabits);
 	// eslint-disable-next-line no-unused-vars
 	const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
-	const [section, setSection] = useState(daysOfWeek.slice(0, 3));
+	const [section, setSection] = useState(daysOfWeek.slice(0, 7));
 
 	useEffect(() => {
 		setExistingHabitsOnPageLoad();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	//refresh habits list when 'pleaserefresh' state is changed
+	useEffect(() => {
+		async function refreshCalendar() {
+			const newHabits = await retrieveHabits(user.sub.substr(6));
+			// console.log("newHabits: ", newHabits);
+			setHabits(newHabits);
+			setCurrentHabitDisplayed(newHabits[0]);
+		}
+		refreshCalendar();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [pleaseRefresh]);
 
 	const handleClick = (habit) => {
 		console.log(`clicked ${habit.name}`);
@@ -63,7 +106,7 @@ const Calendar = ({
 			setIsFormDisplayed(false);
 		}
 		setCurrentHabitDisplayed(habit);
-		console.log("habit", habit);
+		// console.log("habit", habit);
 	};
 
 	return (
@@ -93,7 +136,7 @@ const Calendar = ({
 				<Box>
 					{habits.length > 0
 						? habits.map((habit) => {
-								console.log("habit", habit);
+								/* console.log("habit", habit); */
 								return (
 									<div>
 										<HabitRow
@@ -110,9 +153,11 @@ const Calendar = ({
 				</Box>
 
 				<Button
-					bgGradient={["linear(to-l, red.400, orange.300)"]}
+					// bgGradient={["linear(to-l, red.400, orange.300)"]}
+					{...addHabitSubmitButtonProps}
+					size="lg"
 					onClick={displayForm}>
-					Add +
+					Add <AddIcon ml="2" />
 				</Button>
 			</Box>
 		</Container>
