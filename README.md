@@ -153,22 +153,24 @@ This is also where the currently selected habit's streak is displayed.
 <br>
 
 ## Languages, Tools & Websites used:
-
 <br>
 
+<a href="https://miro.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/miro-2.svg" alt="miro" width="40" height="40"/> </a>
 <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/> </a>
 <a href="https://www.trello.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/trello/trello-icon.svg" alt="trello" width="40" height="40"/> </a>
 <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a>
 <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a>
+<a href="https://chakra-ui.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/get-icon/geticon/fc0f660daee147afb4a56c64e12bde6486b73e39/icons/chakra-icon.svg" alt="chakra" width="40" height="40"/> </a>
 <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a>
 <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a>
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a>
 <a href="https://auth0.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/auth0/auth0-icon.svg" alt="auth0" width="40" height="40"/> </a>
-<a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a>
+<a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/gilbarbara/logos/11f54bac1b6dfad2cbd1c6da9f2245ec8b5ea22b/logos/postman-icon.svg" alt="postman" width="40" height="40"/> </a>
 <a href="https://www.cypress.io" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/6e46ec1fc23b60c8fd0d2f2ff46db82e16dbd75f/icons/cypress.svg" alt="cypress" width="40" height="40"/> </a>
 <a href="https://jestjs.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/jestjsio/jestjsio-icon.svg" alt="jest" width="40" height="40"/> </a>
 <a href="https://www.netlify.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/netlify/netlify-icon.svg" alt="netlify" width="40" height="40"/> </a>
-(Plus Miro & Chakra UI Library)
+
+<br>
 
 ## Authors
 
