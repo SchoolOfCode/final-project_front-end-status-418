@@ -123,10 +123,10 @@ const AboutModal = () => {
         About
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size="full" isCentered="">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader></ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Center>
@@ -137,15 +137,15 @@ const AboutModal = () => {
               />
             </Center>
             <VStack mt="3">
-              <Text as="p" fontSize="2xl">
+              <Text as="p" fontSize="3xl">
                 🌱 <i>Plant the seeds of good habits</i> 🌱
               </Text>
-              <Text as="p" fontSize="xl">
+              <Text as="p" fontSize="2xl">
                 “Sure, it’s easy to start a new habit, but how do you make it
                 stick?”
               </Text>
             </VStack>
-            <Text mt="3">
+            <Text mt="3" fontSize="lg">
               Rootine is an easy-to-use app that allows you to define daily
               habits that you’d like to start (or keep!). To get started, create
               a login using your email address, which will allow you to save
@@ -155,11 +155,11 @@ const AboutModal = () => {
             <Heading mt="5" fontSize="2xl">
               Create a new habit
             </Heading>
-            <Text mt="3">
+            <Text mt="3" fontSize="lg">
               To create a new habit, click the orange ‘Add+’ button, and add a
               name for your habit as well as a description.
             </Text>
-            <Text mt="3">
+            <Text mt="3" fontSize="lg">
               To help increase the chance of success with your new habit, try to
               think of an ‘anchor’ for your habit that will make it easier to
               complete the new habit, or remind you to do it. For example, if
@@ -173,7 +173,7 @@ const AboutModal = () => {
             <Heading mt="5" fontSize="2xl">
               Tracking your habit
             </Heading>
-            <Text>
+            <Text fontSize="lg">
               Rootine provides you with three options for tracking your habit:
               Complete ✓ , Skip ⏸︎, and Miss ⨯. The white boxes indicate
               ‘Incomplete’, for future dates and days you don't intend to
@@ -232,7 +232,7 @@ const AboutModal = () => {
             <Heading mt="5" fontSize="2xl">
               Editing a habit
             </Heading>
-            <Text mt="3">
+            <Text mt="3" fontSize="lg">
               To edit the name or description of a habit, click on the
               corresponding habit in the calendar view. The details panel at
               left will update to show the habit you select. You can then click
@@ -243,7 +243,7 @@ const AboutModal = () => {
             <Heading mt="5" fontSize="2xl">
               Deleting a habit
             </Heading>
-            <Text mt="3">
+            <Text mt="3" fontSize="lg">
               To delete a habit, click on the corresponding habit in the
               calendar view. The details panel at left will update to show the
               habit you select. You can then click on the red ‘Delete this
@@ -255,7 +255,7 @@ const AboutModal = () => {
             <Heading mt="5" fontSize="2xl">
               Frequency of a habit
             </Heading>
-            <Text mt="3">
+            <Text mt="3" fontSize="lg">
               At the moment, the app will only allow you to set habits with a
               recurring frequency of ‘everyday’. Our team is hard at work on
               giving you the ability to set habits that occur a number of times
@@ -268,10 +268,14 @@ const AboutModal = () => {
           </ModalBody>
           ;
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button
+              colorScheme="orange"
+              bgGradient="linear(to-l, #f05d4d, #f8a642)"
+              mr={3}
+              onClick={onClose}
+            >
               Close
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
