@@ -81,8 +81,8 @@ function UploadHabit({ pleaseRefresh, setPleaseRefresh }) {
 	async function postHabit(habit) {
 		//TODO: Be sure to change this if working on another port or once backend is deployed.
 		console.log("usersub (uploadhabit)", user.sub);
-		const url = "http://localhost:3001/habits";
-		// const url = `https://status418-project.herokuapp.com/habits`;
+		// const url = "http://localhost:3001/habits";
+		const url = `https://status418-project.herokuapp.com/habits`;
 
 		console.log(`URL set to: ${url}`);
 		console.log(
