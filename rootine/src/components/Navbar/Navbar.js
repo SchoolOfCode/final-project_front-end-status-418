@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import "./Navbar.css";
 import { useColorMode } from "@chakra-ui/react";
@@ -7,6 +8,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 //prettier-ignore
 import { Menu, MenuButton, MenuList, MenuItem, MenuGroup, MenuDivider, Button } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 
 export default function Navbar() {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -38,18 +49,7 @@ export default function Navbar() {
           >
             Blog
           </Button>
-          <Button
-            fontFamily={"Quando"}
-            fontWeight={50}
-            fontSize={25}
-            as={Button}
-            colorScheme="#f8a642"
-            color="#22553f"
-            _hover={{ color: "#f05d4d", backgroundColor: "transparent" }}
-            backgroundColor="transparent"
-          >
-            About
-          </Button>
+          <AboutModal />
           <Menu>
             <MenuButton
               fontFamily={"Quando"}
@@ -98,3 +98,65 @@ export default function Navbar() {
     </header>
   );
 }
+
+const AboutModal = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <>
+      <Button
+        onClick={onOpen}
+        fontFamily={"Quando"}
+        fontWeight={50}
+        fontSize={25}
+        as={Button}
+        colorScheme="#f8a642"
+        color="#22553f"
+        _hover={{ color: "#f05d4d", backgroundColor: "transparent" }}
+        backgroundColor="transparent"
+      >
+        About
+      </Button>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>some filler text for the moment</ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+};
+
+const BlogModal = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <>
+      <Button onClick={onOpen}>Open Modal</Button>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>some filler text for the moments</ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+};
