@@ -26,9 +26,18 @@ export default function Navbar() {
           {/* <img className="header-name" src="" alt="rootine" /> */}
         </div>
         <div className="header-div-right">
-          <a className="blogs" href="#">
+          <Button
+            fontFamily={"Quando"}
+            fontWeight={50}
+            fontSize={25}
+            as={Button}
+            colorScheme="#f8a642"
+            color="#22553f"
+            _hover={{ color: "#f05d4d", backgroundColor: "transparent" }}
+            backgroundColor="transparent"
+          >
             Blog
-          </a>
+          </Button>
           <Button
             fontFamily={"Quando"}
             fontWeight={50}
