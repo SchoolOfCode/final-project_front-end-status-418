@@ -123,7 +123,7 @@ const AboutModal = () => {
         About
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} size="full" isCentered="">
+      <Modal isOpen={isOpen} onClose={onClose} size="4xl" isCentered="">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader></ModalHeader>
