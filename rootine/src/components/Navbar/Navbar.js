@@ -319,20 +319,29 @@ const BlogModal = () => {
 
               <ListItem>
                 <ListIcon as={GrArticle} color="green.500" />
-                <Link href="https://chakra-ui.com" isExternal>
-                  How to create habits <ExternalLinkIcon mx="2px" />
+                <Link href="https://jamesclear.com/habit-tracker" isExternal>
+                  The Ultimate Habit Tracker Guide: Why and How to Track Your
+                  Habits - James Clear <ExternalLinkIcon mx="2px" />
                 </Link>
               </ListItem>
               <ListItem>
                 <ListIcon as={GrArticle} color="green.500" />
-                <Link href="https://chakra-ui.com" isExternal>
-                  How to create habits <ExternalLinkIcon mx="2px" />
+                <Link
+                  href="https://www.livingwellspendingless.com/10-good-habits-will-change-life/"
+                  isExternal
+                >
+                  10 Simple Habits That Will Change Your Life - Ruth Soukup{" "}
+                  <ExternalLinkIcon mx="2px" />
                 </Link>
               </ListItem>
               <ListItem>
                 <ListIcon as={GrArticle} color="green.500" />
-                <Link href="https://chakra-ui.com" isExternal>
-                  How to create habits <ExternalLinkIcon mx="2px" />
+                <Link
+                  href="https://fs.blog/everything-you-need-to-know-about-habits-the-science-of-habit-formation-and-change/#:~:text=The%20process%E2%80%94in%20which%20the,for%20ways%20to%20save%20effort."
+                  isExternal
+                >
+                  The Science Of Habit Formation And Change - Farnham Street
+                  <ExternalLinkIcon mx="2px" />
                 </Link>
               </ListItem>
             </List>
