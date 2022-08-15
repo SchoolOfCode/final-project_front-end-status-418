@@ -29,9 +29,18 @@ export default function Navbar() {
           <a className="blogs" href="#">
             Blog
           </a>
-          <a className="about" href="#">
+          <Button
+            fontFamily={"Quando"}
+            fontWeight={50}
+            fontSize={25}
+            as={Button}
+            colorScheme="#f8a642"
+            color="#22553f"
+            _hover={{ color: "#f05d4d", backgroundColor: "transparent" }}
+            backgroundColor="transparent"
+          >
             About
-          </a>
+          </Button>
           <Menu>
             <MenuButton
               fontFamily={"Quando"}
