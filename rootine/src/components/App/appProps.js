@@ -2,7 +2,8 @@ export const flexProps = {
 	className: "view-container",
 	width: "auto",
 	display: "flex",
-	alignItems: "center",
+	alignItems: "flex-start",
+	justifyContent: "center",
 	margin: "2em",
-	gap: "20",
+	// gap: "1em",
 };

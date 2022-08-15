@@ -1,18 +1,19 @@
-export const boxProps = {
-	className: "details-panel-parent",
-	w: "23em",
-	h: "70%",
-	minHeight: "550px",
-	borderWidth: "3px",
-	borderRadius: "4.5em",
-	overflow: "hidden",
-	color: "black",
-	boxShadow: "md",
-	m: 20,
-	p: 10,
-	pt: 1,
-	bg: "white",
-};
+//❌ DO NOT USE: boxProps for UploadHabit are now imported from DetailsPanel so that the boxes are identical.
+// export const boxProps = {
+// 	className: "details-panel-parent",
+// 	w: "23em",
+// 	h: "70%",
+// 	minHeight: "550px",
+// 	borderWidth: "3px",
+// 	borderRadius: "4.5em",
+// 	overflow: "hidden",
+// 	color: "black",
+// 	boxShadow: "md",
+// 	m: 20,
+// 	p: 10,
+// 	pt: 1,
+// 	bg: "white",
+// };
 
 export const frRepsFieldProps = {
 	className: "fr-reps-input-disabled",
@@ -32,6 +33,7 @@ export const frRepsInputProps = {
 	marginEnd: -10,
 	paddingStart: 0,
 	paddingEnd: 0,
+	border: "none",
 };
 
 export const frIntervalInputProps = {

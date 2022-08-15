@@ -3,11 +3,11 @@ import "./detailsPanel.css";
 import { FaFire, FaTrophy } from "react-icons/fa";
 
 //prettier-ignore
-import { Box, VStack, HStack, Stack, Heading, Text, Checkbox, Editable, EditableInput, EditablePreview, useEditableControls, EditableTextarea,  ButtonGroup, IconButton, Input, Wrap, WrapItem,  Tooltip, Select, Button, Center } from "@chakra-ui/react";
-import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
+import { Box, VStack, HStack, Stack, Heading, Text, Checkbox, Editable, EditableInput, EditablePreview, useEditableControls, EditableTextarea,  ButtonGroup, IconButton, Input, Wrap, WrapItem,  Tooltip, Select, Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react";
+import { CheckIcon, CloseIcon, DeleteIcon } from "@chakra-ui/icons";
 
 //prettier-ignore
-import { boxProps, fieldFrRepsProps, inputFrRepsProps, inputFrIntervalProps, saveButtonProps, editableNameProps } from "./DetailsPanelProps.js";
+import { boxProps, fieldFrRepsProps, inputFrRepsProps, inputFrIntervalProps, saveButtonProps, editableNameProps, delButtonProps } from "./DetailsPanelProps.js";
 import { useState } from "react";
 
 const DetailsPanel = ({
@@ -15,7 +15,8 @@ const DetailsPanel = ({
 	pleaseRefresh,
 	setPleaseRefresh,
 }) => {
-	console.log("currentHabitDisplayed: ", currentHabitDisplayed);
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	// console.log("currentHabitDisplayed: ", currentHabitDisplayed);
 
 	const [name, setName] = useState("Add a new habit");
 	const [description, setDescription] = useState("No description found");
@@ -30,10 +31,12 @@ const DetailsPanel = ({
 	}, []);
 
 	function refreshCalendar() {
+		console.log("data refresh requested");
 		setPleaseRefresh(!pleaseRefresh);
 	}
 
 	async function sendPatch() {
+		// const url = "http://localhost:3001/habits/";
 		const url = "https://status418-project.herokuapp.com/habits/";
 		const fetchUrl = url + currentHabitDisplayed.id;
 		console.log(fetchUrl);
@@ -69,8 +72,19 @@ const DetailsPanel = ({
 	}
 
 	function setNameAndDesc() {
-		setName(currentHabitDisplayed.name);
-		setDescription(currentHabitDisplayed.description);
+		if (currentHabitDisplayed) {
+			setName(
+				currentHabitDisplayed.name ? currentHabitDisplayed.name : ""
+			);
+			setDescription(
+				currentHabitDisplayed.description
+					? currentHabitDisplayed.description
+					: ""
+			);
+		} else {
+			setName("Add a new habit to get started");
+			setDescription("Add a description to help you acheive your goal");
+		}
 	}
 
 	function EditableControls() {
@@ -221,6 +235,18 @@ const DetailsPanel = ({
 		);
 	}
 
+	async function deleteHabit() {
+		const url = "https://status418-project.herokuapp.com/habits/";
+		const fetchUrl = url + currentHabitDisplayed.id;
+		console.log(fetchUrl);
+		const result = await fetch(fetchUrl, {
+			method: "DELETE",
+		});
+		const data = await result.json();
+		console.log(data);
+		refreshCalendar();
+	}
+
 	return (
 		<Box {...boxProps}>
 			<form id="details-form">
@@ -294,14 +320,74 @@ const DetailsPanel = ({
 						</Tooltip>
 					</Stack>
 				</Box>
-				<Center>
+				<VStack>
 					<Button {...saveButtonProps} onClick={sendPatch}>
 						Save
 					</Button>
-				</Center>
+					<Button {...delButtonProps} onClick={onOpen}>
+						Delete this habit
+					</Button>
+					<DeleteModal
+						onClose={onClose}
+						isOpen={isOpen}
+						habit={currentHabitDisplayed}
+						deleteFunction={() => {
+							deleteHabit();
+						}}
+					/>
+				</VStack>
 			</form>
 		</Box>
 	);
 };
+
+function DeleteModal({ onClose, isOpen, habit, deleteFunction }) {
+	// console.log("habit according to DeleteModal", habit);
+	let habitName;
+	if (habit === undefined) {
+		habitName = "";
+	} else {
+		habitName = habit.name;
+	}
+	return (
+		<Modal isOpen={isOpen} onClose={onClose}>
+			<ModalOverlay />
+			<ModalContent>
+				<ModalHeader>
+					<Text fontFamily="var(--headings)">Deleting habit...</Text>
+				</ModalHeader>
+				<ModalCloseButton />
+				<ModalBody>
+					Are you sure you wish to delete your habit “
+					<b>{habitName ? habitName : ""}</b>
+					”? This will remove all past tracking, and cannot be undone.
+				</ModalBody>
+
+				<ModalFooter>
+					<ButtonGroup spacing="6">
+						<Button
+							leftIcon={<DeleteIcon />}
+							colorScheme="red"
+							fontWeight="normal"
+							className="delete-button-modal"
+							onClick={() => {
+								onClose();
+								deleteFunction();
+							}}>
+							Yes, delete
+						</Button>
+						<Button
+							colorScheme="green"
+							fontWeight="normal"
+							className="return-button-modal"
+							onClick={onClose}>
+							No, don’t delete!
+						</Button>
+					</ButtonGroup>
+				</ModalFooter>
+			</ModalContent>
+		</Modal>
+	);
+}
 
 export default DetailsPanel;

@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import { Heading, Center } from "@chakra-ui/react";
+// import { IoPause, IoClose, IoCheckmark } from "@chakra-ui/icons";
+import { IoClose, IoCheckmark, IoPauseOutline } from "react-icons/io5";
+
 import "./HabitRow.css";
 
 function HabitRow({ onClick, habitName, habitid, section }) {
@@ -27,7 +31,7 @@ function HabitRow({ onClick, habitName, habitid, section }) {
 
 	function convertBackEndDataToFrontEnd(data) {
 		let h = data.map((ob) => ({
-			habit_id: ob.habit_id,
+			habit_id: ob.id,
 			date: ob.date,
 			status: ob.status,
 		}));
@@ -69,7 +73,7 @@ habitItem and changes it accordingly
 */
 	function toggleState(currentDate) {
 		/* defining the index of the specific object in habitItemList that we are toggling */
-		console.log("currentDate", habitid, currentDate, typeof currentDate);
+		// console.log("currentDate", habitid, currentDate, typeof currentDate);
 		let habitCopy = [...habitItems];
 		// console.log("habitCopy", habitCopy);
 		let index = habitCopy.findIndex(
@@ -89,7 +93,7 @@ habitItem and changes it accordingly
 		} else {
 			/* defining the status property we want to change using the above index */
 			let status = habitCopy[index].status;
-			console.log("status", habitid, currentDate, status);
+			// console.log("status", habitid, currentDate, status);
 			let updatedState = [];
 
 			switch (status) {
@@ -122,7 +126,12 @@ habitItem and changes it accordingly
 					);
 					break;
 			}
+			// console.log("updatedState", updatedState);
 			setHabitItems(updatedState);
+			// console.log("updatedState", updatedState);
+			// console.log("updatedState index", updatedState[index]);
+			// console.log(habitid);
+			patchNewCalendarData(updatedState[index]);
 		}
 	}
 
@@ -141,13 +150,41 @@ habitItem and changes it accordingly
 		return data.success;
 	}
 
+	async function patchNewCalendarData(item) {
+		try {
+			// const url = "http://localhost:3001";
+			const url = "https://status418-project.herokuapp.com";
+			const patchUrl = `${url}/calendar/${habitid}?date=${item.date}`;
+			// console.log(patchUrl);
+			// console.log("patchCal item", item);
+
+			const result = await fetch(patchUrl, {
+				method: "PATCH",
+				headers: {
+					"Content-type": "application/json",
+					"Access-Control-Allow-Origin": "*",
+				},
+				body: JSON.stringify({ status: item.status }),
+			});
+			const data = await result.json();
+			return data.success;
+		} catch (error) {
+			console.log(error);
+		}
+		return;
+	}
+
 	try {
 		return (
-			<div className="habit-row">
+			<div className="habit-row-grid">
 				<div className="habit-name-container">
-					<h3 className="habit-name" onClick={onClick}>
+					<Heading
+						as="h3"
+						size="sm"
+						className="habit-name"
+						onClick={onClick}>
 						{habitName}
-					</h3>
+					</Heading>
 				</div>
 				<div className="habit-item-container">
 					{section.map((sectionday) => {
@@ -166,19 +203,25 @@ habitItem and changes it accordingly
 							];
 						}
 						return (
-							<div key={ymd + "_" + habitid}>
-								<p>
-									{ymd}, {displayItem.status}
-								</p>
+
+							<Center key={ymd + "_" + habitid}>
+								{/* <p>
+									{ymd}, {displayItem[0].date}, status:{" "}
+									{displayItem[0].status}, id:{" "}
+									{displayItem[0].habit_id}
+								</p> */}
 								<button
 									onClick={() =>
 										toggleState(displayItem[0].date)
 									}
 									className={`habit-item ${displayItem[0].status}`}
 									id={ymd}
-									key={ymd}
-								/>
-							</div>
+									key={ymd}>
+									<HabitRowIcon
+										status={displayItem[0].status}
+									/>
+								</button>
+							</Center>
 						);
 					})}
 				</div>
@@ -186,6 +229,22 @@ habitItem and changes it accordingly
 		);
 	} catch (error) {
 		console.log(error);
+	}
+}
+
+/** HabitRowIcon is a component that lives inside each habit row button, and shows a different icon depending on the status of the habit for that day. Accessibility feature for people with colourblindess */
+function HabitRowIcon({ status }) {
+	switch (status) {
+		case "complete":
+			return <IoCheckmark />;
+		case "skip":
+			return <IoPauseOutline />;
+		case "miss":
+			return <IoClose />;
+		case "incomplete":
+			return;
+		default:
+			return;
 	}
 }
 
