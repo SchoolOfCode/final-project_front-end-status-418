@@ -32,7 +32,7 @@ const DetailsPanel = ({
 	}, []);
 
 	function refreshCalendar() {
-		console.log("data refresh requested");
+		// console.log("data refresh requested");
 		setPleaseRefresh(!pleaseRefresh);
 	}
 
@@ -40,7 +40,7 @@ const DetailsPanel = ({
 		// const url = "http://localhost:3001/habits/";
 		const url = "https://status418-project.herokuapp.com/habits/";
 		const fetchUrl = url + currentHabitDisplayed.id;
-		console.log(fetchUrl);
+		// console.log(fetchUrl);
 		//send patch req to url for both current name and description
 		//update the page with new data
 		const resultName = await fetch(fetchUrl, {
