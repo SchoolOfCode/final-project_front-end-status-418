@@ -13,6 +13,8 @@ export default function Navbar() {
 	// console.log("isAuthenticated", isAuthenticated);
 	// console.log("user", user);
 
+
+
 	// const { colorMode, toggleColorMode } = useColorMode();
 	return (
 		<header className="header">
@@ -45,6 +47,7 @@ export default function Navbar() {
 						</MenuButton>
 						<MenuList>
 							{/* <MenuGroup title="Menu">
+
                 <MenuItem onClick={toggleColorMode}>
                   Toggle {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </MenuItem>
