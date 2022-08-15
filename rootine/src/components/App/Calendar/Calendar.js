@@ -6,6 +6,10 @@ import HabitRow from "./HabitRow/HabitRow";
 import { default as dayjs } from "dayjs";
 import { useAuth0 } from "@auth0/auth0-react";
 import { retrieveHabits } from "../AppHelperFunctions";
+import { AddIcon } from "@chakra-ui/icons";
+
+//Imports same button styling as the 'Save' button in the Upload new Habit panel for the 'Add' button.
+import { addHabitSubmitButtonProps } from "../../UploadHabit/uploadHabitProps.js";
 
 const getCurrentWeekDays = () => {
 	const weekStart = dayjs().startOf("week");
@@ -94,7 +98,6 @@ const Calendar = ({
 	// eslint-disable-next-line no-unused-vars
 	const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
 	const [section, setSection] = useState(daysOfWeek.slice(0, 7));
-	// console.log(section);
 
 	useEffect(() => {
 		setExistingHabitsOnPageLoad();
@@ -168,9 +171,11 @@ const Calendar = ({
 				</Box>
 
 				<Button
-					bgGradient={["linear(to-l, red.400, orange.300)"]}
+					// bgGradient={["linear(to-l, red.400, orange.300)"]}
+					{...addHabitSubmitButtonProps}
+					size="lg"
 					onClick={displayForm}>
-					Add +
+					Add <AddIcon ml="2" />
 				</Button>
 			</Box>
 		</Container>
