@@ -1,6 +1,9 @@
-import { default as dayjs } from "dayjs";
-import "../CalendarBar/CalendarBar.css";
 import React from "react";
+import "../CalendarBar/CalendarBar.css";
+import { default as dayjs } from "dayjs";
+import { Text, Flex, Spacer, Center } from "@chakra-ui/react";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { chevronProps } from "./calendarBarProps.js";
 
 /* Plan 
 Edit Menu Item component 
@@ -36,16 +39,18 @@ export const CalendarBar = ({ dayList, section, setSection }) => {
 				className={`menu-item dayItem ${selected ? "active" : ""} ${
 					currentDay === now ? "today" : null
 				}`}>
-				<h5 className="title">{title}</h5>
-				<span className="text"> {text}</span>
+				<h5 className="title" style={{ fontWeight: "600" }}>
+					{title}
+				</h5>
+				<span className="text" style={{ fontWeight: "600" }}>
+					{text}
+				</span>
 			</div>
 		);
 	};
 
 	function LeftArrow() {
-
 		const getPrevSection = () => {
-
 			let firstItem = section[0];
 			const dataCopy = [...dayList];
 			let numberToDisplay = 7;
@@ -59,7 +64,6 @@ export const CalendarBar = ({ dayList, section, setSection }) => {
 
 			// if there are enough items to display
 
-			
 			if (indexFirstItemCurrentSection - numberToDisplay >= 0) {
 				let prevSection = dataCopy.slice(
 					indexFirstItemCurrentSection - numberToDisplay,
@@ -69,62 +73,76 @@ export const CalendarBar = ({ dayList, section, setSection }) => {
 				setSection(prevSection);
 
 				// if there are not enough items to display
-			} else if (indexFirstItemCurrentSection - (numberToDisplay -1) >= 0) {
+			} else if (
+				indexFirstItemCurrentSection - (numberToDisplay - 1) >=
+				0
+			) {
 				let prevSection = dataCopy.slice(
-					indexFirstItemCurrentSection - (numberToDisplay -1),
+					indexFirstItemCurrentSection - (numberToDisplay - 1),
 					indexFirstItemCurrentSection
 				);
 				setSection(prevSection);
-
-			} else if (indexFirstItemCurrentSection - (numberToDisplay -2) >= 0) {
+			} else if (
+				indexFirstItemCurrentSection - (numberToDisplay - 2) >=
+				0
+			) {
 				let prevSection = dataCopy.slice(
-					indexFirstItemCurrentSection - (numberToDisplay -2),
+					indexFirstItemCurrentSection - (numberToDisplay - 2),
 					indexFirstItemCurrentSection
 				);
 				setSection(prevSection);
-
-			} else if (indexFirstItemCurrentSection - (numberToDisplay -3) >= 0) {
+			} else if (
+				indexFirstItemCurrentSection - (numberToDisplay - 3) >=
+				0
+			) {
 				let prevSection = dataCopy.slice(
-					indexFirstItemCurrentSection - (numberToDisplay -3),
+					indexFirstItemCurrentSection - (numberToDisplay - 3),
 					indexFirstItemCurrentSection
 				);
 				setSection(prevSection);
-
-			} else if (indexFirstItemCurrentSection - (numberToDisplay -4) >= 0) {
+			} else if (
+				indexFirstItemCurrentSection - (numberToDisplay - 4) >=
+				0
+			) {
 				let prevSection = dataCopy.slice(
-					indexFirstItemCurrentSection - (numberToDisplay -4),
+					indexFirstItemCurrentSection - (numberToDisplay - 4),
 					indexFirstItemCurrentSection
 				);
 				setSection(prevSection);
-
-			} else if (indexFirstItemCurrentSection - (numberToDisplay -5) >= 0) {
+			} else if (
+				indexFirstItemCurrentSection - (numberToDisplay - 5) >=
+				0
+			) {
 				let prevSection = dataCopy.slice(
-					indexFirstItemCurrentSection - (numberToDisplay -5),
+					indexFirstItemCurrentSection - (numberToDisplay - 5),
 					indexFirstItemCurrentSection
 				);
 				setSection(prevSection);
-
-			} else if (indexFirstItemCurrentSection - (numberToDisplay -6) >= 0) {
+			} else if (
+				indexFirstItemCurrentSection - (numberToDisplay - 6) >=
+				0
+			) {
 				let prevSection = dataCopy.slice(
-					indexFirstItemCurrentSection - (numberToDisplay -6),
+					indexFirstItemCurrentSection - (numberToDisplay - 6),
 					indexFirstItemCurrentSection
 				);
 				setSection(prevSection);
-
-				} else {setSection(section)};
+			} else {
+				setSection(section);
+			}
 		};
 		return (
 			<button className="left-button" onClick={getPrevSection}>
-				Prev
+				{/* Prev */}
+				<ChevronLeftIcon {...chevronProps} />
 			</button>
 		);
 	}
 
 	function RightArrow() {
 		const getNextSection = () => {
-			
 			const dataCopy = [...dayList];
-			let numberToDisplay = 7
+			let numberToDisplay = 7;
 			//let remainderNumberToDisplay = dataCopy.length % numberToDisplay;
 			let lastItemOfCurrentSection = section[section.length - 1];
 			let indexLastItemOfCurrentSection = dataCopy.findIndex(
@@ -136,7 +154,10 @@ export const CalendarBar = ({ dayList, section, setSection }) => {
 			// console.log("indexOfLastItemy", indexLastItemOfCurrentSection);
 
 			// if there are enough items to display
-			if (indexFirstItemOfNextSection + numberToDisplay <= dataCopy.length) {
+			if (
+				indexFirstItemOfNextSection + numberToDisplay <=
+				dataCopy.length
+			) {
 				let nextSection = dataCopy.slice(
 					indexFirstItemOfNextSection,
 					indexFirstItemOfNextSection + numberToDisplay
@@ -144,99 +165,122 @@ export const CalendarBar = ({ dayList, section, setSection }) => {
 				// console.log("nextSection", nextSection);
 
 				setSection(nextSection);
-				// if there are not enough items to display 
-			} else if (indexFirstItemOfNextSection + (numberToDisplay -1) <= dataCopy.length) {
+				// if there are not enough items to display
+			} else if (
+				indexFirstItemOfNextSection + (numberToDisplay - 1) <=
+				dataCopy.length
+			) {
 				let nextSection = dataCopy.slice(
 					indexFirstItemOfNextSection,
-					indexFirstItemOfNextSection + (numberToDisplay -1)
+					indexFirstItemOfNextSection + (numberToDisplay - 1)
 				);
 				// console.log("nextSection", nextSection);
 
 				setSection(nextSection);
-				
+
 				// if weve just displayed the last items
-			} else if (indexFirstItemOfNextSection + (numberToDisplay -2) <= dataCopy.length) {
-				
+			} else if (
+				indexFirstItemOfNextSection + (numberToDisplay - 2) <=
+				dataCopy.length
+			) {
 				let nextSection = dataCopy.slice(
 					indexFirstItemOfNextSection,
-					indexFirstItemOfNextSection + (numberToDisplay -2)
+					indexFirstItemOfNextSection + (numberToDisplay - 2)
 				);
 				// console.log("nextSection", nextSection);
 
 				setSection(nextSection);
-				
-			
-				} else if (indexFirstItemOfNextSection + (numberToDisplay -3) <= dataCopy.length) {
-				
-					let nextSection = dataCopy.slice(
-						indexFirstItemOfNextSection,
-						indexFirstItemOfNextSection + (numberToDisplay -3)
-					);
-					// console.log("nextSection", nextSection);
-	
-					setSection(nextSection);
-				} else if (indexFirstItemOfNextSection + (numberToDisplay -4) <= dataCopy.length) {
-				
-					let nextSection = dataCopy.slice(
-						indexFirstItemOfNextSection,
-						indexFirstItemOfNextSection + (numberToDisplay -4)
-					);
-					// console.log("nextSection", nextSection);
-	
-					setSection(nextSection);
-				} else if (indexFirstItemOfNextSection + (numberToDisplay -5) <= dataCopy.length) {
-				
-					let nextSection = dataCopy.slice(
-						indexFirstItemOfNextSection,
-						indexFirstItemOfNextSection + (numberToDisplay -5)
-					);
-					// console.log("nextSection", nextSection);
-	
-					setSection(nextSection);	
-				} else if (indexFirstItemOfNextSection + (numberToDisplay -6) <= dataCopy.length) {
-				
-					let nextSection = dataCopy.slice(
-						indexFirstItemOfNextSection,
-						indexFirstItemOfNextSection + (numberToDisplay -6)
-					);
-					// console.log("nextSection", nextSection);
-	
-					setSection(nextSection);
+			} else if (
+				indexFirstItemOfNextSection + (numberToDisplay - 3) <=
+				dataCopy.length
+			) {
+				let nextSection = dataCopy.slice(
+					indexFirstItemOfNextSection,
+					indexFirstItemOfNextSection + (numberToDisplay - 3)
+				);
+				// console.log("nextSection", nextSection);
+
+				setSection(nextSection);
+			} else if (
+				indexFirstItemOfNextSection + (numberToDisplay - 4) <=
+				dataCopy.length
+			) {
+				let nextSection = dataCopy.slice(
+					indexFirstItemOfNextSection,
+					indexFirstItemOfNextSection + (numberToDisplay - 4)
+				);
+				// console.log("nextSection", nextSection);
+
+				setSection(nextSection);
+			} else if (
+				indexFirstItemOfNextSection + (numberToDisplay - 5) <=
+				dataCopy.length
+			) {
+				let nextSection = dataCopy.slice(
+					indexFirstItemOfNextSection,
+					indexFirstItemOfNextSection + (numberToDisplay - 5)
+				);
+				// console.log("nextSection", nextSection);
+
+				setSection(nextSection);
+			} else if (
+				indexFirstItemOfNextSection + (numberToDisplay - 6) <=
+				dataCopy.length
+			) {
+				let nextSection = dataCopy.slice(
+					indexFirstItemOfNextSection,
+					indexFirstItemOfNextSection + (numberToDisplay - 6)
+				);
+				// console.log("nextSection", nextSection);
+
+				setSection(nextSection);
 			} else {
-				
 				setSection(section);
 			}
 		};
 		return (
 			<button className="right-button" onClick={getNextSection}>
-				Next
+				{/* Next */}
+				<ChevronRightIcon {...chevronProps} />
 			</button>
 		);
 	}
 	// console.log(dayList);
 	return (
 		<div className=" calendar-bar-main">
-			<LeftArrow />
-			<div className="calendar-items-container">
-				{section.map((day) => {
-					return (
-						<CalendarItem
-							itemId={day.format("D")}
-							title={day.format("MMM")}
-							text={day.format("DD")}
-							key={day.format("YYYYMMDD")}
-							id={day.format("YYYYMMDD")}
-							now={day.format("DDMM")}
-						/>
-					);
-				})}
+			<Flex>
+				<Text ml="185px" fontSize="sm">
+					{section[0].format("MMMM YYYY")}
+				</Text>
+				<Spacer />
+				<Text mr="55px" fontSize="sm">
+					{section[section.length - 1].format("MMMM YYYY")}
+				</Text>
+			</Flex>
+			<div className="calendar-container-grid">
+				<div className="calendar-items-left-region">
+					<LeftArrow />
+				</div>
+				<div className="calendar-items-container">
+					{section.map((day) => {
+						return (
+							<Center>
+								<CalendarItem
+									itemId={day.format("D")}
+									title={day.format("ddd")}
+									text={day.format("DD")}
+									key={day.format("YYYYMMDD")}
+									id={day.format("YYYYMMDD")}
+									now={day.format("DDMM")}
+								/>
+							</Center>
+						);
+					})}
+				</div>
+				<div className="calendar-items-right-region">
+					<RightArrow />
+				</div>
 			</div>
-
-			<RightArrow />
 		</div>
 	);
 };
-
-
-
-

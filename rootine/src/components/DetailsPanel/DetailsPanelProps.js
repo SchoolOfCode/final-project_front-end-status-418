@@ -3,20 +3,26 @@ export const editableNameProps = {
 	fontWeight: "bold",
 	textAlign: "center",
 	className: "habit-name",
+	fontFamily: "var(--headings)",
 };
 
 export const boxProps = {
 	className: "details-panel-parent",
 	maxW: "1000px",
 	width: "23em",
-	height: "70%",
+	// height: "70%",
 	minHeight: "550px",
+	maxHeight: "800px",
 	borderWidth: "3px",
 	borderRadius: "4.5em",
-	overflow: "hidden",
+	// overflow: "hidden",
 	color: "black",
 	boxShadow: "md",
-	m: 20,
+	ml: 10,
+	mr: 10,
+	mt: 2,
+	mb: 2,
+	// mt: "3.8rem",
 	p: 10,
 	pt: 1,
 	bg: "white",
@@ -55,5 +61,17 @@ export const saveButtonProps = {
 	bgGradient: "linear(to-l, #f05d4d, #f8a642 )",
 	align: "center",
 	direction: "row",
-	mt: "10px",
+	mt: "1em",
+	mb: "1em",
+};
+
+export const delButtonProps = {
+	className: "delete-button",
+	// bgColor: "red.600",
+	// color: "white",
+	colorScheme: "red",
+	align: "center",
+	size: "sm",
+	fontWeight: "normal",
+	mr: "1",
 };

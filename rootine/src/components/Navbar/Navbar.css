@@ -1,58 +1,62 @@
-.header 
-{
-    background: linear-gradient(to top,  #f05d4d, #f8a642 50%, #eee 45%, white 75%);
+.header {
+	background: linear-gradient(
+		to top,
+		#f05d4d,
+		#f8a642 50%,
+		#eee 45%,
+		white 75%
+	);
 	min-height: 150px;
 	display: flex;
 	flex-direction: column;
-	align-items: baseline ;
+	align-items: baseline;
 	justify-content: center;
 	font-size: calc(10px + 2vmin);
 	color: #22553f;
 }
 
-.header-wrapper{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header-wrapper {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .header-div-left {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-right: auto;
-    justify-content: space-between;
-    align-content:center;
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	margin-right: auto;
+	justify-content: space-between;
+	align-content: center;
 }
 .header-div-right {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-left: auto;
-    align-content: center;
-
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	margin-left: auto;
+	align-content: center;
 }
 .header-logo {
-    margin: 0 10px 0 10px;
+	margin: 4px 10px 0 30px;
+	height: 120px;
+	width: auto;
 }
 .header-name {
-    margin: 0 10px 0 10px;
-    font-family: "Quando";
-    font-size: 70px;
+	margin: 0 10px 0 10px;
+	font-family: "Quando";
+	font-size: 70px;
 }
 .blogs {
-    margin: 0 10px 0 10px;
-    font-family: "Quando";
-    font-size: 25px;
+	margin: 0 10px 0 10px;
+	font-family: "Quando";
+	font-size: 25px;
 }
 .about {
-    margin: 0 10px 0 10px;
-    font-family: "Quando";
-    font-size: 25px;
+	margin: 0 10px 0 10px;
+	font-family: "Quando";
+	font-size: 25px;
 }
 
-
 a:hover {
-    color: #f05d4d;
-  }
-
+	color: #f05d4d;
+}
