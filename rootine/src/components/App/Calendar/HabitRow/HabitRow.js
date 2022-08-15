@@ -17,7 +17,7 @@ function HabitRow({ onClick, habitName, habitid, section }) {
 		const payload = await result.json();
 		const data = payload.payload;
 		const habitsfromDatabase = convertBackEndDataToFrontEnd(data);
-		 console.log("h", habitsfromDatabase);
+		console.log("h", habitsfromDatabase);
 		if (habitsfromDatabase.length > 1) {
 			setHabitItems(habitsfromDatabase);
 		} else {
@@ -27,7 +27,7 @@ function HabitRow({ onClick, habitName, habitid, section }) {
 
 	function convertBackEndDataToFrontEnd(data) {
 		let h = data.map((ob) => ({
-			habit_id: ob.habit_id,
+			habit_id: ob.id,
 			date: ob.date,
 			status: ob.status,
 		}));
@@ -122,11 +122,12 @@ habitItem and changes it accordingly
 					);
 					break;
 			}
+			// console.log("updatedState", updatedState);
 			setHabitItems(updatedState);
-			console.log('updatedState', updatedState)
-			console.log(habitid)
-			patchNewCalendarData(habitCopy[index]);
-			
+			// console.log("updatedState", updatedState);
+			// console.log("updatedState index", updatedState[index]);
+			console.log(habitid);
+			patchNewCalendarData(updatedState[index]);
 		}
 	}
 
@@ -148,21 +149,25 @@ habitItem and changes it accordingly
 	async function patchNewCalendarData(item) {
 		try {
 			// const url = "http://localhost:3001";
-		const url = "https://status418-project.herokuapp.com";
-		const patchUrl = `${url}/calendar/${habitid}?date=${item.date}`;
-		console.log(patchUrl);
+			const url = "https://status418-project.herokuapp.com";
+			const patchUrl = `${url}/calendar/${habitid}?date=${item.date}`;
+			console.log(patchUrl);
+			console.log("patchCal item", item);
 
-		const result = await fetch(patchUrl , {
-			method: "PATCH",
-			headers: { "Content-type": "application/json" },
-			body: JSON.stringify(item),
-		});
-		const data = await result.json();
-		return data.success;
+			const result = await fetch(patchUrl, {
+				method: "PATCH",
+				headers: {
+					"Content-type": "application/json",
+					"Access-Control-Allow-Origin": "*",
+				},
+				body: JSON.stringify({ status: item.status }),
+			});
+			const data = await result.json();
+			return data.success;
 		} catch (error) {
-			console.log(error)
+			console.log(error);
 		}
-		
+		return;
 	}
 
 	try {
@@ -192,7 +197,9 @@ habitItem and changes it accordingly
 						return (
 							<div key={ymd + "_" + habitid}>
 								<p>
-									{ymd}, {displayItem.status}
+									{ymd}, {displayItem[0].date}, status:{" "}
+									{displayItem[0].status}, id:{" "}
+									{displayItem[0].habit_id}
 								</p>
 								<button
 									onClick={() =>
