@@ -18,8 +18,12 @@ export default function Navbar() {
 		<header className="header">
 			<div className="header-wrapper">
 				<div className="header-div-left">
-					<img className="header-logo" src="" alt="Rootine logo" />
-					<img className="header-name" src="" alt="rootine" />
+					<img
+						className="header-logo"
+						src="logos/rootinelogo-XPRNT-lg.png"
+						alt="Rootine logo"
+					/>
+					{/* <img className="header-name" src="" alt="rootine" /> */}
 				</div>
 				<div className="header-div-right">
 					<a className="blogs" href="#">

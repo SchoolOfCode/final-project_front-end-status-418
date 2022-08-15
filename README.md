@@ -5,22 +5,23 @@
 > ### “Sure, it’s easy to _start_ a new habit, but how do you make it stick?”
 
 ## Overview
-TODO: Adjust tone <<<<<<<<<<<<<
 
 [Open app](https://rootine.netlify.app "Rootine deployed on Netlify")
 <br>
 
-As our final project for School of Code, our team, _Status 418_, made "Rootine", a habit-tracking app developed in React. The purpose of this app is to allow users to define some daily habits that they would like to start (or keep) and be able to easily fill in and track their record of doing these habits over time. This app enables users to simply add a new habit along with a brief description and have this stored on our database. The user may then login in and open the page at a different time and update their progress for any day. 
+For our final project in the School of Code, our team, _Status 418_, made "Rootine", a habit-tracking app developed in React. The purpose of this app is to allow users to define daily habits that they would like to start (or keep) and be able to easily fill in and track their record of doing these habits over time. This app enables users to simply add a new habit along with a brief description and have this stored on our database. 
 
-A user can expect to logout and login on a different device and still be able to view their same habits and corresponding records for each date, all on that new device !
+They may then log in and open the page at a different time to change their habits' names or descriptions and update their progress for any day. 
+
+A user can expect to logout and login on a different device and still be able to view and edit their same habits and corresponding records for each date.
 
 This repository contains the frontend code for the app, which has several features:
 
 -   Landing page with an Auth0-integrated Log in/ Sign up flow
--   Calender row display with clickable arrows to see a different week
+-   Form through which a new habit may be created, shown by clicking the "add +" button
 -   Details panel displaying the details of the currently selected habit
     +   Details of the currently selected habit may be edited through here as well
--   Form through which a new habit may be created, shown by clicking the "add +" button
+-   Calender row display with clickable arrows to see a different week
 -   A row of clickable items for each habit, indicating the status of the user's habit for that day - incomplete, complete, skipped or missed
 <br>
 <br>
@@ -37,8 +38,12 @@ This repository contains the frontend code for the app, which has several featur
 | Secondary Background (Auth0 login) | ![#e8e9e3](https://via.placeholder.com/15/e8e9e3/e8e9e3.png) #e8e9e3 |
 | Primary Black (Text colour)        | ![#121714](https://via.placeholder.com/15/121714/121714.png) #121714 |
 
-TODO: Add fonts list/ table <<<<<<<<
+<br>
 
+| Font    | Usage      |
+| ------- | ---------- |
+| Quando  | Headings   |
+| Lato    | Body       |
 <br>
 
 ## Landing & Log in/ sign up pages
@@ -68,7 +73,7 @@ Clicking the _log in_ button takes the user to this (slightly different) page
 
 <br>
 
-## Main page
+# Main page
 Upon signing up, the user is presented with this page. There are no habits currently added (since they only just signed up), but there is a section on the left, prompting the user to add a new habit as well as an "add" button which the user may click on to access the form view of that section. It is through this form that new habits are defined and submitted. 
 <details>
 <summary>Main page preview</summary>
@@ -77,47 +82,52 @@ Upon signing up, the user is presented with this page. There are no habits curre
 </details>
 <br>
 
-### Habit Form:
-The form view of the left section has a "Habit name" input, where the user can define the name of their new habit, as well as a "Habit description" input where a note may be made, giving more detail about that particular habit. Pressing the submit button will add this habit and its description to a database, and associate with the user's account. 
+## Adding a habit
+<br>
 
+The functionality of adding habits is part of the _HabitForm_ component.
+
+The form view of the left section has a "Habit name" input, where the user can define the name of their new habit, as well as a "Habit description" input where a note may be made, giving more detail about that particular habit. Pressing the submit button will add this habit and its description to a database, and associate with the user's account.
 <details>
-<summary>Habit form preview</summary>
+<summary>TODO: ADDING_A_HABIT_PROCESS.GIF</summary>
 
 ![Habit form screenshot](rootine/screenshots/HabitForm.JPG)
 </details>
 <br>
 
-### Calendar bar
-This shows 1 weeks' worth of dates, where each date box is synchronised with a column of "habit items" for that date. Future and previous weeks are able to be viewed by clicking on the arrows to the left and right of this row, with the habit items below updating for the status of each habit for the newly displayed days.
-
-<details>
-<summary>Calendar bar preview</summary>
-
-![Calendar bar screenshot](rootine/screenshots/CalendarBar.JPG)
-</details>
+## Tracking a habit
 <br>
 
-### Habit rows:
+The functionality of tracking habits is part of the _Calendar_, _CalendarBar_ & *HabitRow* components.
+
 Upon submitting a habit and description, the user will see the new habit immediately appear in the main part of the screen, along with several clickable buttons. Each button, corresponding to the dates in the Calendar bar above, may be clicked to cycle between several colours:
 - White - Incomplete (initial state) - The user is yet to complete the habit that day
 - Green - Complete - The user successfully completed the habit that day
 - Yellow - Skipped - The user did not complete the habit that day for reasons out of their control (e.g. The park was closed)
 - Red - Missed - The user did not complete the habit that day
 
-This provides a visualisation of the user's track record of sticking to their habits. The database will be update (or create a new entry) with the new status of that habit on that day as each button is clicked.
+This provides a visualisation of the user's track record of sticking to their habits. The database will be update (or create a new entry) with the new status of that habit on that day as each button is clicked. There is also a streak feature to show how many days in a row the user has completed that habit.
+
+
+### Calendar bar
+This shows 1 weeks' worth of dates, where each date box is synchronised with a column of "habit items" for that date. Future and previous weeks are able to be viewed by clicking on the arrows to the left and right of this row, with the habit items below updating for the status of each habit for the newly displayed days.
 
 <details>
-<summary>Habit row preview</summary>
+<summary>TODO: CLICKING_THROUGH_CALENDAR_&_CLICKING_HABIT_ROW_ITEMS.GIF</summary>
 
 ![Habit row screenshot](rootine/screenshots/HabitRow.JPG)
 </details>
 <br>
 
-### Details panel:
+
+
+## Modifying a habit
 TODO: <<<<<<<<<<<<<<
 
 Description of functionality and usage of details panel component
 
+
+This is also where the currently selected habit's streak is displayed.
 <details>
 <summary>Detail panel preview</summary>
 
@@ -130,17 +140,26 @@ Description of functionality and usage of details panel component
 
 <br>
 
-## Languages and Tools
+## Languages, Tools & Websites used:
+
+ 
+
+
+
+
 
 <br>
 
- <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/> </a> 
- <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> 
- <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a>
- <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> 
- <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> 
- <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> 
- <a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> 
- <a href="https://www.cypress.io" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/6e46ec1fc23b60c8fd0d2f2ff46db82e16dbd75f/icons/cypress.svg" alt="cypress" width="40" height="40"/> </a> 
- <a href="https://jestjs.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/jestjsio/jestjsio-icon.svg" alt="jest" width="40" height="40"/> </a> 
-
+<a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/> </a>
+<a href="https://www.trello.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/trello/trello-icon.svg" alt="trello" width="40" height="40"/> </a>
+<a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> 
+<a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a>
+<a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> 
+<a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> 
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a>
+<a href="https://auth0.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/auth0/auth0-icon.svg" alt="auth0" width="40" height="40"/> </a> 
+<a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> 
+<a href="https://www.cypress.io" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/6e46ec1fc23b60c8fd0d2f2ff46db82e16dbd75f/icons/cypress.svg" alt="cypress" width="40" height="40"/> </a> 
+<a href="https://jestjs.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/jestjsio/jestjsio-icon.svg" alt="jest" width="40" height="40"/> </a> 
+<a href="https://www.netlify.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/netlify/netlify-icon.svg" alt="netlify" width="40" height="40"/> </a>
+(Plus Miro & Chakra UI Library)
