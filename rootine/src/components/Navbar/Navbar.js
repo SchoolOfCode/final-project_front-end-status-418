@@ -29,7 +29,8 @@ import {
   HStack,
   VStack,
   Text,
-  Heading
+  Heading,
+  Center
   
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
@@ -299,14 +300,19 @@ const BlogModal = () => {
       <Modal isOpen={isOpen} onClose={onClose} size="2xl" isCentered="true">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader fontSize="3xl">
-            <FcSupport></FcSupport>
-            Our blog is currently under construction
+          <ModalHeader>
+            <VStack>
+              <FcSupport />
+
+              <Heading fontFamily={"Quando"} size="lg" textAlign={["center"]}>
+                Our blog is currently under construction
+              </Heading>
+            </VStack>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody fontSize="xl">
-            <List spacing={3}>
-              <ListItem fontSize="2xl">
+            <List spacing={6} textAlign={["center"]}>
+              <ListItem fontSize="2xl" fontFamily={"Segoe UI"}>
                 In the meantime please enjoy some of our favourite articles on
                 building habits!
               </ListItem>
@@ -333,7 +339,12 @@ const BlogModal = () => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button
+              colorScheme="orange"
+              bgGradient="linear(to-l, #f05d4d, #f8a642)"
+              mr={3}
+              onClick={onClose}
+            >
               Close
             </Button>
           </ModalFooter>
