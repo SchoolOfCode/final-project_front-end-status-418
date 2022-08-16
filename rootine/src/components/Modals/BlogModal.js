@@ -3,45 +3,22 @@ import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, Mo
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { FcSupport } from "react-icons/fc";
 import { GrArticle } from "react-icons/gr";
+import { footerItemsProps } from "../Footer/footerProps";
+import { navMenuItemProps } from "../Navbar/navbarProps";
 
 export const BlogModal = ({ isFooter }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
+
+	/* 
+    Returns a different-sized button depending on whether the button to open the modal is in the navbar or the footer
+	*/
+	const buttonStyle = isFooter ? footerItemsProps : navMenuItemProps;
+
 	return (
 		<>
-			{isFooter ? (
-				<Button
-					onClick={onOpen}
-					fontFamily={"Quando"}
-					fontWeight={50}
-					fontSize={25}
-					as={Button}
-					colorScheme="#f8a642"
-					color="#22553f"
-					_hover={{
-						color: "#f05d4d",
-						backgroundColor: "transparent",
-					}}
-					backgroundColor="transparent">
-					Blog
-				</Button>
-			) : (
-				<Button
-					onClick={onOpen}
-					fontFamily={"Quando"}
-					fontWeight={50}
-					fontSize={25}
-					as={Button}
-					colorScheme="#f8a642"
-					color="#22553f"
-					_hover={{
-						color: "#f05d4d",
-						backgroundColor: "transparent",
-					}}
-					backgroundColor="transparent">
-					Blog
-				</Button>
-			)}
-
+			<Button onClick={onOpen} {...buttonStyle}>
+				Blog
+			</Button>
 			<Modal
 				isOpen={isOpen}
 				onClose={onClose}

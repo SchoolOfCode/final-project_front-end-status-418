@@ -13,6 +13,7 @@ import { Menu, MenuButton, MenuList, MenuItem, MenuDivider, Button } from "@chak
 
 import { BlogModal } from "../Modals/BlogModal.js";
 import { AboutModal } from "../Modals/AboutModal";
+import { navMenuItemProps } from "./navbarProps";
 
 export default function Navbar() {
 	const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -36,16 +37,7 @@ export default function Navbar() {
 					<BlogModal />
 					<AboutModal />
 					<Menu>
-						<MenuButton
-							fontFamily={"Quando"}
-							fontWeight={50}
-							fontSize={25}
-							as={Button}
-							colorScheme="#f8a642"
-							color="#22553f"
-							_hover={{ color: "#f05d4d" }}>
-							Menu
-						</MenuButton>
+						<MenuButton {...navMenuItemProps}>Menu</MenuButton>
 						<MenuList>
 							{/* <MenuGroup title="Menu">
 
@@ -54,7 +46,7 @@ export default function Navbar() {
                 </MenuItem>
                 <MenuItem>Colour blind Mode </MenuItem>
               </MenuGroup> */}
-							<MenuDivider />
+							{/* <MenuDivider /> */}
 							{/* <MenuGroup title="Profile"> */}
 							{!isAuthenticated ? (
 								<MenuItem
