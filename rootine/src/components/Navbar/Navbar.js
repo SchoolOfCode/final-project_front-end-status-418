@@ -6,7 +6,7 @@ import "./Navbar.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 //prettier-ignore
-import { Menu, MenuButton, MenuList, MenuItem, MenuDivider, Button } from "@chakra-ui/react";
+import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 // import { ExternalLinkIcon } from "@chakra-ui/icons";
 // import { FcSupport } from "react-icons/fc";
 // import { GrArticle } from "react-icons/gr";
