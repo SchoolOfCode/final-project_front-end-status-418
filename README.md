@@ -96,9 +96,9 @@ The functionality of adding habits is part of the _HabitForm_ component.
 The form view of the left section has a "Habit name" input, where the user can define the name of their new habit, as well as a "Habit description" input where a note may be made, giving more detail about that particular habit. Pressing the submit button will add this habit and its description to a database, and associate with the user's account.
 
 <details>
-<summary>TODO: ADDING_A_HABIT_PROCESS.GIF</summary>
+<summary>Adding a new habit</summary>
 
-![Habit form screenshot](rootine/screenshots/HabitForm.JPG)
+![Uploading a new habit](rootine/GIFS/UploadingHabit.gif)
 
 </details>
 <br>
@@ -123,9 +123,9 @@ This provides a visualisation of the user's track record of sticking to their ha
 This shows 1 weeks' worth of dates, where each date box is synchronised with a column of "habit items" for that date. Future and previous weeks are able to be viewed by clicking on the arrows to the left and right of this row, with the habit items below updating for the status of each habit for the newly displayed days.
 
 <details>
-<summary>TODO: CLICKING_THROUGH_CALENDAR_&_CLICKING_HABIT_ROW_ITEMS.GIF</summary>
+<summary>Tracking a habit</summary>
 
-![Habit row screenshot](rootine/screenshots/HabitRow.JPG)
+![Tracking a habit ](rootine/GIFS/TrackingHabit.gif)
 
 </details>
 <br>
@@ -143,9 +143,9 @@ Alternatively, users can delete an existing habit by clicking on the _delete_ bu
 This is also where the currently selected habit's streak is displayed.
 
 <details>
-<summary>TODO: MODIFYING_HABIT_IN_DETAILS_PANEL_&_DELETING_HABIT.GIF</summary>
+<summary>Modifying and deleting an existing habit </summary>
 
-![Detail panel screenshot](rootine/screenshots/DetailsPanel.JPG)
+![Modifying and deleting an existing habit](rootine/GIFS/EditingHabit.gif)
 
 </details>
 <br>
@@ -153,6 +153,7 @@ This is also where the currently selected habit's streak is displayed.
 <br>
 
 ## Languages, Tools & Websites used:
+
 <br>
 
 <a href="https://miro.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/miro-2.svg" alt="miro" width="40" height="40"/> </a>
