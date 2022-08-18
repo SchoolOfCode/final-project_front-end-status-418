@@ -275,7 +275,7 @@ const DetailsPanel = ({
               </WrapItem>
             </Wrap>
           </Box> */}
-					<Editable>
+					<Editable width="100%">
 						<EditableDescription />
 					</Editable>
 
