@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Ticker from "react-ticker";
-import PageVisibility from "react-page-visibility";
+// import Ticker from "react-ticker";
+// import PageVisibility from "react-page-visibility";
 import { tickertapeAdvice } from "./libs";
 //prettier-ignore
 import { tickertapeProps, tickerContentProps, tooltipProps, } from "./tickertapeProps";
