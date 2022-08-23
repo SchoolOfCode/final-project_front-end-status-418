@@ -51,85 +51,110 @@ export const CalendarBar = ({ dayList, section, setSection }) => {
 
 	function LeftArrow() {
 		const getPrevSection = () => {
-			let firstItem = section[0];
-			const dataCopy = [...dayList];
-			let numberToDisplay = 7;
+			// let firstItem = section[0];
+			// console.log("firstItem", firstItem);
+
+			/*
+				Create new previous section by substracting 7 from each element in the current 'section' array
+			*/
+			const newSection = [];
+
+			for (let i = 0; i < 7; i++) {
+				newSection[i] = dayjs(section[i]).subtract(7, "days");
+			}
+
+			// console.log(newSection);
+
+			setSection(newSection);
+
+			// const dataCopy = [...dayList];
+			// let numberToDisplay = 7;
 			//let remainderNumberToDisplay = dataCopy.length % numberToDisplay;
-			let indexFirstItemCurrentSection = dataCopy.findIndex(
-				(item) => item === firstItem
-			);
+			// let indexFirstItemCurrentSection = dataCopy.findIndex(
+			// 	(item) => item === firstItem
+			// );
 
 			// console.log("dataCopy", dataCopy);
-			// console.log("indexFirstItemCurrentSection", indexFirstItemCurrentSection);
+			// console.log(
+			// 	"indexFirstItemCurrentSection",
+			// 	indexFirstItemCurrentSection
+			// );
 
 			// if there are enough items to display
 
-			if (indexFirstItemCurrentSection - numberToDisplay >= 0) {
-				let prevSection = dataCopy.slice(
-					indexFirstItemCurrentSection - numberToDisplay,
-					indexFirstItemCurrentSection
-				);
-				// console.log("nextSection", prevSection);
-				setSection(prevSection);
+			// if (indexFirstItemCurrentSection - numberToDisplay >= 0) {
+			// 	let prevSection = dataCopy.slice(
+			// 		indexFirstItemCurrentSection - numberToDisplay,
+			// 		indexFirstItemCurrentSection
+			// 	);
+			// 	console.log("prevSection", prevSection);
+			// 	setSection(prevSection);
 
-				// if there are not enough items to display
-			} else if (
-				indexFirstItemCurrentSection - (numberToDisplay - 1) >=
-				0
-			) {
-				let prevSection = dataCopy.slice(
-					indexFirstItemCurrentSection - (numberToDisplay - 1),
-					indexFirstItemCurrentSection
-				);
-				setSection(prevSection);
-			} else if (
-				indexFirstItemCurrentSection - (numberToDisplay - 2) >=
-				0
-			) {
-				let prevSection = dataCopy.slice(
-					indexFirstItemCurrentSection - (numberToDisplay - 2),
-					indexFirstItemCurrentSection
-				);
-				setSection(prevSection);
-			} else if (
-				indexFirstItemCurrentSection - (numberToDisplay - 3) >=
-				0
-			) {
-				let prevSection = dataCopy.slice(
-					indexFirstItemCurrentSection - (numberToDisplay - 3),
-					indexFirstItemCurrentSection
-				);
-				setSection(prevSection);
-			} else if (
-				indexFirstItemCurrentSection - (numberToDisplay - 4) >=
-				0
-			) {
-				let prevSection = dataCopy.slice(
-					indexFirstItemCurrentSection - (numberToDisplay - 4),
-					indexFirstItemCurrentSection
-				);
-				setSection(prevSection);
-			} else if (
-				indexFirstItemCurrentSection - (numberToDisplay - 5) >=
-				0
-			) {
-				let prevSection = dataCopy.slice(
-					indexFirstItemCurrentSection - (numberToDisplay - 5),
-					indexFirstItemCurrentSection
-				);
-				setSection(prevSection);
-			} else if (
-				indexFirstItemCurrentSection - (numberToDisplay - 6) >=
-				0
-			) {
-				let prevSection = dataCopy.slice(
-					indexFirstItemCurrentSection - (numberToDisplay - 6),
-					indexFirstItemCurrentSection
-				);
-				setSection(prevSection);
-			} else {
-				setSection(section);
-			}
+			// 	// if there are not enough items to display
+			// } else if (
+			// 	indexFirstItemCurrentSection - (numberToDisplay - 1) >=
+			// 	0
+			// ) {
+			// 	let prevSection = dataCopy.slice(
+			// 		indexFirstItemCurrentSection - (numberToDisplay - 1),
+			// 		indexFirstItemCurrentSection
+			// 	);
+			// 	console.log("prevSection1", prevSection);
+			// 	setSection(prevSection);
+			// } else if (
+			// 	indexFirstItemCurrentSection - (numberToDisplay - 2) >=
+			// 	0
+			// ) {
+			// 	let prevSection = dataCopy.slice(
+			// 		indexFirstItemCurrentSection - (numberToDisplay - 2),
+			// 		indexFirstItemCurrentSection
+			// 	);
+			// 	console.log("prevSection2", prevSection);
+			// 	setSection(prevSection);
+			// } else if (
+			// 	indexFirstItemCurrentSection - (numberToDisplay - 3) >=
+			// 	0
+			// ) {
+			// 	let prevSection = dataCopy.slice(
+			// 		indexFirstItemCurrentSection - (numberToDisplay - 3),
+			// 		indexFirstItemCurrentSection
+			// 	);
+			// 	console.log("prevSection3", prevSection);
+			// 	setSection(prevSection);
+			// } else if (
+			// 	indexFirstItemCurrentSection - (numberToDisplay - 4) >=
+			// 	0
+			// ) {
+			// 	let prevSection = dataCopy.slice(
+			// 		indexFirstItemCurrentSection - (numberToDisplay - 4),
+			// 		indexFirstItemCurrentSection
+			// 	);
+			// 	console.log("prevSection4", prevSection);
+			// 	setSection(prevSection);
+			// } else if (
+			// 	indexFirstItemCurrentSection - (numberToDisplay - 5) >=
+			// 	0
+			// ) {
+			// 	let prevSection = dataCopy.slice(
+			// 		indexFirstItemCurrentSection - (numberToDisplay - 5),
+			// 		indexFirstItemCurrentSection
+			// 	);
+			// 	console.log("prevSection5", prevSection);
+			// 	setSection(prevSection);
+			// } else if (
+			// 	indexFirstItemCurrentSection - (numberToDisplay - 6) >=
+			// 	0
+			// ) {
+			// 	let prevSection = dataCopy.slice(
+			// 		indexFirstItemCurrentSection - (numberToDisplay - 6),
+			// 		indexFirstItemCurrentSection
+			// 	);
+			// 	console.log("prevSection6", prevSection);
+			// 	setSection(prevSection);
+			// } else {
+			// 	console.log("prevSection", "reached else");
+			// 	setSection(section);
+			// }
 		};
 		return (
 			<button className="left-button" onClick={getPrevSection}>
@@ -141,102 +166,115 @@ export const CalendarBar = ({ dayList, section, setSection }) => {
 
 	function RightArrow() {
 		const getNextSection = () => {
-			const dataCopy = [...dayList];
-			let numberToDisplay = 7;
-			//let remainderNumberToDisplay = dataCopy.length % numberToDisplay;
-			let lastItemOfCurrentSection = section[section.length - 1];
-			let indexLastItemOfCurrentSection = dataCopy.findIndex(
-				(item) => item === lastItemOfCurrentSection
-			);
-			let indexFirstItemOfNextSection = indexLastItemOfCurrentSection + 1;
+			/*
+				Create next section by adding 7 to each element in the current 'section' array
+			*/
+			const newSection = [];
+
+			for (let i = 0; i < 7; i++) {
+				newSection[i] = dayjs(section[i]).add(7, "days");
+			}
+
+			// console.log(newSection);
+
+			setSection(newSection);
+
+			// const dataCopy = [...dayList];
+			// let numberToDisplay = 7;
+			// //let remainderNumberToDisplay = dataCopy.length % numberToDisplay;
+			// let lastItemOfCurrentSection = section[section.length - 1];
+			// let indexLastItemOfCurrentSection = dataCopy.findIndex(
+			// 	(item) => item === lastItemOfCurrentSection
+			// );
+			// let indexFirstItemOfNextSection = indexLastItemOfCurrentSection + 1;
 
 			// console.log("dataCopy", dataCopy);
 			// console.log("indexOfLastItemy", indexLastItemOfCurrentSection);
 
 			// if there are enough items to display
-			if (
-				indexFirstItemOfNextSection + numberToDisplay <=
-				dataCopy.length
-			) {
-				let nextSection = dataCopy.slice(
-					indexFirstItemOfNextSection,
-					indexFirstItemOfNextSection + numberToDisplay
-				);
-				// console.log("nextSection", nextSection);
+			// if (
+			// 	indexFirstItemOfNextSection + numberToDisplay <=
+			// 	dataCopy.length
+			// ) {
+			// 	let nextSection = dataCopy.slice(
+			// 		indexFirstItemOfNextSection,
+			// 		indexFirstItemOfNextSection + numberToDisplay
+			// 	);
+			// 	// console.log("nextSection", nextSection);
 
-				setSection(nextSection);
-				// if there are not enough items to display
-			} else if (
-				indexFirstItemOfNextSection + (numberToDisplay - 1) <=
-				dataCopy.length
-			) {
-				let nextSection = dataCopy.slice(
-					indexFirstItemOfNextSection,
-					indexFirstItemOfNextSection + (numberToDisplay - 1)
-				);
-				// console.log("nextSection", nextSection);
+			// 	setSection(nextSection);
+			// 	// if there are not enough items to display
+			// } else if (
+			// 	indexFirstItemOfNextSection + (numberToDisplay - 1) <=
+			// 	dataCopy.length
+			// ) {
+			// 	let nextSection = dataCopy.slice(
+			// 		indexFirstItemOfNextSection,
+			// 		indexFirstItemOfNextSection + (numberToDisplay - 1)
+			// 	);
+			// 	// console.log("nextSection", nextSection);
 
-				setSection(nextSection);
+			// 	setSection(nextSection);
 
-				// if weve just displayed the last items
-			} else if (
-				indexFirstItemOfNextSection + (numberToDisplay - 2) <=
-				dataCopy.length
-			) {
-				let nextSection = dataCopy.slice(
-					indexFirstItemOfNextSection,
-					indexFirstItemOfNextSection + (numberToDisplay - 2)
-				);
-				// console.log("nextSection", nextSection);
+			// 	// if weve just displayed the last items
+			// } else if (
+			// 	indexFirstItemOfNextSection + (numberToDisplay - 2) <=
+			// 	dataCopy.length
+			// ) {
+			// 	let nextSection = dataCopy.slice(
+			// 		indexFirstItemOfNextSection,
+			// 		indexFirstItemOfNextSection + (numberToDisplay - 2)
+			// 	);
+			// 	// console.log("nextSection", nextSection);
 
-				setSection(nextSection);
-			} else if (
-				indexFirstItemOfNextSection + (numberToDisplay - 3) <=
-				dataCopy.length
-			) {
-				let nextSection = dataCopy.slice(
-					indexFirstItemOfNextSection,
-					indexFirstItemOfNextSection + (numberToDisplay - 3)
-				);
-				// console.log("nextSection", nextSection);
+			// 	setSection(nextSection);
+			// } else if (
+			// 	indexFirstItemOfNextSection + (numberToDisplay - 3) <=
+			// 	dataCopy.length
+			// ) {
+			// 	let nextSection = dataCopy.slice(
+			// 		indexFirstItemOfNextSection,
+			// 		indexFirstItemOfNextSection + (numberToDisplay - 3)
+			// 	);
+			// 	// console.log("nextSection", nextSection);
 
-				setSection(nextSection);
-			} else if (
-				indexFirstItemOfNextSection + (numberToDisplay - 4) <=
-				dataCopy.length
-			) {
-				let nextSection = dataCopy.slice(
-					indexFirstItemOfNextSection,
-					indexFirstItemOfNextSection + (numberToDisplay - 4)
-				);
-				// console.log("nextSection", nextSection);
+			// 	setSection(nextSection);
+			// } else if (
+			// 	indexFirstItemOfNextSection + (numberToDisplay - 4) <=
+			// 	dataCopy.length
+			// ) {
+			// 	let nextSection = dataCopy.slice(
+			// 		indexFirstItemOfNextSection,
+			// 		indexFirstItemOfNextSection + (numberToDisplay - 4)
+			// 	);
+			// 	// console.log("nextSection", nextSection);
 
-				setSection(nextSection);
-			} else if (
-				indexFirstItemOfNextSection + (numberToDisplay - 5) <=
-				dataCopy.length
-			) {
-				let nextSection = dataCopy.slice(
-					indexFirstItemOfNextSection,
-					indexFirstItemOfNextSection + (numberToDisplay - 5)
-				);
-				// console.log("nextSection", nextSection);
+			// 	setSection(nextSection);
+			// } else if (
+			// 	indexFirstItemOfNextSection + (numberToDisplay - 5) <=
+			// 	dataCopy.length
+			// ) {
+			// 	let nextSection = dataCopy.slice(
+			// 		indexFirstItemOfNextSection,
+			// 		indexFirstItemOfNextSection + (numberToDisplay - 5)
+			// 	);
+			// 	// console.log("nextSection", nextSection);
 
-				setSection(nextSection);
-			} else if (
-				indexFirstItemOfNextSection + (numberToDisplay - 6) <=
-				dataCopy.length
-			) {
-				let nextSection = dataCopy.slice(
-					indexFirstItemOfNextSection,
-					indexFirstItemOfNextSection + (numberToDisplay - 6)
-				);
-				// console.log("nextSection", nextSection);
+			// 	setSection(nextSection);
+			// } else if (
+			// 	indexFirstItemOfNextSection + (numberToDisplay - 6) <=
+			// 	dataCopy.length
+			// ) {
+			// 	let nextSection = dataCopy.slice(
+			// 		indexFirstItemOfNextSection,
+			// 		indexFirstItemOfNextSection + (numberToDisplay - 6)
+			// 	);
+			// 	// console.log("nextSection", nextSection);
 
-				setSection(nextSection);
-			} else {
-				setSection(section);
-			}
+			// 	setSection(nextSection);
+			// } else {
+			// 	setSection(section);
+			// }
 		};
 		return (
 			<button className="right-button" onClick={getNextSection}>

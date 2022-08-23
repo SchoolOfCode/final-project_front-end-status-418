@@ -11,12 +11,20 @@ import { AddIcon } from "@chakra-ui/icons";
 //Imports same button styling as the 'Save' button in the Upload new Habit panel for the 'Add' button.
 import { addHabitSubmitButtonProps } from "../../UploadHabit/uploadHabitProps.js";
 
-const getCurrentWeekDays = () => {
-	const weekStart = dayjs().startOf("week");
+const createAllCalendarDays = () => {
+	// const weekStart = dayjs().startOf("week");
+
+	//Change weekStart (now dateStart) to always begin at 1 August 2022
+	//Note that months are zero-indexed so August = 7
+	const d = new Date(2022, 7, 1);
+	const dateStart = dayjs(d);
+	// console.log(weekStart);
+
 	const days = [];
-	for (let i = -5; i <= 100; i++) {
-		days.push(dayjs(weekStart).add(i, "days"));
+	for (let i = 0; i <= 200; i++) {
+		days.push(dayjs(dateStart).add(i, "days"));
 	}
+	// console.log(days);
 	return days;
 };
 
@@ -96,8 +104,22 @@ const Calendar = ({
 	}
 	const [habits, setHabits] = useState(newHabits);
 	// eslint-disable-next-line no-unused-vars
-	const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
-	const [section, setSection] = useState(daysOfWeek.slice(0, 7));
+	// const [daysOfWeek, setDaysOfWeek] = useState(getCurrentWeekDays());
+	const dayList = createAllCalendarDays();
+
+	//Find this week, beginning on Sunday
+	const startOfCurrentWeek = dayjs().startOf("week");
+	// console.log(displayCurrentWeek);
+
+	const displayCurrentWeek = [];
+	for (let i = 0; i < 7; i++) {
+		displayCurrentWeek[i] = dayjs(startOfCurrentWeek).add(i, "days");
+	}
+	// console.log(displayCurrentWeek);
+
+	// const [section, setSection] = useState(daysOfWeek.slice(0, 7));
+	// Set 'section' to now be the current week
+	const [section, setSection] = useState(displayCurrentWeek);
 
 	useEffect(() => {
 		setExistingHabitsOnPageLoad();
@@ -145,7 +167,7 @@ const Calendar = ({
 					className="calendar-bar-container"
 					justifyContent="flex-end">
 					<CalendarBar
-						dayList={daysOfWeek}
+						dayList={dayList}
 						section={section}
 						setSection={setSection}
 					/>
