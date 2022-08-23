@@ -105,8 +105,8 @@ export default function Tickertape() {
 			let randIndex = Math.floor(
 				Math.random() * (tickertapeAdvice.length - 1)
 			);
-			console.log("randIndex", randIndex);
-			console.log(tickertapeAdvice[randIndex]);
+			// console.log("randIndex", randIndex);
+			// console.log(tickertapeAdvice[randIndex]);
 			setAdvice(tickertapeAdvice[randIndex]);
 		}
 		fetchRandAdvice();
