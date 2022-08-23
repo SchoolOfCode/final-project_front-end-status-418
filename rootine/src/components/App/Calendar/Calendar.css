@@ -5,7 +5,9 @@
 	/* background-color: white; */
 	/* margin-left: 0.01mm; */
 	/* width: 150vw; */
-	height: 65vh;
+	/* height: 65vh; */
+	min-height: 550px;
+	max-height: 800px;
 	overflow-y: auto;
 	padding: 2.5rem;
 	padding-top: calc(0.25rem + 3px);
