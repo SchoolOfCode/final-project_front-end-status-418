@@ -174,22 +174,26 @@ const Calendar = ({
 				</Box>
 				<div id="calendar-divider"></div>
 				<Box>
-					{habits.length > 0
-						? habits.map((habit) => {
-								/* console.log("habit", habit); */
-								return (
-									<div>
-										<HabitRow
-											habitName={habit.name}
-											key={habit.id}
-											habitid={habit.id}
-											section={section}
-											onClick={() => handleClick(habit)}
-										/>
-									</div>
-								);
-						  })
-						: "Error, no habits found"}
+					{habits.length > 0 ? (
+						habits.map((habit) => {
+							/* console.log("habit", habit); */
+							return (
+								<div>
+									<HabitRow
+										habitName={habit.name}
+										key={habit.id}
+										habitid={habit.id}
+										section={section}
+										onClick={() => handleClick(habit)}
+									/>
+								</div>
+							);
+						})
+					) : (
+						<Text
+							fontSize="xl"
+							mt="25px">{`No habits found, click ‘Add +’ to get started!`}</Text>
+					)}
 				</Box>
 
 				<Button
