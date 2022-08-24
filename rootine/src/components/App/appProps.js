@@ -5,5 +5,6 @@ export const flexProps = {
 	alignItems: "flex-start",
 	justifyContent: "center",
 	margin: "2em",
+	marginTop: "0",
 	// gap: "1em",
 };

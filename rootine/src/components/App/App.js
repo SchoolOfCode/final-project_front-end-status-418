@@ -12,6 +12,7 @@ import Calendar from "./Calendar/Calendar";
 //prettier-ignore
 import { Flex } from "@chakra-ui/react"
 import { flexProps } from "./appProps.js";
+import Tickertape from "../Tickertape/Tickertape";
 
 /* 
     Upon logging in, check whether incoming user_id matches already exists
@@ -99,6 +100,7 @@ function App() {
 	return (
 		<div className="App">
 			<Navbar />
+			<Tickertape />
 			<main>
 				{/* <p>Authenticated? {isAuthenticated ? "yes" : "no"}</p>
 				<p>{user ? "user = " + user.nickname : "no username info"}</p>
