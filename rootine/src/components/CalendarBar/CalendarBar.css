@@ -1,0 +1,86 @@
+/* .buttonContainer {
+	display: flex;
+	width: 50px;
+	height: 50px;
+} */
+
+.dayItem {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+}
+
+.react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
+	display: none;
+}
+
+.react-horizontal-scrolling-menu--scroll-container {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.calendar-container-grid {
+	display: grid;
+	/* grid- */
+	grid-template-columns: 180px 1fr 55px;
+}
+
+.calendar-items-container {
+	display: grid;
+	justify-content: space-around;
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-items-left-region,
+.calendar-items-right-region {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.menu-item {
+	padding: 0 4px;
+	margin: 5px 10px;
+	user-select: none;
+	-webkit-user-select: none;
+	cursor: pointer;
+	/* border: 2px red solid; */
+	max-width: 4em;
+	min-width: 45px;
+	width: 100%;
+	border-radius: 0.7em;
+	outline: 2px solid var(--black);
+}
+.menu-item-wrapper.active {
+	border: 1px blue solid;
+	border-image: linear-gradient(to bottom, #3acfd5 0%, #3a4ed5 100%) 1;
+}
+.menu-item.today {
+	outline: 4px solid #349eeb;
+}
+.scroll-menu-arrow {
+	padding: 10px;
+	cursor: pointer;
+}
+
+.right-button {
+	/* border: 3px solid var(--red); */
+	border-radius: 7px;
+	width: 3em;
+}
+
+.left-button {
+	/* border: 3px solid var(--red); */
+	border-radius: 7px;
+	width: 3em;
+}
+
+#calendar-divider {
+	margin: 0.7em auto;
+	width: calc(100% - 55px);
+	height: 3px;
+	background-color: var(--black);
+	opacity: 85%;
+	border-radius: 0.5em;
+}

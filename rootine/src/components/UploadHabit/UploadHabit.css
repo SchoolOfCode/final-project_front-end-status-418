@@ -1,0 +1,15 @@
+.frequency .fr-reps-input-disabled {
+	cursor: not-allowed;
+	opacity: 0.4;
+}
+.frequency .fr-reps-input-disabled:focus-visible {
+	cursor: not-allowed;
+}
+.frequency .fr-reps-input-disabled:hover {
+	cursor: not-allowed;
+	border-color: var(--chakra-colors-gray-300);
+}
+
+#everyday-check-label {
+	margin-right: 0.6em;
+}
